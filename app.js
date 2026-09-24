@@ -359,6 +359,8 @@
     });
 
     // Split-flap digits: one tile per digit, flipped only when that digit changes.
+    function two(n) { return String(n).padStart(2, "0"); }
+
     function setFlaps(el, value) {
       var str = String(value);
       el.setAttribute("aria-label", str);
@@ -392,9 +394,9 @@
         label.textContent = next.day.label + " - " + next.day.title + " starts in";
         units.hidden = false;
         setFlaps(units.querySelector('[data-u="d"]'), Math.floor(s / 86400));
-        setFlaps(units.querySelector('[data-u="h"]'), Math.floor(s % 86400 / 3600));
-        setFlaps(units.querySelector('[data-u="m"]'), Math.floor(s % 3600 / 60));
-        setFlaps(units.querySelector('[data-u="s"]'), s % 60);
+        setFlaps(units.querySelector('[data-u="h"]'), two(Math.floor(s % 86400 / 3600)));
+        setFlaps(units.querySelector('[data-u="m"]'), two(Math.floor(s % 3600 / 60)));
+        setFlaps(units.querySelector('[data-u="s"]'), two(s % 60));
         if (when.getAttribute("data-for") !== next.day.id) {
           when.setAttribute("data-for", next.day.id);
           var home = clock(next.start, HOME_TZ), local = rangeText(next.start, null, LOCAL_TZ, true, true);
@@ -428,7 +430,12 @@
 
   // Section heading. The number and kicker arguments are kept for call sites but no longer rendered.
   function sectionHead(num, kicker, title, id) {
-    return '<div class="section-head"><h2 class="section-title" id="' + id + '">' + esc(title) + "</h2></div>";
+    return '<div class="section-head"><h2 class="section-title" id="' + id + '">' + headingHTML(title) + "</h2></div>";
+  }
+
+  // [[red:word]] -> a red word, [[blue:word]] -> blue, [[yellow:word]] -> ink on a yellow block.
+  function headingHTML(title) {
+    return esc(title).replace(/\[\[(red|blue|yellow):(.+?)\]\]/g, '<span class="hl hl-$1">$2</span>');
   }
 
   // ---------- renderers ----------
@@ -446,15 +453,29 @@
     '<circle cx="3.9" cy="8.4" r="2.2" fill="currentColor"/><circle cx="23.8" cy="2.6" r="2.4" fill="currentColor"/>' +
     '<circle cx="44.2" cy="7.1" r="2" fill="currentColor"/></svg>';
 
+  // Tournament bracket linework: eight slots into four, two, one, ending in a yellow final slot
+  // with a halftone over it. Decorative, behind the text, hidden on narrow screens by CSS.
+  var BRACKET = '<svg class="hero-bracket" viewBox="0 0 760 520" aria-hidden="true" focusable="false">' +
+    '<defs><pattern id="ht-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="2.6" fill="#141417"/></pattern></defs>' +
+    '<g class="hb-lines" fill="none" stroke-width="14" stroke-linecap="square" stroke-linejoin="miter">' +
+      '<path d="M0 30 H110 V110 H0 M110 70 H230"/><path d="M0 150 H110 V230 H0 M110 190 H230"/>' +
+      '<path d="M0 290 H110 V370 H0 M110 330 H230"/><path d="M0 410 H110 V490 H0 M110 450 H230"/>' +
+      '<path d="M230 70 V190 M230 130 H370"/><path d="M230 330 V450 M230 390 H370"/>' +
+      '<path d="M370 130 V390 M370 260 H520"/>' +
+    "</g>" +
+    '<circle class="hb-final" cx="620" cy="260" r="96"/><circle cx="620" cy="260" r="96" fill="url(#ht-dots)" opacity="0.35"/>' +
+    "</svg>";
+
   function renderHero(d) {
     var h = d.hero, m = d.meta;
     $("hero").innerHTML =
-      '<div class="hero-sun" aria-hidden="true"></div>' +
+
       '<h1 id="hero-title">' + h.lines.map(function (l) { return "<span>" + esc(l) + "</span>"; }).join("") + "</h1>" +
       '<dl class="hero-facts">' +
         "<dt>Dates</dt><dd>" + esc(m.dates) + "</dd>" +
         '<dt>Location</dt><dd class="loc">' + esc(m.location) + "</dd>" +
       "</dl>" +
+      BRACKET +
       '<div class="countdown" id="countdown" role="timer" aria-atomic="true">' +
         '<p class="countdown-label"></p>' +
         '<ol class="countdown-units">' +
@@ -475,7 +496,7 @@
       "</div>" +
       (h.numerals && h.numerals.length
         ? '<ul class="hero-numerals" aria-label="Event at a glance">' + h.numerals.map(function (n) {
-            return '<li' + (n.feature ? ' class="is-feature"' : "") + '><span class="n">' + esc(n.value) +
+            return '<li class="' + (n.feature ? "is-feature" : "tone-" + esc(n.tone || "ink")) + '"><span class="n">' + esc(n.value) +
               (n.feature ? CROWN : "") + '</span><span class="l">' + esc(n.label) + "</span></li>";
           }).join("") + "</ul>"
         : "");
@@ -489,10 +510,13 @@
         '<div class="about-copy">' + a.paragraphs.map(function (p, i) {
           return "<p" + (i === 0 ? ' class="lede"' : "") + ">" + copy(p) + "</p>";
         }).join("") + "</div>" +
-        '<ul class="facts" aria-label="Key numbers">' + a.facts.map(function (f) {
-          return '<li><span class="n">' + esc(f.value) + '</span><span class="l">' + copy(f.label) + "</span></li>";
-        }).join("") + "</ul>" +
-      "</div>";
+      "</div>" +
+      (a.steps ? '<h3 class="steps-title">' + esc(a.stepsHeading) + "</h3>" +
+        '<ol class="steps">' + a.steps.map(function (st, i) {
+          return '<li class="step tone-' + esc(st.tone) + '"><span class="step-num">' + (i + 1) + (st.crown ? CROWN : "") + "</span>" +
+            '<span class="step-name">' + esc(st.label) + "</span>" +
+            '<span class="step-detail">' + copy(st.detail) + "</span></li>";
+        }).join("") + "</ol>" : "");
   }
 
   function sessionClass(track) {
@@ -517,7 +541,7 @@
         "</div>" +
         '<p class="day-summary">' + copy(day.summary) + "</p>" +
         '<ol class="sessions">' + day.sessions.map(function (x, j) {
-          return '<li class="session' + sessionClass(x.track) + '">' +
+          return '<li class="session' + sessionClass(x.track) + (x.highlight ? " is-gold" : "") + '">' +
             '<span class="session-code" aria-hidden="true">' + esc(x.code) + "</span>" +
             '<span class="session-time">' + timeEl(x.start, x.end, "block") + "</span>" +
             '<div class="session-body"><h3 class="session-title">' + esc(x.title) + "</h3>" +
@@ -1039,10 +1063,15 @@
     var f = d.faq;
     $("faq-body").innerHTML =
       sectionHead("8", "Questions", f.heading, "faq-title") +
-      '<div class="faq-list">' + f.items.map(function (x, i) {
-        return '<details class="faq-item"><summary><span>' + esc(x.q) + '</span><span class="q-icon" aria-hidden="true">+</span></summary>' +
-          '<div class="a"><p>' + copy(x.a) + "</p></div></details>";
-      }).join("") + "</div>";
+      (f.groups || [{ id: null, label: "", tone: "ink" }]).map(function (g) {
+        var items = f.items.filter(function (x) { return !g.id || x.group === g.id; });
+        return '<section class="faq-group tone-' + esc(g.tone) + '">' +
+          (g.label ? '<h3 class="faq-group-label">' + esc(g.label) + "</h3>" : "") +
+          '<div class="faq-list">' + items.map(function (x) {
+            return '<details class="faq-item"><summary><span class="q-text">' + esc(x.q) + '</span><span class="q-icon" aria-hidden="true"></span></summary>' +
+              '<div class="a"><p>' + copy(x.a) + "</p></div></details>";
+          }).join("") + "</div></section>";
+      }).join("");
   }
 
   function renderFooter(d) {
