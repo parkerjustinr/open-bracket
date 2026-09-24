@@ -370,6 +370,26 @@ main:focus { outline: none; }
 .hero h1 span { animation: slam 520ms cubic-bezier(.2,.9,.2,1) both; }
 .hero h1 span:nth-child(2) { animation-delay: 120ms; }
 
+/* Countdown */
+.countdown {
+  position: relative;
+  max-width: 560px;
+  background: var(--ink);
+  color: var(--paper);
+  border: var(--rule);
+  box-shadow: 5px 5px 0 var(--red);
+  padding: 14px 16px 16px;
+  margin-bottom: 28px;
+}
+.countdown-label { font-family: var(--cond); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 1rem; margin-bottom: 8px; }
+.countdown-units { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px; }
+.countdown-units[hidden] { display: none; }
+.countdown-units li { border-top: 2px solid var(--paper); padding-top: 6px; }
+.countdown-units .n { display: block; font-family: var(--display); font-size: clamp(2.25rem, 11vw, 3.75rem); line-height: 0.9; font-variant-numeric: tabular-nums; }
+.countdown-units li:first-child .n { color: var(--paper); background: var(--red); padding: 0 4px; justify-self: start; display: inline-block; }
+.countdown-units .l { display: block; font-family: var(--cond); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.8rem; }
+.countdown-when { margin-bottom: 12px; font-size: 0.98rem; }
+
 /* ---------- About ---------- */
 .about-grid { display: grid; gap: 32px; }
 .about-copy p { max-width: 60ch; }
@@ -433,7 +453,7 @@ main:focus { outline: none; }
   justify-self: start;
 }
 @media (min-width: 720px) {
-  .session { grid-template-columns: 110px 140px 1fr auto; align-items: baseline; padding: 18px 0; }
+  .session { grid-template-columns: 110px 190px 1fr auto; align-items: baseline; padding: 18px 0; }
   .session-code { grid-row: auto; font-size: 3.25rem; }
   .session-body { display: block; }
 }
@@ -519,6 +539,7 @@ main:focus { outline: none; }
 .channel-code { display: inline-block; font-family: var(--display); font-size: 1.1rem; letter-spacing: 0.08em; background: var(--paper); color: var(--red); padding: 2px 8px; margin-bottom: 8px; }
 .channel h3 { font-family: var(--display); text-transform: uppercase; font-size: 1.75rem; line-height: 1; margin-bottom: 6px; }
 .channel p { margin: 0; }
+.channel-time { font-family: var(--cond); font-weight: 700; font-size: 1.35rem; letter-spacing: 0.04em; margin-bottom: 8px !important; }
 .watch-vote { font-family: var(--cond); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 1.1rem; border-top: 3px solid var(--paper); padding-top: 16px; }
 @media (min-width: 760px) { .channels { grid-template-columns: repeat(3, 1fr); } }
 
@@ -640,3 +661,53 @@ legend, .field-label {
 /* Keep anchored sections clear of the sticky header */
 section[id] { scroll-margin-top: 104px; }
 @media (min-width: 960px) { section[id] { scroll-margin-top: 72px; } }
+
+/* ---------- Time zones and calendar ---------- */
+.tz-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin: 0 0 24px; }
+.tz-toggle { display: inline-flex; flex-wrap: wrap; border: 3px solid currentColor; }
+.tz-toggle button {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+.tz-toggle button + button { border-left: 3px solid currentColor; }
+.tz-toggle button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+.tz-toggle button:hover:not([aria-pressed="true"]) { text-decoration: underline; text-underline-offset: 3px; }
+.tz-zone { margin: 0; font-family: var(--cond); font-weight: 600; letter-spacing: 0.04em; font-size: 0.95rem; }
+
+.tz-time { font-variant-numeric: tabular-nums; }
+.tz-block .tz-primary, .tz-block .tz-secondary, .tz-boat .tz-primary, .tz-boat .tz-secondary { display: block; }
+.tz-secondary { font-weight: 600; opacity: 0.85; }
+.tz-block .tz-secondary { font-size: 0.85em; letter-spacing: 0.04em; }
+.tz-boat .tz-primary.t { font-size: 2rem; }
+.tz-boat .tz-secondary { font-family: var(--cond); font-size: 0.95rem; letter-spacing: 0.04em; }
+.tz-inline { white-space: nowrap; }
+.tz-inline .tz-secondary { white-space: normal; }
+
+.ics-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  margin-top: 10px;
+  padding: 4px 10px;
+  border: 2px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+.ics-btn:hover { box-shadow: 3px 3px 0 currentColor; transform: translate(-1px, -1px); }
+.countdown .ics-btn { margin-top: 0; }

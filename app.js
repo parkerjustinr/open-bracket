@@ -16,24 +16,339 @@
 
   // Wrap [PLACEHOLDER] markers in a visible tag so draft copy is obvious on the page.
   function copy(value) {
-    return esc(value).replace(/\[PLACEHOLDER\]/g, '<span class="placeholder-tag">Placeholder</span>');
+    return esc(value)
+      .replace(/\[PLACEHOLDER\]/g, '<span class="placeholder-tag">Placeholder</span>')
+      .replace(TOKEN, function (_, iso) { return timeEl(iso, null, "inline"); });
   }
 
   function $(id) { return document.getElementById(id); }
 
-  function to12h(hhmm) {
-    var parts = hhmm.split(":");
-    var h = parseInt(parts[0], 10);
-    var suffix = h >= 12 ? "PM" : "AM";
-    var h12 = h % 12 === 0 ? 12 : h % 12;
-    return { text: h12 + ":" + parts[1], suffix: suffix };
+  // ---------- time zones ----------
+  // Times in event.json are ISO 8601 with an offset. HOME_TZ is the event's zone (meta.timezone).
+  // Every time on the page renders in the visitor's zone or Eastern, with the other alongside.
+  var HOME_TZ = "America/New_York";
+  var LOCAL_TZ = (function () {
+    try { return Intl.DateTimeFormat().resolvedOptions().timeZone || HOME_TZ; } catch (err) { return HOME_TZ; }
+  })();
+  var TZ_KEY = "openBracket.tzMode";
+  var tzMode = "local";
+  try { if (localStorage.getItem(TZ_KEY) === "home") tzMode = "home"; } catch (err) { /* storage blocked */ }
+
+  var fmtCache = {};
+  function fmt(zone, kind) {
+    var key = zone + "|" + kind;
+    if (!fmtCache[key]) {
+      var opts = { timeZone: zone };
+      if (kind === "time") { opts.hour = "numeric"; opts.minute = "2-digit"; }
+      if (kind === "zone") { opts.hour = "numeric"; opts.timeZoneName = "short"; }
+      if (kind === "day") { opts.year = "numeric"; opts.month = "2-digit"; opts.day = "2-digit"; }
+      if (kind === "weekday") { opts.weekday = "short"; }
+      fmtCache[key] = new Intl.DateTimeFormat(undefined, opts);
+    }
+    return fmtCache[key];
   }
 
-  function timeRange(start, end) {
-    var a = to12h(start);
-    var b = to12h(end);
-    if (a.suffix === b.suffix) return a.text + "-" + b.text + " " + b.suffix;
-    return a.text + " " + a.suffix + "-" + b.text + " " + b.suffix;
+  function zoneName(date, zone) {
+    var part = fmt(zone, "zone").formatToParts(date).filter(function (p) { return p.type === "timeZoneName"; })[0];
+    return part ? part.value : zone;
+  }
+
+  function dayKey(date, zone) { return fmt(zone, "day").format(date); }
+
+  // Clock time in a zone. dropPeriod removes a trailing AM/PM so ranges read "9:00-10:00 AM".
+  function clock(date, zone, dropPeriod) {
+    var parts = fmt(zone, "time").formatToParts(date);
+    if (dropPeriod) {
+      var i = parts.length - 1;
+      if (parts[i].type === "dayPeriod") {
+        parts = parts.slice(0, i);
+        if (parts.length && parts[parts.length - 1].type === "literal") parts = parts.slice(0, -1);
+      }
+    }
+    return parts.map(function (p) { return p.value; }).join("").trim();
+  }
+
+  function trailingPeriod(date, zone) {
+    var parts = fmt(zone, "time").formatToParts(date);
+    var last = parts[parts.length - 1];
+    return last.type === "dayPeriod" ? last.value : null;
+  }
+
+  // "9:00-10:00 AM EDT". A weekday is added when the zone puts the time on a different
+  // calendar day from the event day on the island (for example Sun 1:00 AM in Tokyo).
+  function rangeText(start, end, zone) {
+    var eventDay = dayKey(start, HOME_TZ);
+    var startDay = dayKey(start, zone);
+    var a, b = "";
+    if (end) {
+      var endDay = dayKey(end, zone);
+      var p = trailingPeriod(start, zone);
+      var collapse = startDay === endDay && p && p === trailingPeriod(end, zone);
+      a = clock(start, zone, collapse);
+      b = clock(end, zone, false);
+      if (endDay !== startDay) b = fmt(zone, "weekday").format(end) + " " + b;
+    } else {
+      a = clock(start, zone, false);
+    }
+    if (startDay !== eventDay) a = fmt(zone, "weekday").format(start) + " " + a;
+    return a + (b ? "-" + b : "") + " " + zoneName(end || start, zone);
+  }
+
+  // Styles: "block" (primary over secondary), "inline" (secondary in brackets), "boat" (large primary).
+  function timeInner(startIso, endIso, style) {
+    var start = new Date(startIso), end = endIso ? new Date(endIso) : null;
+    var primaryZone = tzMode === "home" ? HOME_TZ : LOCAL_TZ;
+    var otherZone = tzMode === "home" ? LOCAL_TZ : HOME_TZ;
+    var primary = rangeText(start, end, primaryZone);
+    var other = rangeText(start, end, otherZone);
+    var same = primary === other;
+    if (style === "inline") {
+      return esc(primary) + (same ? "" : ' <span class="tz-secondary">(' + esc(other) + ")</span>");
+    }
+    return '<span class="tz-primary' + (style === "boat" ? " t" : "") + '">' + esc(primary) + "</span>" +
+      (same ? "" : '<span class="tz-secondary">' + esc(other) + "</span>");
+  }
+
+  function timeEl(startIso, endIso, style) {
+    return '<time class="tz-time tz-' + style + '" datetime="' + esc(startIso) + '" data-start="' + esc(startIso) + '"' +
+      (endIso ? ' data-end="' + esc(endIso) + '"' : "") + ' data-style="' + style + '">' +
+      timeInner(startIso, endIso, style) + "</time>";
+  }
+
+  function refreshTimes() {
+    Array.prototype.forEach.call(document.querySelectorAll(".tz-time"), function (el) {
+      el.innerHTML = timeInner(el.getAttribute("data-start"), el.getAttribute("data-end"), el.getAttribute("data-style"));
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-tz]"), function (btn) {
+      btn.setAttribute("aria-pressed", String(btn.getAttribute("data-tz") === tzMode));
+    });
+  }
+
+  function setTzMode(mode) {
+    tzMode = mode === "home" ? "home" : "local";
+    try { localStorage.setItem(TZ_KEY, tzMode); } catch (err) { /* storage blocked */ }
+    refreshTimes();
+  }
+
+  // Toggle between the visitor's zone and Eastern. refDate picks the abbreviation (EDT vs EST).
+  function tzToggle(refIso) {
+    var ref = new Date(refIso);
+    var localAbbr = zoneName(ref, LOCAL_TZ), homeAbbr = zoneName(ref, HOME_TZ);
+    var matches = clock(ref, LOCAL_TZ) === clock(ref, HOME_TZ) && localAbbr === homeAbbr;
+    return '<div class="tz-bar">' +
+      '<div class="tz-toggle" role="group" aria-label="Show times in">' +
+        '<button type="button" data-tz="local" aria-pressed="' + (tzMode === "local") + '">Your time (' + esc(localAbbr) + ")</button>" +
+        '<button type="button" data-tz="home" aria-pressed="' + (tzMode === "home") + '">Eastern (' + esc(homeAbbr) + ")</button>" +
+      "</div>" +
+      '<p class="tz-zone">' + (matches
+        ? "Your device is on Eastern Time, the same as the island."
+        : "Your device zone: " + esc(LOCAL_TZ.replace(/_/g, " ")) + ". The island is on Eastern Time.") + "</p>" +
+    "</div>";
+  }
+
+  // Prose can carry times as {{t:ISO}} tokens. copy() renders them as live <time> elements,
+  // plain() renders them as fixed Eastern text for calendar files.
+  var TOKEN = /\{\{t:([0-9T:+\-]+)\}\}/g;
+
+  // ---------- calendar (.ics) ----------
+  function plain(value) {
+    return String(value == null ? "" : value)
+      .replace(TOKEN, function (_, iso) { return rangeText(new Date(iso), null, HOME_TZ); })
+      .replace(/\s*\[PLACEHOLDER\]/g, "")
+      .replace(/[\u00a0\u202f]/g, " ");
+  }
+
+  function icsEscape(s) {
+    return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
+  }
+
+  function icsDate(date) {
+    return date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  }
+
+  // RFC 5545: lines longer than 75 octets are folded with CRLF plus a space.
+  function icsFold(line) {
+    var out = [], cur = "", bytes = 0;
+    Array.from(line).forEach(function (ch) {
+      var cp = ch.codePointAt(0);
+      var n = cp < 0x80 ? 1 : cp < 0x800 ? 2 : cp < 0x10000 ? 3 : 4;
+      if (bytes + n > 75) { out.push(cur); cur = " "; bytes = 1; }
+      cur += ch;
+      bytes += n;
+    });
+    out.push(cur);
+    return out.join("\r\n");
+  }
+
+  function pageUrl() {
+    return /^https?:/.test(location.protocol) ? location.href.split("#")[0] : "";
+  }
+
+  // events: [{ uid, start, end, summary, description, location }]
+  function buildIcs(events) {
+    var stamp = icsDate(new Date());
+    var url = pageUrl();
+    var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Open Bracket//Event site//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+      "X-WR-CALNAME:Open Bracket", "X-WR-TIMEZONE:" + HOME_TZ];
+    events.forEach(function (e) {
+      lines.push("BEGIN:VEVENT",
+        "UID:" + e.uid + "@open-bracket",
+        "DTSTAMP:" + stamp,
+        "DTSTART:" + icsDate(new Date(e.start)),
+        "DTEND:" + icsDate(new Date(e.end)),
+        "SUMMARY:" + icsEscape(e.summary),
+        "DESCRIPTION:" + icsEscape(e.description + (url ? "\n\n" + url : "")),
+        "LOCATION:" + icsEscape(e.location));
+      if (url) lines.push("URL:" + url);
+      lines.push("END:VEVENT");
+    });
+    lines.push("END:VCALENDAR");
+    return lines.map(icsFold).join("\r\n") + "\r\n";
+  }
+
+  function downloadFile(filename, text) {
+    var blob = new Blob([text], { type: "text/calendar;charset=utf-8" });
+    var href = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = href;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(href); }, 1000);
+  }
+
+  function dayBounds(day) {
+    return { start: day.sessions[0].start, end: day.sessions[day.sessions.length - 1].end };
+  }
+
+  function sessionEvent(d, day, x) {
+    return {
+      uid: day.id + "-" + x.code.toLowerCase() + "-" + x.start.slice(0, 10),
+      start: x.start,
+      end: x.end,
+      summary: "Open Bracket: " + x.title,
+      description: plain(x.detail) + "\n\n" + day.label + " - " + day.title + ", " + d.meta.location + ".",
+      location: d.meta.calendarLocation
+    };
+  }
+
+  function icsFor(kind, a, b) {
+    var d = window.__OB_DATA__;
+    if (kind === "event") {
+      return {
+        name: "open-bracket.ics",
+        events: d.schedule.days.map(function (day) {
+          var span = dayBounds(day);
+          return {
+            uid: day.id + "-" + span.start.slice(0, 10),
+            start: span.start,
+            end: span.end,
+            summary: "Open Bracket " + day.label + ": " + day.title,
+            description: plain(day.summary) + "\n\n" + plain(d.logistics.lastFerryWarning),
+            location: d.meta.calendarLocation
+          };
+        })
+      };
+    }
+    if (kind === "session") {
+      var day = d.schedule.days[a], x = day.sessions[b];
+      return { name: "open-bracket-" + day.id + "-" + x.code.toLowerCase() + ".ics", events: [sessionEvent(d, day, x)] };
+    }
+    if (kind === "stream") {
+      var c = d.watch.channels[a];
+      return {
+        name: "open-bracket-stream-" + c.code.toLowerCase() + ".ics",
+        events: [{
+          uid: "stream-" + c.code.toLowerCase() + "-" + c.start.slice(0, 10),
+          start: c.start,
+          end: c.end,
+          summary: "Open Bracket live: " + c.name,
+          description: plain(c.detail) + "\n\nLive on Twitch and YouTube. Links are posted on the Open Bracket site the morning of each day.",
+          location: "Twitch and YouTube"
+        }]
+      };
+    }
+    return null;
+  }
+
+  function icsButton(kind, a, b, label, ariaLabel) {
+    return '<button type="button" class="ics-btn" data-ics="' + kind + '"' +
+      (a != null ? ' data-a="' + a + '"' : "") + (b != null ? ' data-b="' + b + '"' : "") +
+      ' aria-label="' + esc(ariaLabel) + '"><span aria-hidden="true">+</span> ' + esc(label) + "</button>";
+  }
+
+  function wireGlobalControls() {
+    document.addEventListener("click", function (e) {
+      var tz = e.target.closest && e.target.closest("[data-tz]");
+      if (tz) { setTzMode(tz.getAttribute("data-tz")); return; }
+      var ics = e.target.closest && e.target.closest("[data-ics]");
+      if (ics) {
+        var a = ics.getAttribute("data-a"), b = ics.getAttribute("data-b");
+        var file = icsFor(ics.getAttribute("data-ics"), a == null ? null : +a, b == null ? null : +b);
+        if (file) downloadFile(file.name, buildIcs(file.events));
+      }
+    });
+  }
+
+  // ---------- countdown ----------
+  var countdownTimer = null;
+
+  function renderCountdown(d) {
+    var box = $("countdown");
+    if (!box) return;
+    var days = d.schedule.days.map(function (day) {
+      var span = dayBounds(day);
+      return { day: day, start: new Date(span.start), end: new Date(span.end) };
+    });
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+
+    function tick() {
+      var now = Date.now();
+      var next = null, live = null;
+      days.forEach(function (x) {
+        if (live || next) return;
+        if (now >= x.start && now < x.end) live = x;
+        else if (now < x.start) next = x;
+      });
+      var label = box.querySelector(".countdown-label");
+      var units = box.querySelector(".countdown-units");
+      var when = box.querySelector(".countdown-when");
+      if (next) {
+        var s = Math.max(0, Math.floor((next.start - now) / 1000));
+        label.textContent = next.day.label + " - " + next.day.title + " starts in";
+        units.hidden = false;
+        units.querySelector('[data-u="d"]').textContent = pad(Math.floor(s / 86400));
+        units.querySelector('[data-u="h"]').textContent = pad(Math.floor(s % 86400 / 3600));
+        units.querySelector('[data-u="m"]').textContent = pad(Math.floor(s % 3600 / 60));
+        units.querySelector('[data-u="s"]').textContent = pad(s % 60);
+        if (when.getAttribute("data-for") !== next.day.id) {
+          when.setAttribute("data-for", next.day.id);
+          when.innerHTML = "Starts " + esc(next.day.date) + ", " + timeEl(next.day.sessions[0].start, null, "inline");
+        }
+      } else {
+        units.hidden = true;
+        if (live) {
+          label.textContent = live.day.label + " - " + live.day.title + " is on now";
+          if (when.getAttribute("data-for") !== "live-" + live.day.id) {
+            when.setAttribute("data-for", "live-" + live.day.id);
+            when.innerHTML = 'Not on the island? <a href="#watch">Watch the stream</a>.';
+          }
+        } else {
+          label.textContent = "That's a wrap. Thanks for playing.";
+          if (when.getAttribute("data-for") !== "done") {
+            when.setAttribute("data-for", "done");
+            when.innerHTML = 'Replays are up on YouTube. <a href="#watch">Find them here</a>.';
+          }
+          clearInterval(countdownTimer);
+        }
+      }
+    }
+
+    tick();
+    clearInterval(countdownTimer);
+    countdownTimer = setInterval(tick, 1000);
   }
 
   function sectionHead(num, kicker, title, id) {
@@ -66,6 +381,17 @@
         "<dt>Dates</dt><dd>" + esc(m.dates) + "</dd>" +
         '<dt>Location</dt><dd class="loc">' + esc(m.location) + "</dd>" +
       "</dl>" +
+      '<div class="countdown" id="countdown" role="timer" aria-atomic="true">' +
+        '<p class="countdown-label"></p>' +
+        '<ol class="countdown-units">' +
+          '<li><span class="n" data-u="d">00</span><span class="l">Days</span></li>' +
+          '<li><span class="n" data-u="h">00</span><span class="l">Hours</span></li>' +
+          '<li><span class="n" data-u="m">00</span><span class="l">Min</span></li>' +
+          '<li><span class="n" data-u="s">00</span><span class="l">Sec</span></li>' +
+        "</ol>" +
+        '<p class="countdown-when"></p>' +
+        icsButton("event", null, null, "Add both days to calendar", "Add both days of Open Bracket to your calendar (.ics file)") +
+      "</div>" +
       '<p class="hero-sub">' + copy(h.sub) + "</p>" +
       '<div class="hero-ctas">' +
         '<a class="btn btn-red" href="' + esc(h.primaryCta.href) + '" data-reg-type="' + esc(h.primaryCta.type) + '">' +
@@ -113,12 +439,14 @@
         (i === 0 ? "" : " hidden") + ' tabindex="0">' +
         '<span class="day-date">' + esc(day.date) + "</span>" +
         '<p class="day-summary">' + copy(day.summary) + "</p>" +
-        '<ol class="sessions">' + day.sessions.map(function (x) {
+        '<ol class="sessions">' + day.sessions.map(function (x, j) {
           return '<li class="session' + sessionClass(x.track) + '">' +
             '<span class="session-code" aria-hidden="true">' + esc(x.code) + "</span>" +
-            '<span class="session-time"><time datetime="' + esc(x.start) + '">' + esc(timeRange(x.start, x.end)) + "</time></span>" +
+            '<span class="session-time">' + timeEl(x.start, x.end, "block") + "</span>" +
             '<div class="session-body"><h3 class="session-title">' + esc(x.title) + "</h3>" +
-              '<p class="session-detail">' + copy(x.detail) + "</p></div>" +
+              '<p class="session-detail">' + copy(x.detail) + "</p>" +
+              icsButton("session", i, j, "Calendar", "Add " + x.title + ", " + day.label + ", to your calendar (.ics file)") +
+            "</div>" +
             '<span class="session-track">' + esc(x.track) + "</span>" +
           "</li>";
         }).join("") + "</ol>" +
@@ -128,6 +456,7 @@
     $("schedule-body").innerHTML =
       sectionHead("02", "Schedule", s.heading, "schedule-title") +
       '<p class="schedule-note">' + copy(s.note) + "</p>" +
+      tzToggle(s.days[0].sessions[0].start) +
       '<div class="day-tabs" role="tablist" aria-label="Event days">' + tabs + "</div>" +
       panels;
 
@@ -191,7 +520,6 @@
   function renderLogistics(d) {
     var l = d.logistics;
     var routes = l.routes.map(function (r) {
-      var first = to12h(r.firstBoat), last = to12h(r.lastBoat);
       return '<article class="route" aria-labelledby="route-' + esc(r.code) + '">' +
         '<div class="route-head"><span class="route-code" aria-hidden="true">' + esc(r.code) + "</span>" +
           '<h3 class="route-from" id="route-' + esc(r.code) + '">' + esc(r.from) + "</h3></div>" +
@@ -201,8 +529,8 @@
           '<li><span class="step-n" aria-hidden="true">3</span><div><span class="step-label">Ferry</span>' + copy(r.ferry) + "</div></li>" +
         "</ol>" +
         '<div class="boats">' +
-          '<div><span class="step-label">First boat</span><span class="t">' + first.text + " " + first.suffix + "</span></div>" +
-          '<div><span class="step-label">Last boat back</span><span class="t">' + last.text + " " + last.suffix + "</span></div>" +
+          '<div><span class="step-label">First boat</span>' + timeEl(r.firstBoat, null, "boat") + "</div>" +
+          '<div><span class="step-label">Last boat back</span>' + timeEl(r.lastBoat, null, "boat") + "</div>" +
         "</div>" +
       "</article>";
     }).join("");
@@ -223,9 +551,14 @@
     $("watch-body").innerHTML =
       sectionHead("06", "Watch remotely", w.heading, "watch-title") +
       '<p class="lede">' + copy(w.intro) + "</p>" +
-      '<ul class="channels">' + w.channels.map(function (c) {
+      tzToggle(w.channels.filter(function (c) { return c.start; })[0].start) +
+      '<ul class="channels">' + w.channels.map(function (c, i) {
         return '<li class="channel"><span class="channel-code">' + esc(c.code) + "</span>" +
-          "<h3>" + esc(c.name) + "</h3><p>" + copy(c.detail) + "</p></li>";
+          "<h3>" + esc(c.name) + "</h3>" +
+          (c.start ? '<p class="channel-time">' + timeEl(c.start, c.end, "block") + "</p>" : "") +
+          "<p>" + copy(c.detail) + "</p>" +
+          (c.start ? icsButton("stream", i, null, "Add stream to calendar", "Add the " + c.name + " to your calendar (.ics file)") : "") +
+        "</li>";
       }).join("") + "</ul>" +
       '<p class="watch-vote">' + copy(w.vote) + "</p>";
   }
@@ -398,8 +731,8 @@
             "<dt>" + (isComp ? "Games" : "Days") + "</dt><dd>" + esc(rec.picks.join(", ")) + "</dd>" +
           "</dl>" +
           "<p>" + (isComp
-            ? "Heat assignments arrive by email 48 hours before Day 1. Check in at Soissons Landing when you get off the ferry."
-            : "No check-in needed on Day 1. On Day 2, head straight from the ferry to the Parade Ground.") + "</p>" +
+            ? "Your heat time arrives by email 48 hours before Day 1. Check in at the tent on the Parade Ground at least 30 minutes before your heat."
+            : "Pick up your wristband at the check-in tent on the Parade Ground when you arrive. It is a 5 minute walk from both ferry landings.") + "</p>" +
           '<p class="hint">' + esc(r.demoNotice) + "</p>" +
           '<button type="button" class="btn btn-small" id="reg-again">Register someone else</button>' +
         "</div>" +
@@ -468,6 +801,7 @@
     })
     .then(function (data) {
       window.__OB_DATA__ = data;
+      if (data.meta.timezone) HOME_TZ = data.meta.timezone;
       renderNotice(data.meta);
       renderHero(data);
       renderAbout(data);
@@ -479,7 +813,9 @@
       renderRegistration(data);
       renderFaq(data);
       renderFooter(data);
+      renderCountdown(data);
       wirePreselect();
+      wireGlobalControls();
       // If the page was opened with a hash, jump there now that content exists.
       if (location.hash && location.hash.length > 1) {
         var target = document.getElementById(location.hash.slice(1));
