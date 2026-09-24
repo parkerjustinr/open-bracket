@@ -447,7 +447,7 @@
           },
           {
             "label": "Fare",
-            "text": "Free on Saturdays and Sundays until the {{t:2026-10-17T10:45:00-04:00}} boat. From {{t:2026-10-17T11:00:00-04:00}}, $5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
+            "text": "Free on weekends for any boat before {{t:2026-10-17T11:00:00-04:00}}, through the {{t:2026-10-17T10:45:00-04:00}} boat. From {{t:2026-10-17T11:00:00-04:00}}, $5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
           }
         ],
         "firstBoat": "2026-10-17T07:00:00-04:00",
@@ -471,7 +471,7 @@
           },
           {
             "label": "Fare",
-            "text": "$5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members. The free weekend morning boats run from Manhattan only."
+            "text": "The {{t:2026-10-17T10:15:00-04:00}} boat is free on weekends. After that, $5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
           }
         ],
         "firstBoat": "2026-10-17T10:15:00-04:00",
@@ -495,7 +495,7 @@
           },
           {
             "label": "Fare",
-            "text": "$5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members. The free weekend morning boats run from Manhattan only."
+            "text": "The {{t:2026-10-17T09:45:00-04:00}} and {{t:2026-10-17T10:45:00-04:00}} boats are free on weekends. After that, $5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
           }
         ],
         "firstBoat": "2026-10-17T09:45:00-04:00",
@@ -610,7 +610,7 @@
       },
       {
         "q": "I'm coming from Brooklyn. Can I make the first heat?",
-        "a": "Yes. The first boat from Red Hook leaves at {{t:2026-10-17T09:45:00-04:00}}, and the first boat from Brooklyn Bridge Park Pier 6 leaves at {{t:2026-10-17T10:15:00-04:00}}. Check-in for Heat 1 stays open until {{t:2026-10-17T10:45:00-04:00}}, which leaves time for the crossing and the 5 minute walk to the check-in tent. The Pier 6 boat has less slack, so if you'd rather not cut it close, take the Red Hook or Manhattan ferry, or pick a later heat."
+        "a": "Yes, and the ride is free. The first boat from Red Hook leaves at {{t:2026-10-17T09:45:00-04:00}}, and the first boat from Brooklyn Bridge Park Pier 6 leaves at {{t:2026-10-17T10:15:00-04:00}}. Check-in for Heat 1 stays open until {{t:2026-10-17T10:45:00-04:00}}, which leaves time for the crossing and the 5 minute walk to the check-in tent. The Pier 6 boat has less slack, so if you'd rather not cut it close, take the Red Hook or Manhattan ferry, or pick a later heat."
       },
       {
         "q": "What if my heat is full?",
@@ -666,7 +666,7 @@
       },
       {
         "q": "Is the ferry included in my ticket?",
-        "a": "No. From Manhattan, weekend boats are free until the {{t:2026-10-17T10:45:00-04:00}} boat. After that, and on the Brooklyn Bridge Park and Red Hook routes, it's $5 round trip for adults. Kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members always ride free. Check the island ferry schedule on govisland.com for current fares."
+        "a": "No, but on weekends every boat before {{t:2026-10-17T11:00:00-04:00}} is free, from any stop: Manhattan through the {{t:2026-10-17T10:45:00-04:00}} boat, Red Hook at {{t:2026-10-17T09:45:00-04:00}} and {{t:2026-10-17T10:45:00-04:00}}, and Brooklyn Bridge Park at {{t:2026-10-17T10:15:00-04:00}}. After that, it's $5 round trip for adults. Kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members always ride free. Check the island ferry schedule on govisland.com for current fares."
       },
       {
         "q": "What if I miss the last ferry?",
