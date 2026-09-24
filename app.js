@@ -700,7 +700,8 @@
     var heatOptions = qualifierHeats(d).map(function (h) {
       return '<label class="heat-option"><input type="radio" name="heat" value="' + esc(h.code) + '"' +
         (p.heat === h.code ? " checked" : "") + ">" +
-        '<span class="heat-body"><span class="heat-name">' + esc(h.title) + "</span>" +
+        '<span class="heat-body"><span class="heat-num" aria-hidden="true">' + esc(h.code.replace(/\D/g, "").padStart(2, "0")) + "</span>" +
+        '<span class="heat-name">' + esc(h.title) + "</span>" +
         timeEl(h.start, h.end, "block") +
         '<span class="heat-games">' + copy(h.detail) + "</span></span></label>";
     }).join("");
