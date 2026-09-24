@@ -755,7 +755,7 @@
             '<span class="hint" id="h-handle">The name we show on the heat board and the stream. Letters, numbers, dots, dashes, and underscores.</span>' +
             '<span class="error" id="e-handle"></span></div>' +
           '<fieldset aria-describedby="h-heat e-heat"><legend>Qualifier heat</legend>' +
-            '<p class="hint" id="h-heat">All heats are on ' + esc(d.schedule.days[0].date) + ". Each heat has 50 spots. " +
+            '<p class="hint" id="h-heat">All heats are on ' + esc(d.schedule.days[0].date) + ". Each heat has 50 spots. Check in at least 30 minutes before your heat or the spot goes to standby. " +
               "Times show in your zone with Eastern alongside.</p>" +
             tzToggle(qualifierHeats(d)[0].start) +
             '<div class="heat-options">' + heatOptions + "</div>" +
@@ -936,6 +936,7 @@
       details.push(["Emergency contact", esc(rec.emergencyName) + ", " + esc(rec.emergencyPhone)]);
     } else {
       details.push(["Coming", esc(dayLabel(d, rec.days))]);
+      details.push(["Food voucher", "$5 at any food truck. It comes with your wristband."]);
     }
     details.push(["Accessibility", rec.access ? esc(rec.access) : "None given"]);
 

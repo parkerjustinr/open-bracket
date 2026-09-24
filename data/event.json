@@ -74,7 +74,7 @@
   },
   "schedule": {
     "heading": "Order of play",
-    "note": "Times show in your time zone, with Eastern Time (the island's zone) alongside. Use the switch to flip between them. Competitors pick their heat when they register. Check in at least 30 minutes before your heat.",
+    "note": "Times show in your time zone, with Eastern Time (the island's zone) alongside. Use the switch to flip between them. Competitors pick their heat when they register and check in at least 30 minutes before it, or the spot goes to the standby line. There is no lunch break on Day 1. Each competitor plays one heat, and the food trucks on Colonels Row are open all day.",
     "days": [
       {
         "id": "day1",
@@ -88,7 +88,7 @@
             "end": "2026-10-17T10:00:00-04:00",
             "code": "CK",
             "title": "Check-in opens",
-            "detail": "Pick up your wristband at the check-in tent on the Parade Ground. It is a 5 minute walk from both ferry landings. Check-in stays open until {{t:2026-10-17T15:15:00-04:00}}.",
+            "detail": "Pick up your wristband at the check-in tent on the Parade Ground. It is a 5 minute walk from both ferry landings. Check-in stays open until {{t:2026-10-17T14:30:00-04:00}}.",
             "track": "Arrival"
           },
           {
@@ -96,7 +96,7 @@
             "end": "2026-10-17T10:45:00-04:00",
             "code": "H1",
             "title": "Heat 1",
-            "detail": "Crate Stack, Musical Chairs, Shuttle Relay, Simon Says.",
+            "detail": "Crate Stack, Musical Chairs, Shuttle Relay, Simon Says. Coming from Brooklyn? The first Pier 6 boat lands after Heat 1 check-in closes, so take the Manhattan ferry for this heat.",
             "track": "Qualifiers"
           },
           {
@@ -116,40 +116,32 @@
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T12:45:00-04:00",
-            "end": "2026-10-17T13:30:00-04:00",
-            "code": "BR",
-            "title": "Lunch break",
-            "detail": "Food trucks on Colonels Row. Free water refills at every field.",
-            "track": "Break"
-          },
-          {
-            "start": "2026-10-17T13:30:00-04:00",
-            "end": "2026-10-17T14:15:00-04:00",
+            "start": "2026-10-17T13:00:00-04:00",
+            "end": "2026-10-17T13:45:00-04:00",
             "code": "H4",
             "title": "Heat 4",
             "detail": "Balloon Toss, Shuttle Relay, Lag Spike, Simon Says.",
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T14:30:00-04:00",
-            "end": "2026-10-17T15:15:00-04:00",
+            "start": "2026-10-17T14:00:00-04:00",
+            "end": "2026-10-17T14:45:00-04:00",
             "code": "H5",
             "title": "Heat 5",
             "detail": "Crate Stack, Sack Sprint, Musical Chairs, Lag Spike.",
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T15:30:00-04:00",
-            "end": "2026-10-17T16:15:00-04:00",
+            "start": "2026-10-17T15:00:00-04:00",
+            "end": "2026-10-17T15:45:00-04:00",
             "code": "H6",
             "title": "Heat 6",
             "detail": "Balloon Toss, Crate Stack, Shuttle Relay, Simon Says.",
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T16:30:00-04:00",
-            "end": "2026-10-17T17:00:00-04:00",
+            "start": "2026-10-17T16:00:00-04:00",
+            "end": "2026-10-17T16:30:00-04:00",
             "code": "BK",
             "title": "Bracket reveal",
             "detail": "The 18 qualifiers are called up on the main stage and the Day 2 bracket goes up. Leaves time for the {{t:2026-10-17T18:00:00-04:00}} last ferry.",
@@ -372,7 +364,7 @@
     "cards": [
       {
         "title": "Check-in on arrival",
-        "body": "From either landing, follow the Open Bracket signs to the check-in tent on the Parade Ground, about 5 minutes on foot. Show the QR code from your confirmation email to get your wristband. Competitors need to check in at least 30 minutes before their heat. Spectators get a wristband at the same tent."
+        "body": "From either landing, follow the Open Bracket signs to the check-in tent on the Parade Ground, about 5 minutes on foot. Show the QR code from your confirmation email to get your wristband. Competitors need to check in at least 30 minutes before their heat, or the spot goes to the standby line. Spectators get a wristband at the same tent."
       },
       {
         "title": "What to bring",
@@ -403,9 +395,9 @@
       {
         "code": "D1",
         "name": "Qualifier stream",
-        "detail": "Commentary on every heat, plus the bracket reveal at {{t:2026-10-17T16:30:00-04:00}}.",
+        "detail": "Commentary on every heat, plus the bracket reveal at {{t:2026-10-17T16:00:00-04:00}}.",
         "start": "2026-10-17T10:00:00-04:00",
-        "end": "2026-10-17T17:00:00-04:00"
+        "end": "2026-10-17T16:30:00-04:00"
       },
       {
         "code": "D2",
@@ -436,8 +428,8 @@
       {
         "id": "spectator",
         "label": "Spectate",
-        "price": "Free",
-        "desc": "Watch the heats, the finals, or both from the Parade Ground. All ages."
+        "price": "$5",
+        "desc": "Watch the heats, the finals, or both from the Parade Ground. All ages. Includes a $5 food truck voucher, so it pays for itself."
       }
     ],
     "spectatorDays": [
@@ -464,11 +456,15 @@
       },
       {
         "q": "How do I get to Day 2?",
-        "a": "Finish in the top three of your heat. That gives 18 qualifiers in total. They are announced at the Day 1 bracket reveal, {{t:2026-10-17T16:30:00-04:00}}. On Day 2 you need to be back at check-in by {{t:2026-10-18T10:15:00-04:00}}."
+        "a": "Finish in the top three of your heat. That gives 18 qualifiers in total. They are announced at the Day 1 bracket reveal, {{t:2026-10-17T16:00:00-04:00}}. On Day 2 you need to be back at check-in by {{t:2026-10-18T10:15:00-04:00}}."
       },
       {
         "q": "Can I choose my heat time?",
         "a": "Yes. You pick one of the six heats when you register, and each heat has 50 spots. You can switch to another heat later with the change my registration link, as long as that heat still has room."
+      },
+      {
+        "q": "What if I'm late, or my heat is full?",
+        "a": "Check in at least 30 minutes before your heat. After that, your spot goes to the standby line at the check-in tent, first come, first served. Anyone with a spectator ticket can join standby. If a spot opens, you pay the $25 difference and play."
       },
       {
         "q": "What happens if it rains?",
@@ -488,7 +484,7 @@
       },
       {
         "q": "Can I bring friends who aren't competing?",
-        "a": "Yes. Spectator tickets are free and open to all ages. Competitors have to be 18 or older."
+        "a": "Yes. Spectator tickets are $5, open to all ages, and come with a $5 food truck voucher. Competitors have to be 18 or older."
       },
       {
         "q": "Will I be on the stream?",
