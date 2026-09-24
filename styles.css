@@ -8,7 +8,7 @@
   --paper-2: #e6decd;
   --paper-hi: #fbf8f1;
   --ink: #141417;
-  --red: #d23a1f;
+  --red: #c0341b;
   --blue: #1d3ea6;
   --focus: #1d3ea6;
 
@@ -443,6 +443,10 @@ main:focus { outline: none; }
   letter-spacing: 0.1em;
   color: var(--blue);
   margin-bottom: 8px;
+  display: inline-block;
+  background: var(--paper);
+  padding: 2px 8px 0 0;
+  box-shadow: 8px 0 0 var(--paper);
 }
 .hero h1 {
   position: relative;
@@ -642,6 +646,14 @@ main:focus { outline: none; }
 .creator-bio { margin-top: 8px; font-size: 0.98rem; line-height: 1.45; }
 .creators-more { margin-top: 32px; font-family: var(--cond); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
 @media (min-width: 900px) { .creators-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+/* Phones: one creator per row, artwork on the left, so names and labels don't wrap into slivers */
+@media (max-width: 559px) {
+  .creators-grid { grid-template-columns: 1fr; gap: 20px; }
+  .creator { grid-template-columns: 104px 1fr; column-gap: 16px; padding: 16px; }
+  .creator-slot { grid-row: 1 / span 4; aspect-ratio: 1; margin: 0; align-self: start; font-size: 3rem; }
+  .creator-bio { margin-top: 4px; }
+}
+@media (min-width: 560px) and (max-width: 899px) { .creators-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
 
 /* ---------- Logistics ---------- */
 .routes { display: grid; gap: 24px; margin-bottom: 32px; }
@@ -938,6 +950,10 @@ section[id] { scroll-margin-top: 104px; }
 .heat-option input:checked + .heat-body .heat-num { color: var(--paper); text-shadow: 0.04em 0.035em 0 var(--ink); }
 .heat-option input:checked + .heat-body .heat-games { opacity: 1; }
 .heat-option input:focus-visible + .heat-body { outline: 3px solid var(--focus); outline-offset: 3px; }
+/* No heat picked on submit: every card turns red, like the text fields */
+.heat-options.is-invalid .heat-body { border-color: var(--red); box-shadow: inset 0 0 0 2px var(--red); }
+.heat-options.is-invalid .heat-num { color: var(--red); }
+.checks.is-invalid { outline: 3px solid var(--red); outline-offset: 6px; }
 @media (min-width: 640px) { .heat-options { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 960px) { .heat-options { grid-template-columns: repeat(3, 1fr); } }
 
@@ -977,3 +993,11 @@ section[id] { scroll-margin-top: 104px; }
 .confirm-next li::marker { font-family: var(--display); color: var(--red); }
 .confirm-actions { display: flex; flex-wrap: wrap; gap: 4px 28px; border-top: 3px solid var(--ink); padding-top: 8px; }
 .confirm .ics-btn { margin-top: 16px; }
+
+/* Schedule calendar buttons: whole event, one day, or one session */
+.cal-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; margin: 0 0 var(--stack); }
+.cal-bar .ics-btn { margin-top: 0; }
+.cal-bar-label { font-family: var(--cond); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tr-label); font-size: var(--fs-label); margin-right: 4px; }
+.day-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-bottom: 6px; }
+.day-head .day-date { margin-bottom: 0; }
+.day-head .ics-btn { margin-top: 0; }

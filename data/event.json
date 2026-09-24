@@ -74,7 +74,7 @@
   },
   "schedule": {
     "heading": "Order of play",
-    "note": "Times show in your time zone, with Eastern Time (the island's zone) alongside. Use the switch to flip between them. Competitors pick their heat when they register. Check in at least 30 minutes before your heat.",
+    "note": "Times show in your time zone, with Eastern Time (the island's zone) alongside. Use the switch to flip between them. Competitors pick their heat when they register and check in at least 30 minutes before it, or the spot goes to the standby line. There is no lunch break on Day 1. Each competitor plays one heat, and the food trucks on Colonels Row are open all day.",
     "days": [
       {
         "id": "day1",
@@ -88,7 +88,7 @@
             "end": "2026-10-17T10:00:00-04:00",
             "code": "CK",
             "title": "Check-in opens",
-            "detail": "Pick up your wristband at the check-in tent on the Parade Ground. It is a 5 minute walk from both ferry landings. Check-in stays open until {{t:2026-10-17T15:15:00-04:00}}.",
+            "detail": "Pick up your wristband at the check-in tent on the Parade Ground. It is a 5 minute walk from both ferry landings. Check-in stays open until {{t:2026-10-17T14:30:00-04:00}}.",
             "track": "Arrival"
           },
           {
@@ -96,7 +96,7 @@
             "end": "2026-10-17T10:45:00-04:00",
             "code": "H1",
             "title": "Heat 1",
-            "detail": "Crate Stack, Musical Chairs, Shuttle Relay, Simon Says.",
+            "detail": "Crate Stack, Musical Chairs, Shuttle Relay, Simon Says. Coming from Brooklyn? The first Pier 6 boat lands after Heat 1 check-in closes, so take the Manhattan ferry for this heat.",
             "track": "Qualifiers"
           },
           {
@@ -116,40 +116,32 @@
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T12:45:00-04:00",
-            "end": "2026-10-17T13:30:00-04:00",
-            "code": "BR",
-            "title": "Lunch break",
-            "detail": "Food trucks on Colonels Row. Free water refills at every field.",
-            "track": "Break"
-          },
-          {
-            "start": "2026-10-17T13:30:00-04:00",
-            "end": "2026-10-17T14:15:00-04:00",
+            "start": "2026-10-17T13:00:00-04:00",
+            "end": "2026-10-17T13:45:00-04:00",
             "code": "H4",
             "title": "Heat 4",
             "detail": "Balloon Toss, Shuttle Relay, Lag Spike, Simon Says.",
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T14:30:00-04:00",
-            "end": "2026-10-17T15:15:00-04:00",
+            "start": "2026-10-17T14:00:00-04:00",
+            "end": "2026-10-17T14:45:00-04:00",
             "code": "H5",
             "title": "Heat 5",
             "detail": "Crate Stack, Sack Sprint, Musical Chairs, Lag Spike.",
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T15:30:00-04:00",
-            "end": "2026-10-17T16:15:00-04:00",
+            "start": "2026-10-17T15:00:00-04:00",
+            "end": "2026-10-17T15:45:00-04:00",
             "code": "H6",
             "title": "Heat 6",
             "detail": "Balloon Toss, Crate Stack, Shuttle Relay, Simon Says.",
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T16:30:00-04:00",
-            "end": "2026-10-17T17:00:00-04:00",
+            "start": "2026-10-17T16:00:00-04:00",
+            "end": "2026-10-17T16:30:00-04:00",
             "code": "BK",
             "title": "Bracket reveal",
             "detail": "The 18 qualifiers are called up on the main stage and the Day 2 bracket goes up. Leaves time for the {{t:2026-10-17T18:00:00-04:00}} last ferry.",
@@ -301,43 +293,43 @@
     "intro": "Six invited creators play on Day 2. Each one captains a team of three qualifiers. All names below are fictional.",
     "items": [
       {
-        "name": "Rosa Lindqvist",
+        "name": "Rosa Asante",
         "handle": "@rosaspeeds",
         "platform": "Twitch",
         "specialty": "Speedruns",
         "bio": "Holds records in three retro platformers and streams practice runs at 6 AM."
       },
       {
-        "name": "Theo Marchetti",
+        "name": "Theo Lindqvist",
         "handle": "@theo_falls_over",
         "platform": "YouTube",
         "specialty": "Challenge videos",
         "bio": "Tries a new sport every week and posts every failed attempt."
       },
       {
-        "name": "Kwame Asante",
+        "name": "Kwame Mori",
         "handle": "@lobbykwame",
         "platform": "Twitch",
         "specialty": "Party games",
         "bio": "Hosts a nightly party game stream where chat sets the house rules."
       },
       {
-        "name": "June Park",
+        "name": "June Marchetti",
         "handle": "@junebugjumps",
         "platform": "TikTok",
         "specialty": "Trick shots",
         "bio": "Posts one trick shot a day and shows all the misses before it."
       },
       {
-        "name": "Luis Ferreira",
+        "name": "Luis Park",
         "handle": "@luisplaysoutside",
         "platform": "YouTube",
         "specialty": "Outdoor games",
         "bio": "Turns playground games into full tournaments with brackets and commentary."
       },
       {
-        "name": "Hana Mori",
-        "handle": "@hanamori.exe",
+        "name": "Hana Ferreira",
+        "handle": "@hana.exe",
         "platform": "Twitch",
         "specialty": "Variety",
         "bio": "Variety streamer known for co-op chaos and skipping every tutorial."
@@ -364,7 +356,7 @@
         "landing": "Pier 6, Brooklyn Bridge Park, at the end of Atlantic Ave. Arrives at Yankee Pier.",
         "subway": "2/3/4/5 to Borough Hall or R to Court St, then about 15 minutes on foot.",
         "ferry": "Weekends and holidays only, through November 1. Less frequent than Manhattan, so check the timetable. About 10 minutes across.",
-        "firstBoat": "2026-10-17T10:00:00-04:00",
+        "firstBoat": "2026-10-17T10:15:00-04:00",
         "lastBoat": "2026-10-17T18:00:00-04:00"
       }
     ],
@@ -372,11 +364,11 @@
     "cards": [
       {
         "title": "Check-in on arrival",
-        "body": "From either landing, follow the Open Bracket signs to the check-in tent on the Parade Ground, about 5 minutes on foot. Show the QR code from your confirmation email to get your wristband. Competitors need to check in at least 30 minutes before their heat. Spectators get a wristband at the same tent."
+        "body": "From either landing, follow the Open Bracket signs to the check-in tent on the Parade Ground, about 5 minutes on foot. Show the QR code from your confirmation email to get your wristband. Competitors need to check in at least 30 minutes before their heat, or the spot goes to the standby line. Spectators get a wristband at the same tent."
       },
       {
         "title": "What to bring",
-        "body": "Shoes you can run in. A change of socks and a spare shirt for Balloon Toss. Sunscreen and a hat. A warm layer, because October on the water is cold, especially on the ferry home. A charged phone with your QR code."
+        "body": "Shoes you can run in. A change of socks and a spare shirt for Balloon Toss. Sunscreen and a hat. A warm layer, because October on the water is cold, especially on the ferry home. An empty water bottle to refill. A charged phone with your QR code."
       },
       {
         "title": "Water and shade",
@@ -384,7 +376,7 @@
       },
       {
         "title": "Bag policy",
-        "body": "One bag per person, up to 16 x 12 x 8 in. Bags are checked at the check-in tent. No glass, coolers, alcohol, or drones. There is no bag storage on site, so pack light."
+        "body": "Clear bags only, up to 12 x 6 x 12 in, or a one-gallon clear plastic bag. You can also bring one small clutch or fanny pack up to 4.5 x 6.5 in. Empty clear or reusable water bottles are welcome, and you can fill them at any refill station. Every bag is searched and everyone goes through a metal detector at the check-in tent. No glass, coolers, alcohol, or drones, and no bag storage on site."
       },
       {
         "title": "Accessibility",
@@ -403,9 +395,9 @@
       {
         "code": "D1",
         "name": "Qualifier stream",
-        "detail": "Commentary on every heat, plus the bracket reveal at {{t:2026-10-17T16:30:00-04:00}}.",
+        "detail": "Commentary on every heat, plus the bracket reveal at {{t:2026-10-17T16:00:00-04:00}}.",
         "start": "2026-10-17T10:00:00-04:00",
-        "end": "2026-10-17T17:00:00-04:00"
+        "end": "2026-10-17T16:30:00-04:00"
       },
       {
         "code": "D2",
@@ -430,14 +422,14 @@
       {
         "id": "competitor",
         "label": "Compete",
-        "price": "$25",
+        "price": "$30",
         "desc": "Play one qualifier heat of four games on Day 1. Top three in each heat play the finals on Day 2. Includes Day 2 entry. Ages 18 and up."
       },
       {
         "id": "spectator",
         "label": "Spectate",
-        "price": "Free",
-        "desc": "Watch the heats, the finals, or both from the Parade Ground. All ages."
+        "price": "$5",
+        "desc": "Watch the heats, the finals, or both from the Parade Ground. All ages. Includes a $5 food truck voucher, so it pays for itself."
       }
     ],
     "spectatorDays": [
@@ -464,15 +456,23 @@
       },
       {
         "q": "How do I get to Day 2?",
-        "a": "Finish in the top three of your heat. That gives 18 qualifiers in total. They are announced at the Day 1 bracket reveal, {{t:2026-10-17T16:30:00-04:00}}. On Day 2 you need to be back at check-in by {{t:2026-10-18T10:15:00-04:00}}."
+        "a": "Finish in the top three of your heat. That gives 18 qualifiers in total. They are announced at the Day 1 bracket reveal, {{t:2026-10-17T16:00:00-04:00}}. On Day 2 you need to be back at check-in by {{t:2026-10-18T10:15:00-04:00}}."
       },
       {
         "q": "Can I choose my heat time?",
         "a": "Yes. You pick one of the six heats when you register, and each heat has 50 spots. You can switch to another heat later with the change my registration link, as long as that heat still has room."
       },
       {
+        "q": "What if I'm late, or my heat is full?",
+        "a": "Check in at least 30 minutes before your heat. After that, your spot goes to the standby line at the check-in tent, first come, first served. Anyone with a spectator ticket can join standby. If a spot opens, you play at no extra cost."
+      },
+      {
         "q": "What happens if it rains?",
-        "a": "Light rain, we keep playing. Lightning or strong wind, we pause and post updates on this page and by text. If a day is cancelled, competitor tickets are refunded."
+        "a": "Light rain, we keep playing. Lightning or strong wind, we pause and post updates on this page and by text. If a day is cancelled, every ticket for that day is refunded in full."
+      },
+      {
+        "q": "Can I get a refund if I can't make it?",
+        "a": "Yes, a full refund until Friday 2 October. From Saturday 3 October, two weeks before the event, tickets are non-refundable. You can still switch to a different heat with the change my registration link while that heat has room."
       },
       {
         "q": "Is the ferry included in my ticket?",
@@ -484,7 +484,7 @@
       },
       {
         "q": "Can I bring friends who aren't competing?",
-        "a": "Yes. Spectator tickets are free and open to all ages. Competitors have to be 18 or older."
+        "a": "Yes. Spectator tickets are $5, open to all ages, and come with a $5 food truck voucher. Competitors have to be 18 or older."
       },
       {
         "q": "Will I be on the stream?",
