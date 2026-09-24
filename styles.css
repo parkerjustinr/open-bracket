@@ -1012,3 +1012,5 @@ section[id] { scroll-margin-top: 104px; }
 .boat-note { display: block; font-family: var(--cond); font-weight: 700; font-size: 1.15rem; line-height: 1.2; margin-top: 4px; }
 .route:nth-child(3) .route-code { background: var(--ink); box-shadow: 3px 3px 0 var(--red); outline: 2px solid var(--paper); }
 @media (min-width: 1100px) { .routes { grid-template-columns: repeat(3, 1fr); } }
+.hero-ctas:last-child { margin-bottom: 0; }
+.facts li:last-child .n { color: var(--red); text-shadow: 0.04em 0.035em 0 var(--blue); }

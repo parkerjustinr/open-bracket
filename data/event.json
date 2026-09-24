@@ -25,32 +25,14 @@
     "secondaryCta": {
       "label": "Watch",
       "href": "#watch"
-    },
-    "numerals": [
-      {
-        "value": "2",
-        "label": "Days"
-      },
-      {
-        "value": "12",
-        "label": "Games"
-      },
-      {
-        "value": "6",
-        "label": "Heats"
-      },
-      {
-        "value": "1",
-        "label": "Champion team"
-      }
-    ]
+    }
   },
   "about": {
     "heading": "Don't just watch. Qualify.",
     "paragraphs": [
       "Open Bracket is a two-day outdoor games event on Governors Island. On Day 1, anyone 18 or older can enter a qualifier heat and play four quick solo games. The top 3 in each heat make the finals, where they're drafted onto teams captained by the creators you watch.",
-      "Day 1 has six heats of up to 50 players, run one at a time so the crowd and the stream can follow every heat. Every heat plays the same four games, so the cut is fair. Each creator hosts one heat, then signs at the merch tent for 30 minutes right after it.",
-      "Day 2 is the finals. Six teams of four, each with a creator captain and three qualifiers, play eight team and duo games for placement points. No one is eliminated. Every team plays every game, and the team with the most points wins. The whole day streams on Twitch and YouTube."
+      "Day 1 has six heats of up to 50 players, run one at a time so the crowd and the stream can follow every heat. Every heat plays the same four games, so the cut is fair. Each creator hosts one heat, and the day ends with the bracket reveal and the team draft.",
+      "Day 2 is the finals. Six teams of four, each with a creator captain and three qualifiers, play eight team and duo games for placement points. No one is eliminated. Every team plays every game, and the team with the most points wins. After the awards, all six creators meet fans for an hour. The whole competition streams on Twitch and YouTube."
     ],
     "facts": [
       {
@@ -66,8 +48,8 @@
         "label": "Creator captains"
       },
       {
-        "value": "6",
-        "label": "Teams"
+        "value": "1",
+        "label": "Champion team"
       }
     ]
   },
@@ -80,7 +62,7 @@
         "label": "Day 1",
         "date": "Sat, Oct 17, 2026",
         "title": "Open Qualifiers",
-        "summary": "Six heats of up to 50 players, one at a time, so every heat gets the whole crowd and the whole stream. Every heat plays the same four solo games. The host creator opens with an exhibition round of Paper Ball Shootout, then everyone plays for placement points, and the host announces the top 3. Top 3 in each heat advance: 18 qualifiers.",
+        "summary": "Six heats of up to 50 players, one at a time, so every heat gets the whole crowd and the whole stream. Every heat plays the same four solo games. The host creator opens with an exhibition round of Paper Ball Shootout, then everyone plays for placement points, and the host announces the top 3. The day ends with the bracket reveal and the live team draft.",
         "sessions": [
           {
             "start": "2026-10-17T10:00:00-04:00",
@@ -107,28 +89,12 @@
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T12:00:00-04:00",
-            "end": "2026-10-17T12:30:00-04:00",
-            "code": "M1",
-            "title": "Meet-and-greet",
-            "detail": "Rosa Asante signs at the merch tent right after hosting Heat 1.",
-            "track": "Creators"
-          },
-          {
             "start": "2026-10-17T12:45:00-04:00",
             "end": "2026-10-17T13:30:00-04:00",
             "code": "H3",
             "title": "Heat 3",
             "detail": "Hosted by Kwame Mori. Check in by {{t:2026-10-17T12:15:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers"
-          },
-          {
-            "start": "2026-10-17T12:45:00-04:00",
-            "end": "2026-10-17T13:15:00-04:00",
-            "code": "M2",
-            "title": "Meet-and-greet",
-            "detail": "Theo Lindqvist signs at the merch tent right after hosting Heat 2.",
-            "track": "Creators"
           },
           {
             "start": "2026-10-17T13:30:00-04:00",
@@ -139,28 +105,12 @@
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T13:30:00-04:00",
-            "end": "2026-10-17T14:00:00-04:00",
-            "code": "M3",
-            "title": "Meet-and-greet",
-            "detail": "Kwame Mori signs at the merch tent right after hosting Heat 3.",
-            "track": "Creators"
-          },
-          {
             "start": "2026-10-17T14:15:00-04:00",
             "end": "2026-10-17T15:00:00-04:00",
             "code": "H5",
             "title": "Heat 5",
             "detail": "Hosted by Luis Park. Check in by {{t:2026-10-17T13:45:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers"
-          },
-          {
-            "start": "2026-10-17T14:15:00-04:00",
-            "end": "2026-10-17T14:45:00-04:00",
-            "code": "M4",
-            "title": "Meet-and-greet",
-            "detail": "June Marchetti signs at the merch tent right after hosting Heat 4.",
-            "track": "Creators"
           },
           {
             "start": "2026-10-17T15:00:00-04:00",
@@ -171,27 +121,19 @@
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T15:00:00-04:00",
-            "end": "2026-10-17T15:30:00-04:00",
-            "code": "M5",
-            "title": "Meet-and-greet",
-            "detail": "Luis Park signs at the merch tent right after hosting Heat 5.",
-            "track": "Creators"
-          },
-          {
             "start": "2026-10-17T15:45:00-04:00",
-            "end": "2026-10-17T16:15:00-04:00",
-            "code": "M6",
-            "title": "Meet-and-greet",
-            "detail": "Hana Ferreira signs at the merch tent right after hosting Heat 6.",
-            "track": "Creators"
-          },
-          {
-            "start": "2026-10-17T16:15:00-04:00",
-            "end": "2026-10-17T16:30:00-04:00",
+            "end": "2026-10-17T16:00:00-04:00",
             "code": "BK",
             "title": "Bracket reveal",
-            "detail": "All six creators announce the 18 qualifiers on the main stage and reveal the Day 2 draft order. Ends an hour before the first last boat of the day, {{t:2026-10-17T17:30:00-04:00}} to Red Hook.",
+            "detail": "All six creators announce the 18 qualifiers on the main stage.",
+            "track": "Main stage"
+          },
+          {
+            "start": "2026-10-17T16:00:00-04:00",
+            "end": "2026-10-17T16:30:00-04:00",
+            "code": "DR",
+            "title": "Team draft",
+            "detail": "Each creator picks three qualifiers, live on the main stage, and the Day 2 teams are set. Qualifiers need to be at the stage. Ends an hour before the first last boat of the day, {{t:2026-10-17T17:30:00-04:00}} to Red Hook.",
             "track": "Main stage"
           }
         ],
@@ -202,7 +144,7 @@
         "label": "Day 2",
         "date": "Sun, Oct 18, 2026",
         "title": "Finals",
-        "summary": "Six teams of four: one creator captain and three qualifiers, picked in a live draft. Eight team and duo games in three blocks, then the Chat Decides finale. No one is eliminated. Every team plays every game.",
+        "summary": "Six teams of four, drafted at the end of Day 1: one creator captain and three qualifiers. Eight team and duo games in three blocks, then the Chat Decides finale. No one is eliminated. Every team plays every game. After the awards, all six creators meet fans for an hour.",
         "sessions": [
           {
             "start": "2026-10-18T10:00:00-04:00",
@@ -214,59 +156,59 @@
           },
           {
             "start": "2026-10-18T11:00:00-04:00",
-            "end": "2026-10-18T11:30:00-04:00",
-            "code": "DR",
-            "title": "Team draft",
-            "detail": "Each creator picks three qualifiers, live on the main stage. The stream starts here.",
-            "track": "Main stage"
-          },
-          {
-            "start": "2026-10-18T11:30:00-04:00",
-            "end": "2026-10-18T12:45:00-04:00",
+            "end": "2026-10-18T12:15:00-04:00",
             "code": "A",
             "title": "Block A",
-            "detail": "Skills Challenge (team), Balloon Toss (duo), Three-Legged Race (duo).",
+            "detail": "Skills Challenge (team), Balloon Toss (duo), Three-Legged Race (duo). The stream starts here.",
             "track": "Finals"
           },
           {
-            "start": "2026-10-18T12:45:00-04:00",
-            "end": "2026-10-18T13:30:00-04:00",
+            "start": "2026-10-18T12:15:00-04:00",
+            "end": "2026-10-18T13:00:00-04:00",
             "code": "BR",
             "title": "Lunch break",
             "detail": "A real 45-minute break, with no creator obligations. Food trucks on Colonels Row.",
             "track": "Break"
           },
           {
-            "start": "2026-10-18T13:30:00-04:00",
-            "end": "2026-10-18T14:30:00-04:00",
+            "start": "2026-10-18T13:00:00-04:00",
+            "end": "2026-10-18T14:00:00-04:00",
             "code": "B",
             "title": "Block B",
             "detail": "Crate Stack (team), Blind Maze (duo).",
             "track": "Finals"
           },
           {
-            "start": "2026-10-18T14:40:00-04:00",
-            "end": "2026-10-18T15:30:00-04:00",
+            "start": "2026-10-18T14:05:00-04:00",
+            "end": "2026-10-18T14:50:00-04:00",
             "code": "C",
             "title": "Block C",
             "detail": "Shuttle Relay (team), Lag Spike (duo). Standings go up on the main stage screen after every game.",
             "track": "Finals"
           },
           {
-            "start": "2026-10-18T15:40:00-04:00",
-            "end": "2026-10-18T16:05:00-04:00",
+            "start": "2026-10-18T14:55:00-04:00",
+            "end": "2026-10-18T15:15:00-04:00",
             "code": "FN",
             "title": "Finale: Chat Decides",
             "detail": "The last game, worth double points. Stream chat votes the obstacle route at every fork.",
             "track": "Finals"
           },
           {
-            "start": "2026-10-18T16:10:00-04:00",
-            "end": "2026-10-18T16:30:00-04:00",
+            "start": "2026-10-18T15:15:00-04:00",
+            "end": "2026-10-18T15:30:00-04:00",
             "code": "AW",
             "title": "Awards",
-            "detail": "Final standings and the trophy for the winning team on the main stage. Ends an hour before the {{t:2026-10-18T17:30:00-04:00}} last boat to Red Hook.",
+            "detail": "Final standings and the trophy for the winning team on the main stage.",
             "track": "Main stage"
+          },
+          {
+            "start": "2026-10-18T15:30:00-04:00",
+            "end": "2026-10-18T16:30:00-04:00",
+            "code": "MG",
+            "title": "Meet-and-greet",
+            "detail": "All six creators at the merch tent for a full hour, each with their own line, so you have time to meet two or more. Nothing else is running. Ends an hour before the {{t:2026-10-18T17:30:00-04:00}} last boat to Red Hook.",
+            "track": "Creators"
           }
         ],
         "isoDate": "2026-10-18"
@@ -423,7 +365,7 @@
         "bio": "Variety streamer known for co-op chaos and skipping every tutorial."
       }
     ],
-    "more": "Meet-and-greets are on Day 1 only: each creator signs at the merch tent for 30 minutes right after the heat they host, one creator at a time. Day 2 has no meet-and-greet."
+    "more": "The meet-and-greet is on Day 2, right after the awards, so it never competes with a heat or a game. All six creators sign at the merch tent for a full hour, each with their own line."
   },
   "logistics": {
     "heading": "Getting there",
@@ -541,16 +483,16 @@
       {
         "code": "D1",
         "name": "Qualifier stream",
-        "detail": "Every heat, one at a time, with commentary, plus the bracket reveal at {{t:2026-10-17T16:15:00-04:00}}.",
+        "detail": "Every heat, one at a time, with commentary, plus the bracket reveal and team draft from {{t:2026-10-17T15:45:00-04:00}}.",
         "start": "2026-10-17T11:00:00-04:00",
         "end": "2026-10-17T16:30:00-04:00"
       },
       {
         "code": "D2",
         "name": "Finals stream",
-        "detail": "The team draft, all three blocks, the Chat Decides finale, and awards.",
+        "detail": "All three blocks, the Chat Decides finale, and awards.",
         "start": "2026-10-18T11:00:00-04:00",
-        "end": "2026-10-18T16:30:00-04:00"
+        "end": "2026-10-18T15:30:00-04:00"
       },
       {
         "code": "VOD",
@@ -602,7 +544,7 @@
       },
       {
         "q": "How do I get to Day 2?",
-        "a": "Finish in the top 3 of your heat. That makes 18 qualifiers in total. They're announced at the Day 1 bracket reveal, {{t:2026-10-17T16:15:00-04:00}}. On Day 2, check in at the green tent by {{t:2026-10-18T10:45:00-04:00}}."
+        "a": "Finish in the top 3 of your heat. That makes 18 qualifiers in total. They're announced at the bracket reveal, {{t:2026-10-17T15:45:00-04:00}}, and drafted onto teams right after, so stay for the draft at {{t:2026-10-17T16:00:00-04:00}}. On Day 2, check in at the green tent by {{t:2026-10-18T10:45:00-04:00}}."
       },
       {
         "q": "Can I choose my heat time?",
@@ -622,7 +564,7 @@
       },
       {
         "q": "Can I compete with friends?",
-        "a": "On Day 1, everyone plays solo, but you and your friends can register for the same heat and play side by side. Day 2 teams are drafted live by the creators, so you can't pick your teammates."
+        "a": "On Day 1, everyone plays solo, but you and your friends can register for the same heat and play side by side. Day 2 teams are drafted live by the creators at the end of Day 1, so you can't pick your teammates."
       },
       {
         "q": "How are points scored?",
@@ -630,11 +572,11 @@
       },
       {
         "q": "Do creators play on Day 1?",
-        "a": "Each creator hosts one heat. They open it, play an exhibition round of Paper Ball Shootout that doesn't count, and announce the heat's top 3. They compete on Day 2 as team captains."
+        "a": "Each creator hosts one heat. They open it, play an exhibition round of Paper Ball Shootout that doesn't count, and announce the heat's top 3. At the end of the day, they draft their teams. They compete on Day 2 as team captains."
       },
       {
         "q": "When and where is the meet-and-greet?",
-        "a": "Day 1 only, at the merch tent, for 30 minutes right after each creator's heat, one creator at a time: Rosa Asante at {{t:2026-10-17T12:00:00-04:00}}, Theo Lindqvist at {{t:2026-10-17T12:45:00-04:00}}, Kwame Mori at {{t:2026-10-17T13:30:00-04:00}}, June Marchetti at {{t:2026-10-17T14:15:00-04:00}}, Luis Park at {{t:2026-10-17T15:00:00-04:00}}, and Hana Ferreira at {{t:2026-10-17T15:45:00-04:00}}. There is no meet-and-greet on Day 2."
+        "a": "Day 2, at the merch tent, from {{t:2026-10-18T15:30:00-04:00}} to {{t:2026-10-18T16:30:00-04:00}}, right after the awards. All six creators sign at once, each with their own line, so there's time to meet two or more. It's after the competition so it never pulls anyone away from a heat or a game."
       },
       {
         "q": "Is Crate Stack safe?",
