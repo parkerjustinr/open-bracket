@@ -913,9 +913,9 @@
       var reveal = findSession(d, 0, "BK");
       rows.push(["Your heat", esc(heat.title) + ", " + esc(d.schedule.days[0].date), timeEl(heat.start, heat.end, "block")]);
       rows.push(["Check in by", "Check-in tent, Parade Ground", timeEl(isoMinus(heat.start, 30), null, "block")]);
-      if (reveal) rows.push(["Bracket reveal", "Find out if you made the finals", timeEl(reveal.start, reveal.end, "block")]);
       var draft = findSession(d, 0, "DR");
-      if (draft) rows.push(["Team draft", "If you qualify, stay at the main stage to be drafted", timeEl(draft.start, draft.end, "block")]);
+      if (draft) rows.push(["Team draft", "Top 3 in your heat? Come to the main stage to be drafted", timeEl(draft.start, draft.end, "block")]);
+      if (reveal) rows.push(["Bracket reveal", "The six Day 2 teams and the bracket", timeEl(reveal.start, reveal.end, "block")]);
       var d2 = dayBounds(d.schedule.days[1]);
       rows.push(["Finals", esc(d.schedule.days[1].date) + ". Qualifiers play. Your ticket also gets you in to watch.", timeEl(d2.start, d2.end, "block")]);
     } else {

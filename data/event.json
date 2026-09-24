@@ -32,7 +32,7 @@
     "paragraphs": [
       "Open Bracket is a two-day outdoor games event on Governors Island. On Day 1, anyone 18 or older can enter a qualifier heat and play four quick solo games. The top 3 in each heat make the finals, where they're drafted onto teams captained by the creators you watch.",
       "Day 1 has six heats of up to 50 players, run one at a time so the crowd and the stream can follow every heat. Every heat plays the same four games, so the cut is fair. Each creator hosts one heat, and the day ends with the bracket reveal and the team draft.",
-      "Day 2 is the finals. Six teams of four, each with a creator captain and three qualifiers, play eight team and duo games for placement points. No one is eliminated. Every team plays every game, and the team with the most points wins. After the awards, all six creators meet fans for an hour. The whole competition streams on Twitch and YouTube."
+      "Day 2 is the finals. Six teams of four, each with a creator captain and three qualifiers, play eight team and duo games for placement points. No one is eliminated. Every team plays every game, and the top 3 teams take the podium. After that, all six creators meet fans for 90 minutes. The whole competition streams on Twitch and YouTube."
     ],
     "facts": [
       {
@@ -62,7 +62,7 @@
         "label": "Day 1",
         "date": "Sat, Oct 17, 2026",
         "title": "Open Qualifiers",
-        "summary": "Six heats of up to 50 players, one at a time, so every heat gets the whole crowd and the whole stream. Every heat plays the same four solo games. The host creator opens with an exhibition round of Paper Ball Shootout, then everyone plays for placement points, and the host announces the top 3. The day ends with the bracket reveal and the live team draft.",
+        "summary": "Six heats of up to 50 players, one at a time, so every heat gets the whole crowd and the whole stream. Every heat plays the same four solo games. The host creator opens with an exhibition round of Paper Ball Shootout, then everyone plays for placement points, and the host announces the heat's top 3. The day ends with the live team draft and the bracket reveal.",
         "sessions": [
           {
             "start": "2026-10-17T10:00:00-04:00",
@@ -122,18 +122,18 @@
           },
           {
             "start": "2026-10-17T15:45:00-04:00",
-            "end": "2026-10-17T16:00:00-04:00",
-            "code": "BK",
-            "title": "Bracket reveal",
-            "detail": "All six creators announce the 18 qualifiers on the main stage.",
+            "end": "2026-10-17T16:15:00-04:00",
+            "code": "DR",
+            "title": "Team draft",
+            "detail": "The 18 qualifiers, announced at the end of each heat, come to the main stage. Each creator picks three, live.",
             "track": "Main stage"
           },
           {
-            "start": "2026-10-17T16:00:00-04:00",
+            "start": "2026-10-17T16:15:00-04:00",
             "end": "2026-10-17T16:30:00-04:00",
-            "code": "DR",
-            "title": "Team draft",
-            "detail": "Each creator picks three qualifiers, live on the main stage, and the Day 2 teams are set. Qualifiers need to be at the stage. Ends an hour before the first last boat of the day, {{t:2026-10-17T17:30:00-04:00}} to Red Hook.",
+            "code": "BK",
+            "title": "Bracket reveal",
+            "detail": "The six finished teams and the Day 2 bracket go up on the main stage screen, the last thing on Day 1. Ends an hour before the first last boat of the day, {{t:2026-10-17T17:30:00-04:00}} to Red Hook.",
             "track": "Main stage"
           }
         ],
@@ -144,7 +144,7 @@
         "label": "Day 2",
         "date": "Sun, Oct 18, 2026",
         "title": "Finals",
-        "summary": "Six teams of four, drafted at the end of Day 1: one creator captain and three qualifiers. Eight team and duo games in three blocks, then the Chat Decides finale. No one is eliminated. Every team plays every game. After the awards, all six creators meet fans for an hour.",
+        "summary": "Six teams of four, drafted at the end of Day 1: one creator captain and three qualifiers. Seven games across Blocks A and B, a halftime show over lunch, then Block C is the Chat Decides finale. No one is eliminated. Every team plays every game. The top 3 teams take the podium, then all six creators meet fans.",
         "sessions": [
           {
             "start": "2026-10-18T10:00:00-04:00",
@@ -159,55 +159,47 @@
             "end": "2026-10-18T12:15:00-04:00",
             "code": "A",
             "title": "Block A",
-            "detail": "Skills Challenge (team), Balloon Toss (duo), Three-Legged Race (duo). The stream starts here.",
+            "detail": "Skills Challenge (team), Balloon Toss (duo), Three-Legged Race (duo), Shuttle Relay (team). The stream starts here.",
             "track": "Finals"
           },
           {
             "start": "2026-10-18T12:15:00-04:00",
             "end": "2026-10-18T13:00:00-04:00",
-            "code": "BR",
-            "title": "Lunch break",
-            "detail": "A real 45-minute break, with no creator obligations. Food trucks on Colonels Row.",
+            "code": "HT",
+            "title": "Lunch and halftime show",
+            "detail": "The Crowd Cup: spectators picked from the crowd play Musical Chairs and Paper Ball Shootout on the main stage for merch prizes, while the commentators walk through the standings on stream. Players and creators get a real 45-minute break. Food trucks on Colonels Row.",
             "track": "Break"
           },
           {
             "start": "2026-10-18T13:00:00-04:00",
-            "end": "2026-10-18T14:00:00-04:00",
+            "end": "2026-10-18T14:15:00-04:00",
             "code": "B",
             "title": "Block B",
-            "detail": "Crate Stack (team), Blind Maze (duo).",
+            "detail": "Crate Stack (team), Blind Maze (duo), Lag Spike (duo). Standings go up on the main stage screen after every game.",
             "track": "Finals"
           },
           {
-            "start": "2026-10-18T14:05:00-04:00",
-            "end": "2026-10-18T14:50:00-04:00",
+            "start": "2026-10-18T14:30:00-04:00",
+            "end": "2026-10-18T15:00:00-04:00",
             "code": "C",
-            "title": "Block C",
-            "detail": "Shuttle Relay (team), Lag Spike (duo). Standings go up on the main stage screen after every game.",
+            "title": "Block C: the finale",
+            "detail": "Chat Decides, the last game, worth double points. Stream chat votes the obstacle route at every fork.",
             "track": "Finals"
           },
           {
-            "start": "2026-10-18T14:55:00-04:00",
-            "end": "2026-10-18T15:15:00-04:00",
-            "code": "FN",
-            "title": "Finale: Chat Decides",
-            "detail": "The last game, worth double points. Stream chat votes the obstacle route at every fork.",
-            "track": "Finals"
-          },
-          {
-            "start": "2026-10-18T15:15:00-04:00",
+            "start": "2026-10-18T15:05:00-04:00",
             "end": "2026-10-18T15:30:00-04:00",
-            "code": "AW",
-            "title": "Awards",
-            "detail": "Final standings and the trophy for the winning team on the main stage.",
+            "code": "P",
+            "title": "Podium",
+            "detail": "The top 3 teams are revealed on the main stage and get their prizes. The first-place team is the Open Bracket champion.",
             "track": "Main stage"
           },
           {
             "start": "2026-10-18T15:30:00-04:00",
-            "end": "2026-10-18T16:30:00-04:00",
+            "end": "2026-10-18T17:00:00-04:00",
             "code": "MG",
             "title": "Meet-and-greet",
-            "detail": "All six creators at the merch tent for a full hour, each with their own line, so you have time to meet two or more. Nothing else is running. Ends an hour before the {{t:2026-10-18T17:30:00-04:00}} last boat to Red Hook.",
+            "detail": "All six creators at the merch tent for 90 minutes, each with their own line, so you have time to meet two or more. Taking the {{t:2026-10-18T17:30:00-04:00}} Red Hook boat? Leave by about {{t:2026-10-18T17:10:00-04:00}}. Manhattan and Pier 6 boats run until {{t:2026-10-18T18:00:00-04:00}}.",
             "track": "Creators"
           }
         ],
@@ -365,7 +357,7 @@
         "bio": "Variety streamer known for co-op chaos and skipping every tutorial."
       }
     ],
-    "more": "The meet-and-greet is on Day 2, right after the awards, so it never competes with a heat or a game. All six creators sign at the merch tent for a full hour, each with their own line."
+    "more": "The meet-and-greet is on Day 2, right after the podium, so it never competes with a heat or a game. All six creators sign at the merch tent for 90 minutes, each with their own line."
   },
   "logistics": {
     "heading": "Getting there",
@@ -444,7 +436,7 @@
         "lastBoat": "2026-10-17T17:30:00-04:00"
       }
     ],
-    "lastFerryWarning": "The island closes at {{t:2026-10-17T18:00:00-04:00}}. Last boats back: {{t:2026-10-17T17:30:00-04:00}} to Red Hook, and {{t:2026-10-17T18:00:00-04:00}} to Brooklyn Bridge Park and to Manhattan. Both days end by {{t:2026-10-17T16:30:00-04:00}}. If you miss the last boat, there is no other way off the island.",
+    "lastFerryWarning": "The island closes at {{t:2026-10-17T18:00:00-04:00}}. Last boats back: {{t:2026-10-17T17:30:00-04:00}} to Red Hook, and {{t:2026-10-17T18:00:00-04:00}} to Brooklyn Bridge Park and to Manhattan. Day 1 ends at {{t:2026-10-17T16:30:00-04:00}}. On Day 2, the podium ends at {{t:2026-10-18T15:30:00-04:00}} and the meet-and-greet runs until {{t:2026-10-18T17:00:00-04:00}}. If you miss the last boat, there is no other way off the island.",
     "cards": [
       {
         "title": "Check-in on arrival",
@@ -483,14 +475,14 @@
       {
         "code": "D1",
         "name": "Qualifier stream",
-        "detail": "Every heat, one at a time, with commentary, plus the bracket reveal and team draft from {{t:2026-10-17T15:45:00-04:00}}.",
+        "detail": "Every heat, one at a time, with commentary, plus the team draft and bracket reveal from {{t:2026-10-17T15:45:00-04:00}}.",
         "start": "2026-10-17T11:00:00-04:00",
         "end": "2026-10-17T16:30:00-04:00"
       },
       {
         "code": "D2",
         "name": "Finals stream",
-        "detail": "All three blocks, the Chat Decides finale, and awards.",
+        "detail": "Blocks A and B, the halftime show, the Chat Decides finale in Block C, and the podium.",
         "start": "2026-10-18T11:00:00-04:00",
         "end": "2026-10-18T15:30:00-04:00"
       },
@@ -544,7 +536,7 @@
       },
       {
         "q": "How do I get to Day 2?",
-        "a": "Finish in the top 3 of your heat. That makes 18 qualifiers in total. They're announced at the bracket reveal, {{t:2026-10-17T15:45:00-04:00}}, and drafted onto teams right after, so stay for the draft at {{t:2026-10-17T16:00:00-04:00}}. On Day 2, check in at the green tent by {{t:2026-10-18T10:45:00-04:00}}."
+        "a": "Finish in the top 3 of your heat. Your host announces the top 3 at the end of the heat, which makes 18 qualifiers in total. Come to the main stage for the team draft at {{t:2026-10-17T15:45:00-04:00}}, then stay for the bracket reveal. On Day 2, check in at the green tent by {{t:2026-10-18T10:45:00-04:00}}."
       },
       {
         "q": "Can I choose my heat time?",
@@ -576,7 +568,7 @@
       },
       {
         "q": "When and where is the meet-and-greet?",
-        "a": "Day 2, at the merch tent, from {{t:2026-10-18T15:30:00-04:00}} to {{t:2026-10-18T16:30:00-04:00}}, right after the awards. All six creators sign at once, each with their own line, so there's time to meet two or more. It's after the competition so it never pulls anyone away from a heat or a game."
+        "a": "Day 2, at the merch tent, from {{t:2026-10-18T15:30:00-04:00}} to {{t:2026-10-18T17:00:00-04:00}}, right after the podium. All six creators sign at once, each with their own line, so there's time to meet two or more. It's after the competition so it never pulls anyone away from a heat or a game."
       },
       {
         "q": "Is Crate Stack safe?",
@@ -612,7 +604,7 @@
       },
       {
         "q": "What if I miss the last ferry?",
-        "a": "There is no other way off the island. The earliest last boat is {{t:2026-10-17T17:30:00-04:00}} to Red Hook, and the last boats to Brooklyn Bridge Park and Manhattan leave at {{t:2026-10-17T18:00:00-04:00}}. Both days end by {{t:2026-10-17T16:30:00-04:00}}, so you have at least an hour."
+        "a": "There is no other way off the island. The earliest last boat is {{t:2026-10-17T17:30:00-04:00}} to Red Hook, and the last boats to Brooklyn Bridge Park and Manhattan leave at {{t:2026-10-17T18:00:00-04:00}}. Day 1 ends at {{t:2026-10-17T16:30:00-04:00}}. On Day 2 the meet-and-greet runs until {{t:2026-10-18T17:00:00-04:00}}, so if you're heading to Red Hook, leave it by about {{t:2026-10-18T17:10:00-04:00}} or take a Manhattan or Pier 6 boat instead."
       },
       {
         "q": "Can I bring friends who aren't competing?",
