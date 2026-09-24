@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "name": "Open Bracket",
+    "edition": "Vol. 01",
+    "tagline": "The creator games where the crowd is in the bracket.",
+    "dates": "Sat 17 - Sun 18 Oct 2026",
+    "datesShort": "17-18.10.26",
+    "location": "Governors Island, New York",
+    "locationDetail": "Parade Ground and Colonels Row, Governors Island. Car-free. Ferry only.",
+    "placeholderNotice": "PLACEHOLDER CONTENT. Open Bracket is a fictional event. Names, times, prices, and ferry details on this page are draft copy and have not been verified.",
+    "timezone": "America/New_York"
+  },
+  "hero": {
+    "kicker": "Two days. One island. Open field.",
+    "lines": ["Open", "Bracket"],
+    "sub": "Day 1 anyone registered can compete in open qualifier heats. Day 2 the top qualifiers play the finals alongside invited creators, in front of a live crowd and on the stream.",
+    "primaryCta": { "label": "Compete", "href": "#register", "type": "competitor" },
+    "secondaryCta": { "label": "Watch", "href": "#watch" },
+    "numerals": [
+      { "value": "02", "label": "Days" },
+      { "value": "08", "label": "Games" },
+      { "value": "12", "label": "Heats" },
+      { "value": "01", "label": "Champion" }
+    ]
+  },
+  "about": {
+    "heading": "Not a watch party. A bracket.",
+    "paragraphs": [
+      "[PLACEHOLDER] Open Bracket is a two-day outdoor games festival built around one idea: the audience plays. Most creator events put the talent on a stage and the crowd behind a barrier. Here, anyone with a competitor ticket can enter the Day 1 qualifier heats.",
+      "[PLACEHOLDER] Qualifier winners carry their points into Day 2, where they play the finals next to invited online creators. Everything on Day 2 is played in front of a live crowd on the Parade Ground and streamed live.",
+      "[PLACEHOLDER] The games are physical, silly, and short. Relay races, target throws, a giant-grid puzzle, a tug of war. No experience needed and no gear to bring."
+    ],
+    "facts": [
+      { "value": "400", "label": "Competitor spots, Day 1 [PLACEHOLDER]" },
+      { "value": "32", "label": "Finalists advance to Day 2" },
+      { "value": "16", "label": "Invited creators [PLACEHOLDER]" },
+      { "value": "0", "label": "Cars on the island" }
+    ]
+  },
+  "schedule": {
+    "heading": "Order of play",
+    "note": "All times Eastern (ET). [PLACEHOLDER] Times are draft and subject to change. Heat assignments are sent by email 48 hours before Day 1.",
+    "days": [
+      {
+        "id": "day1",
+        "label": "Day 01",
+        "date": "Saturday 17 October",
+        "title": "Open Qualifiers",
+        "summary": "Every registered competitor plays three heats across different games. Top 32 on points advance.",
+        "sessions": [
+          { "start": "09:00", "end": "10:00", "code": "CK", "title": "Check-in opens", "detail": "Wristband pickup at the Soissons Landing check-in tent. First ferries arrive 9:00 AM.", "track": "Arrival" },
+          { "start": "10:00", "end": "10:15", "code": "00", "title": "Opening call", "detail": "Rules briefing and heat board reveal on the Parade Ground main stage.", "track": "Main stage" },
+          { "start": "10:30", "end": "11:30", "code": "H1", "title": "Heats 01-04", "detail": "Relay Dash, Ring Toss Gauntlet, Grid Lock, and Sack Sprint run in parallel.", "track": "Qualifiers" },
+          { "start": "11:45", "end": "12:45", "code": "H2", "title": "Heats 05-08", "detail": "Competitors rotate to their second game. Check your wristband color.", "track": "Qualifiers" },
+          { "start": "12:45", "end": "13:45", "code": "BR", "title": "Lunch break", "detail": "Food trucks on Colonels Row. Water refill stations at every field.", "track": "Break" },
+          { "start": "14:00", "end": "15:00", "code": "H3", "title": "Heats 09-12", "detail": "Final qualifier round. Last chance to score points.", "track": "Qualifiers" },
+          { "start": "15:30", "end": "16:00", "code": "32", "title": "Top 32 announced", "detail": "Finalists called on the main stage and posted to the heat board and site.", "track": "Main stage" },
+          { "start": "16:00", "end": "17:00", "code": "OP", "title": "Open play", "detail": "All game stations open for practice. No points.", "track": "Open" }
+        ]
+      },
+      {
+        "id": "day2",
+        "label": "Day 02",
+        "date": "Sunday 18 October",
+        "title": "Finals",
+        "summary": "Top 32 qualifiers play alongside 16 invited creators. Live crowd, live stream, single elimination.",
+        "sessions": [
+          { "start": "10:00", "end": "11:00", "code": "CK", "title": "Gates and check-in", "detail": "Finalists check in at the green tent by 10:30. Spectators head straight to the Parade Ground.", "track": "Arrival" },
+          { "start": "11:00", "end": "11:30", "code": "LV", "title": "Stream goes live", "detail": "Pre-show, creator intros, and the full bracket draw.", "track": "Broadcast" },
+          { "start": "11:30", "end": "13:00", "code": "R1", "title": "Round of 48", "detail": "Mixed teams of qualifiers and creators. Four games, back to back.", "track": "Finals" },
+          { "start": "13:00", "end": "13:45", "code": "BR", "title": "Midday break", "detail": "Creator meet-and-greet line opens at the merch tent.", "track": "Break" },
+          { "start": "14:00", "end": "15:15", "code": "QF", "title": "Quarterfinals", "detail": "Last 8 teams. Crowd vote picks one wildcard game.", "track": "Finals" },
+          { "start": "15:30", "end": "16:15", "code": "SF", "title": "Semifinals", "detail": "Last 4 teams. Tug of war decides any tie.", "track": "Finals" },
+          { "start": "16:30", "end": "17:00", "code": "F", "title": "Grand final", "detail": "One game, chosen by the finalists. Trophy on the main stage.", "track": "Finals" },
+          { "start": "17:15", "end": "17:30", "code": "END", "title": "Close and ferry call", "detail": "Staggered exit to the ferries. Listen for your landing.", "track": "Departure" }
+        ]
+      }
+    ]
+  },
+  "games": {
+    "heading": "The games",
+    "intro": "[PLACEHOLDER] Eight games. Short rounds, simple rules, built to be played by anyone and watched by everyone.",
+    "items": [
+      { "code": "01", "name": "Relay Dash", "format": "Teams of 4 / 90 sec", "desc": "Four-leg shuttle relay across the Parade Ground. One baton, one wrong turn allowed." },
+      { "code": "02", "name": "Ring Toss Gauntlet", "format": "Solo / 60 sec", "desc": "Ten rings, five posts, rising distance. Points for accuracy, bonus for a clean sweep." },
+      { "code": "03", "name": "Grid Lock", "format": "Pairs / 3 min", "desc": "A giant floor-tile puzzle. One partner reads the pattern, the other moves the tiles." },
+      { "code": "04", "name": "Sack Sprint", "format": "Solo / 40 m", "desc": "Burlap sacks, a straight lane, and a finish line. Exactly what it sounds like." },
+      { "code": "05", "name": "Bucket Brigade", "format": "Teams of 6 / 2 min", "desc": "Move water from one barrel to another with cups. Most water wins. You will get wet." },
+      { "code": "06", "name": "Target Kick", "format": "Solo / 5 kicks", "desc": "Soccer ball, painted target wall, five attempts. Center ring scores triple." },
+      { "code": "07", "name": "Memory Board", "format": "Solo / 2 min", "desc": "Flip giant cards and match pairs against the clock. The crowd is not allowed to help. The crowd will help." },
+      { "code": "08", "name": "Tug of War", "format": "Teams of 8 / best of 3", "desc": "The tiebreaker and the Day 2 showpiece. Rope, chalk line, no gloves." }
+    ]
+  },
+  "creators": {
+    "heading": "Creator lineup",
+    "intro": "[PLACEHOLDER] Sixteen invited online creators join the finals on Day 2. All names below are fictional placeholders.",
+    "items": [
+      { "name": "Placeholder Creator 01", "handle": "@creator_one", "platform": "Twitch", "specialty": "Speedruns" },
+      { "name": "Placeholder Creator 02", "handle": "@creator_two", "platform": "YouTube", "specialty": "Challenge videos" },
+      { "name": "Placeholder Creator 03", "handle": "@creator_three", "platform": "TikTok", "specialty": "Trick shots" },
+      { "name": "Placeholder Creator 04", "handle": "@creator_four", "platform": "Twitch", "specialty": "Party games" },
+      { "name": "Placeholder Creator 05", "handle": "@creator_five", "platform": "YouTube", "specialty": "Outdoor sport" },
+      { "name": "Placeholder Creator 06", "handle": "@creator_six", "platform": "Kick", "specialty": "Variety" },
+      { "name": "Placeholder Creator 07", "handle": "@creator_seven", "platform": "TikTok", "specialty": "Comedy" },
+      { "name": "Placeholder Creator 08", "handle": "@creator_eight", "platform": "YouTube", "specialty": "Puzzles" }
+    ],
+    "more": "+ 8 more announced soon [PLACEHOLDER]"
+  },
+  "logistics": {
+    "heading": "Getting there",
+    "intro": "Governors Island is car-free and reachable only by ferry. Plan your trip to the landing, not to the island. [PLACEHOLDER] Ferry details below are draft and must be verified against the operator schedule before publishing.",
+    "routes": [
+      {
+        "code": "M",
+        "from": "From Manhattan",
+        "landing": "Battery Maritime Building, 10 South St",
+        "subway": "1 to South Ferry, R/W to Whitehall St, or 4/5 to Bowling Green. 3-5 min walk.",
+        "ferry": "Every 15-20 min. About 7 min crossing.",
+        "firstBoat": "08:30",
+        "lastBoat": "18:30"
+      },
+      {
+        "code": "B",
+        "from": "From Brooklyn",
+        "landing": "Pier 6, Brooklyn Bridge Park",
+        "subway": "2/3/4/5 to Borough Hall or R to Court St. 15 min walk.",
+        "ferry": "Every 30 min on event days. About 10 min crossing.",
+        "firstBoat": "09:00",
+        "lastBoat": "18:00"
+      }
+    ],
+    "lastFerryWarning": "Last boats back: 6:00 PM to Brooklyn, 6:30 PM to Manhattan. If you miss them there is no other way off the island. [PLACEHOLDER]",
+    "cards": [
+      { "title": "Check-in on arrival", "body": "Walk straight from the ferry to the check-in tent at Soissons Landing. Show the QR code from your confirmation email and get your wristband. Competitors: wristband color is your heat group. Spectators: no check-in needed on Day 1." },
+      { "title": "What to bring", "body": "Closed-toe shoes you can run in. A change of socks (Bucket Brigade). Sunscreen and a hat. A layer for the ferry, it is always colder on the water. Your phone, charged." },
+      { "title": "Water and shade", "body": "Free water refill stations at every game field and the main stage. Bring a refillable bottle. Shade tents along Colonels Row. Medical tent next to check-in." },
+      { "title": "Bag policy", "body": "Clear bags up to 12 x 6 x 12 in, or small clutches up to 5.5 x 8.5 in. Bags are checked at the landing. No coolers, glass, or drones. [PLACEHOLDER]" },
+      { "title": "Accessibility", "body": "All ferries and island paths are step-free. Accessible viewing platform at the main stage. Tell us your needs on the registration form and we will plan with you. [PLACEHOLDER]" },
+      { "title": "Bikes and getting around", "body": "The event site is a 5 min walk from either landing. Bike rentals are available on the island. There are no cars, taxis, or rideshare." }
+    ]
+  },
+  "watch": {
+    "heading": "Watch from anywhere",
+    "intro": "[PLACEHOLDER] Day 2 finals stream live from 11:00 ET. Day 1 highlights post throughout the day.",
+    "channels": [
+      { "code": "LIVE", "name": "Main stream", "detail": "Full Day 2 broadcast with commentary. Link goes live on this page at 11:00 ET Sunday. [PLACEHOLDER]" },
+      { "code": "CAM", "name": "Field cams", "detail": "Unedited feeds from each game field on Day 1. Find your friends mid-heat. [PLACEHOLDER]" },
+      { "code": "VOD", "name": "Replays", "detail": "Full VOD and per-game clips posted within 24 hours of each day. [PLACEHOLDER]" }
+    ],
+    "vote": "Remote viewers vote for the Day 2 wildcard game in chat during the quarterfinals."
+  },
+  "registration": {
+    "heading": "Register",
+    "intro": "Pick your ticket. Competitors play Day 1 heats and can watch Day 2. Spectators watch either or both days. [PLACEHOLDER] Pricing is draft.",
+    "demoNotice": "Demo form. Nothing is sent anywhere. Your registration is saved only in this browser (localStorage).",
+    "types": [
+      { "id": "competitor", "label": "Competitor", "price": "$25 [PLACEHOLDER]", "desc": "Play three qualifier heats on Day 1. Top 32 advance to the finals. Includes Day 2 entry." },
+      { "id": "spectator", "label": "Spectator", "price": "Free [PLACEHOLDER]", "desc": "Watch the heats, the finals, or both. Crowd access to the Parade Ground." }
+    ],
+    "landings": ["Manhattan (Battery Maritime Building)", "Brooklyn (Pier 6)", "Not sure yet"],
+    "spectatorDays": ["Day 1 - Qualifiers", "Day 2 - Finals"]
+  },
+  "faq": {
+    "heading": "FAQ",
+    "items": [
+      { "q": "Do I need to be good at games to compete?", "a": "No. The games are short and simple on purpose. Most people have never played them before. [PLACEHOLDER]" },
+      { "q": "Can I pick which heats I play?", "a": "Heats are assigned so everyone plays three different games. Your assignments arrive by email 48 hours before Day 1." },
+      { "q": "What happens if it rains?", "a": "Light rain, we play. Lightning or high wind, we pause and post updates on this page and by text. Full cancellation policy: [PLACEHOLDER]." },
+      { "q": "Is the ferry included in my ticket?", "a": "No. Ferry fare is paid separately to the ferry operator. [PLACEHOLDER] Confirm current fares before publishing." },
+      { "q": "What if I miss the last ferry?", "a": "There is no other way off the island, so please do not. Staff start the ferry call 45 minutes before the last boat." },
+      { "q": "Can kids come?", "a": "Spectators of all ages are welcome. Competitors must be 16 or older; under 18 needs a guardian on site. [PLACEHOLDER]" },
+      { "q": "I registered as a spectator. Can I switch to competitor?", "a": "Yes, until competitor spots sell out. Register again with the same email and we will update your ticket. [PLACEHOLDER]" }
+    ]
+  },
+  "footer": {
+    "line": "Open Bracket is a fictional event, designed for the Happily Design Jam, September 2026.",
+    "builtOn": "Event site concept built on Arrived.",
+    "links": [
+      { "label": "Schedule", "href": "#schedule" },
+      { "label": "Getting there", "href": "#getting-there" },
+      { "label": "Watch", "href": "#watch" },
+      { "label": "Register", "href": "#register" }
+    ]
+  }
+}
