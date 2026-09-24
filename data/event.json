@@ -6,6 +6,7 @@
     "dates": "Sat 17 - Sun 18 Oct 2026",
     "datesShort": "17-18.10.26",
     "location": "Governors Island, New York",
+    "calendarLocation": "Parade Ground, Governors Island, New York, NY",
     "locationDetail": "Parade Ground and Colonels Row, Governors Island. Car-free. Ferry only.",
     "placeholderNotice": "Open Bracket is a fictional event concept. Ferry details follow the Governors Island fall schedule. Check govisland.com before you travel.",
     "timezone": "America/New_York"
@@ -73,7 +74,7 @@
   },
   "schedule": {
     "heading": "Order of play",
-    "note": "All times Eastern (ET). Your heat time is emailed 48 hours before Day 1. Check in at least 30 minutes before your heat.",
+    "note": "Times show in your time zone, with Eastern Time (the island's zone) alongside. Use the switch to flip between them. Your heat time is emailed 48 hours before Day 1. Check in at least 30 minutes before your heat.",
     "days": [
       {
         "id": "day1",
@@ -83,78 +84,79 @@
         "summary": "Six heats of 50 players. Each heat plays four games for points. Top three in each heat advance to the finals.",
         "sessions": [
           {
-            "start": "09:00",
-            "end": "10:00",
+            "start": "2026-10-17T09:00:00-04:00",
+            "end": "2026-10-17T10:00:00-04:00",
             "code": "CK",
             "title": "Check-in opens",
-            "detail": "Pick up your wristband at the check-in tent on the Parade Ground. It is a 5 minute walk from both ferry landings. Check-in stays open until 3:15 PM.",
+            "detail": "Pick up your wristband at the check-in tent on the Parade Ground. It is a 5 minute walk from both ferry landings. Check-in stays open until {{t:2026-10-17T15:15:00-04:00}}.",
             "track": "Arrival"
           },
           {
-            "start": "10:00",
-            "end": "10:45",
+            "start": "2026-10-17T10:00:00-04:00",
+            "end": "2026-10-17T10:45:00-04:00",
             "code": "H1",
             "title": "Heat 1",
             "detail": "Crate Stack, Musical Chairs, Shuttle Relay, Simon Says.",
             "track": "Qualifiers"
           },
           {
-            "start": "11:00",
-            "end": "11:45",
+            "start": "2026-10-17T11:00:00-04:00",
+            "end": "2026-10-17T11:45:00-04:00",
             "code": "H2",
             "title": "Heat 2",
             "detail": "Sack Sprint, Balloon Toss, Shuttle Relay, Lag Spike.",
             "track": "Qualifiers"
           },
           {
-            "start": "12:00",
-            "end": "12:45",
+            "start": "2026-10-17T12:00:00-04:00",
+            "end": "2026-10-17T12:45:00-04:00",
             "code": "H3",
             "title": "Heat 3",
             "detail": "Crate Stack, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers"
           },
           {
-            "start": "12:45",
-            "end": "13:30",
+            "start": "2026-10-17T12:45:00-04:00",
+            "end": "2026-10-17T13:30:00-04:00",
             "code": "BR",
             "title": "Lunch break",
             "detail": "Food trucks on Colonels Row. Free water refills at every field.",
             "track": "Break"
           },
           {
-            "start": "13:30",
-            "end": "14:15",
+            "start": "2026-10-17T13:30:00-04:00",
+            "end": "2026-10-17T14:15:00-04:00",
             "code": "H4",
             "title": "Heat 4",
             "detail": "Balloon Toss, Shuttle Relay, Lag Spike, Simon Says.",
             "track": "Qualifiers"
           },
           {
-            "start": "14:30",
-            "end": "15:15",
+            "start": "2026-10-17T14:30:00-04:00",
+            "end": "2026-10-17T15:15:00-04:00",
             "code": "H5",
             "title": "Heat 5",
             "detail": "Crate Stack, Sack Sprint, Musical Chairs, Lag Spike.",
             "track": "Qualifiers"
           },
           {
-            "start": "15:30",
-            "end": "16:15",
+            "start": "2026-10-17T15:30:00-04:00",
+            "end": "2026-10-17T16:15:00-04:00",
             "code": "H6",
             "title": "Heat 6",
             "detail": "Balloon Toss, Crate Stack, Shuttle Relay, Simon Says.",
             "track": "Qualifiers"
           },
           {
-            "start": "16:30",
-            "end": "17:00",
+            "start": "2026-10-17T16:30:00-04:00",
+            "end": "2026-10-17T17:00:00-04:00",
             "code": "BK",
             "title": "Bracket reveal",
-            "detail": "The 18 qualifiers are called up on the main stage and the Day 2 bracket goes up. Leaves time for the 6:00 PM last ferry.",
+            "detail": "The 18 qualifiers are called up on the main stage and the Day 2 bracket goes up. Leaves time for the {{t:2026-10-17T18:00:00-04:00}} last ferry.",
             "track": "Main stage"
           }
-        ]
+        ],
+        "isoDate": "2026-10-17"
       },
       {
         "id": "day2",
@@ -164,78 +166,79 @@
         "summary": "18 qualifiers drafted onto six teams, each captained by an invited creator. Points round, semifinals, grand final.",
         "sessions": [
           {
-            "start": "09:30",
-            "end": "10:15",
+            "start": "2026-10-18T09:30:00-04:00",
+            "end": "2026-10-18T10:15:00-04:00",
             "code": "CK",
             "title": "Gates and check-in",
-            "detail": "Qualifiers check in at the green tent by 10:15 AM. Spectators go straight to the Parade Ground.",
+            "detail": "Qualifiers check in at the green tent by {{t:2026-10-18T10:15:00-04:00}}. Spectators go straight to the Parade Ground.",
             "track": "Arrival"
           },
           {
-            "start": "10:30",
-            "end": "10:45",
+            "start": "2026-10-18T10:30:00-04:00",
+            "end": "2026-10-18T10:45:00-04:00",
             "code": "DR",
             "title": "Team draft",
             "detail": "Creators pick their three qualifiers live on stage. The stream starts here.",
             "track": "Main stage"
           },
           {
-            "start": "11:00",
-            "end": "12:15",
+            "start": "2026-10-18T11:00:00-04:00",
+            "end": "2026-10-18T12:15:00-04:00",
             "code": "R1",
             "title": "Finals round 1",
             "detail": "All six teams play three games for points. Top four teams go through.",
             "track": "Finals"
           },
           {
-            "start": "12:15",
-            "end": "13:00",
+            "start": "2026-10-18T12:15:00-04:00",
+            "end": "2026-10-18T13:00:00-04:00",
             "code": "BR",
             "title": "Lunch break",
             "detail": "Food trucks on Colonels Row.",
             "track": "Break"
           },
           {
-            "start": "13:00",
-            "end": "13:45",
+            "start": "2026-10-18T13:00:00-04:00",
+            "end": "2026-10-18T13:45:00-04:00",
             "code": "EX",
             "title": "Creators exhibition match",
             "detail": "The six creators play Musical Chairs and Simon Says against each other. No points, just bragging rights.",
             "track": "Main stage"
           },
           {
-            "start": "14:00",
-            "end": "14:45",
+            "start": "2026-10-18T14:00:00-04:00",
+            "end": "2026-10-18T14:45:00-04:00",
             "code": "SF",
             "title": "Semifinals",
             "detail": "Four teams, two games each. Top two teams go through.",
             "track": "Finals"
           },
           {
-            "start": "15:00",
-            "end": "15:30",
+            "start": "2026-10-18T15:00:00-04:00",
+            "end": "2026-10-18T15:30:00-04:00",
             "code": "F",
             "title": "Grand final",
             "detail": "Two teams play Chat Decides. The route is voted on live by the crowd and stream chat.",
             "track": "Finals"
           },
           {
-            "start": "15:45",
-            "end": "16:15",
+            "start": "2026-10-18T15:45:00-04:00",
+            "end": "2026-10-18T16:15:00-04:00",
             "code": "END",
             "title": "Closing ceremony",
             "detail": "Trophy for the winning team, awards for top qualifier and best crate tower, and a thank you to everyone who played.",
             "track": "Main stage"
           },
           {
-            "start": "16:15",
-            "end": "17:00",
+            "start": "2026-10-18T16:15:00-04:00",
+            "end": "2026-10-18T17:00:00-04:00",
             "code": "FY",
             "title": "Ferry call",
-            "detail": "Head to your landing. Last ferries leave at 6:00 PM, but lines get long after the ceremony.",
+            "detail": "Head to your landing. Last ferries leave at {{t:2026-10-18T18:00:00-04:00}}, but lines get long after the ceremony.",
             "track": "Departure"
           }
-        ]
+        ],
+        "isoDate": "2026-10-18"
       }
     ]
   },
@@ -344,16 +347,16 @@
   },
   "logistics": {
     "heading": "Getting there",
-    "intro": "Governors Island has no cars and no bridge. The only way on or off is by ferry, from Lower Manhattan or Brooklyn. Ferries are free for everyone before 11:00 AM on Saturdays and Sundays. After that, buy a round-trip ticket from the ferry operator. Fares and timetables are on govisland.com.",
+    "intro": "Governors Island has no cars and no bridge. The only way on or off is by ferry, from Lower Manhattan or Brooklyn. Ferries are free for everyone before {{t:2026-10-17T11:00:00-04:00}} on Saturdays and Sundays. After that, buy a round-trip ticket from the ferry operator. Fares and timetables are on govisland.com.",
     "routes": [
       {
         "code": "M",
         "from": "From Manhattan",
         "landing": "Battery Maritime Building, 10 South St. Arrives at Soissons Landing.",
         "subway": "1 to South Ferry, R/W to Whitehall St, or 4/5 to Bowling Green. About a 5 minute walk.",
-        "ferry": "Runs daily. Every 15 minutes on weekends from 10:00 AM to 6:00 PM, every 30 minutes before that. About 7 minutes across.",
-        "firstBoat": "07:00",
-        "lastBoat": "18:00"
+        "ferry": "Runs daily. Every 15 minutes on weekends from {{t:2026-10-17T10:00:00-04:00}} to {{t:2026-10-17T18:00:00-04:00}}, every 30 minutes before that. About 7 minutes across.",
+        "firstBoat": "2026-10-17T07:00:00-04:00",
+        "lastBoat": "2026-10-17T18:00:00-04:00"
       },
       {
         "code": "B",
@@ -361,11 +364,11 @@
         "landing": "Pier 6, Brooklyn Bridge Park, at the end of Atlantic Ave. Arrives at Yankee Pier.",
         "subway": "2/3/4/5 to Borough Hall or R to Court St, then about 15 minutes on foot.",
         "ferry": "Weekends and holidays only, through November 1. Less frequent than Manhattan, so check the timetable. About 10 minutes across.",
-        "firstBoat": "10:00",
-        "lastBoat": "18:00"
+        "firstBoat": "2026-10-17T10:00:00-04:00",
+        "lastBoat": "2026-10-17T18:00:00-04:00"
       }
     ],
-    "lastFerryWarning": "The island closes at 6:00 PM in the fall. Last ferries back leave at 6:00 PM to Manhattan and to Brooklyn. If you miss them, there is no other way off the island.",
+    "lastFerryWarning": "The island closes at {{t:2026-10-17T18:00:00-04:00}} in the fall. Last ferries back leave at {{t:2026-10-17T18:00:00-04:00}} to Manhattan and to Brooklyn. If you miss them, there is no other way off the island.",
     "cards": [
       {
         "title": "Check-in on arrival",
@@ -395,17 +398,21 @@
   },
   "watch": {
     "heading": "Watch from anywhere",
-    "intro": "Both days stream live on Twitch and YouTube. Links go up on this page the morning of each day.",
+    "intro": "Both days stream live on Twitch and YouTube. Stream times below are in your time zone, with Eastern Time alongside. Add a stream to your calendar so you don't miss the start.",
     "channels": [
       {
         "code": "D1",
         "name": "Qualifier stream",
-        "detail": "Saturday 17 October, 10:00 AM to 5:00 PM ET. Commentary on every heat, plus the bracket reveal at 4:30 PM."
+        "detail": "Commentary on every heat, plus the bracket reveal at {{t:2026-10-17T16:30:00-04:00}}.",
+        "start": "2026-10-17T10:00:00-04:00",
+        "end": "2026-10-17T17:00:00-04:00"
       },
       {
         "code": "D2",
         "name": "Finals stream",
-        "detail": "Sunday 18 October, 10:30 AM to 4:15 PM ET. Team draft, all finals rounds, the creators exhibition match, and the closing ceremony."
+        "detail": "Team draft, all finals rounds, the creators exhibition match, and the closing ceremony.",
+        "start": "2026-10-18T10:30:00-04:00",
+        "end": "2026-10-18T16:15:00-04:00"
       },
       {
         "code": "VOD",
@@ -452,7 +459,7 @@
       },
       {
         "q": "How do I get to Day 2?",
-        "a": "Finish in the top three of your heat. That gives 18 qualifiers in total. They are announced at the bracket reveal at 4:30 PM on Saturday, and you need to be back at check-in by 10:15 AM on Sunday."
+        "a": "Finish in the top three of your heat. That gives 18 qualifiers in total. They are announced at the Day 1 bracket reveal, {{t:2026-10-17T16:30:00-04:00}}. On Day 2 you need to be back at check-in by {{t:2026-10-18T10:15:00-04:00}}."
       },
       {
         "q": "Can I choose my heat time?",
@@ -464,11 +471,11 @@
       },
       {
         "q": "Is the ferry included in my ticket?",
-        "a": "No. Ferries are free before 11:00 AM on Saturdays and Sundays. After that you buy a round-trip ticket from the ferry operator. Current fares are on govisland.com."
+        "a": "No. Ferries are free before {{t:2026-10-17T11:00:00-04:00}} on Saturdays and Sundays. After that you buy a round-trip ticket from the ferry operator. Current fares are on govisland.com."
       },
       {
         "q": "What if I miss the last ferry?",
-        "a": "There is no other way off the island. Last ferries leave at 6:00 PM, and both days end well before then, so plan to head to your landing by 5:30 PM at the latest."
+        "a": "There is no other way off the island. Last ferries leave at {{t:2026-10-17T18:00:00-04:00}}, and both days end well before then, so plan to head to your landing by {{t:2026-10-17T17:30:00-04:00}} at the latest."
       },
       {
         "q": "Can I bring friends who aren't competing?",
