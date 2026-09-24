@@ -1001,3 +1001,14 @@ section[id] { scroll-margin-top: 104px; }
 .day-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-bottom: 6px; }
 .day-head .day-date { margin-bottom: 0; }
 .day-head .ics-btn { margin-top: 0; }
+
+/* ---------- Games by day, lead stat, ferry routes ---------- */
+.games-day { font-family: var(--display); text-transform: uppercase; font-size: var(--fs-h3); line-height: 0.95; margin: 40px 0 16px; }
+.games-day:first-of-type { margin-top: 8px; }
+.games-rule { font-size: var(--fs-lede); line-height: 1.45; max-width: var(--measure-lede) !important; margin-bottom: var(--stack); }
+.lead-stat { display: flex; align-items: baseline; gap: 14px; margin-bottom: var(--stack); }
+.lead-stat .n { font-family: var(--display); font-size: var(--fs-stat); line-height: 0.85; color: var(--red); text-shadow: 0.04em 0.035em 0 var(--blue); }
+.lead-stat .l { font-family: var(--cond); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tr-label); font-size: 1.1rem; }
+.boat-note { display: block; font-family: var(--cond); font-weight: 700; font-size: 1.15rem; line-height: 1.2; margin-top: 4px; }
+.route:nth-child(3) .route-code { background: var(--ink); box-shadow: 3px 3px 0 var(--red); outline: 2px solid var(--paper); }
+@media (min-width: 1100px) { .routes { grid-template-columns: repeat(3, 1fr); } }

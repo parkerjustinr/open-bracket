@@ -353,7 +353,7 @@
       return { day: day, start: new Date(span.start), end: new Date(span.end) };
     });
 
-    function pad(n) { return String(n).padStart(2, "0"); }
+    function pad(n) { return String(n); }
 
     function tick() {
       var now = Date.now();
@@ -415,10 +415,10 @@
   }
 
   // ---------- renderers ----------
-  function renderNotice(meta) {
+  function renderNotice() {
     var n = $("placeholder-notice");
     n.classList.remove("is-error");
-    n.textContent = meta.placeholderNotice;
+    n.hidden = true;
   }
 
   function renderHero(d) {
@@ -461,7 +461,7 @@
   function renderAbout(d) {
     var a = d.about;
     $("about-body").innerHTML =
-      sectionHead("01", "About the event", a.heading, "about-title") +
+      sectionHead("1", "About the event", a.heading, "about-title") +
       '<div class="about-grid">' +
         '<div class="about-copy">' + a.paragraphs.map(function (p, i) {
           return "<p" + (i === 0 ? ' class="lede"' : "") + ">" + copy(p) + "</p>";
@@ -508,7 +508,7 @@
     }).join("");
 
     $("schedule-body").innerHTML =
-      sectionHead("02", "Schedule", s.heading, "schedule-title") +
+      sectionHead("2", "Schedule", s.heading, "schedule-title") +
       '<p class="schedule-note">' + copy(s.note) + "</p>" +
       tzToggle(s.days[0].sessions[0].start) +
       '<div class="cal-bar"><span class="cal-bar-label">Add to your calendar</span>' +
@@ -550,23 +550,29 @@
   function renderGames(d) {
     var g = d.games;
     $("games-body").innerHTML =
-      sectionHead("03", "The games", g.heading, "games-title") +
+      sectionHead("3", "The games", g.heading, "games-title") +
       '<p class="lede">' + copy(g.intro) + "</p>" +
-      '<ul class="games-grid">' + g.items.map(function (x) {
-        return '<li class="game"><span class="game-num" aria-hidden="true">' + esc(x.code) + "</span>" +
-          '<h3 class="game-name">' + esc(x.name) + "</h3>" +
-          '<span class="game-format">' + esc(x.format) + "</span>" +
-          "<p>" + copy(x.desc) + "</p></li>";
-      }).join("") + "</ul>";
+      ["Day 1", "Day 2"].map(function (day) {
+        var items = g.items.filter(function (x) { return x.day === day; });
+        var formats = items.map(function (x) { return x.format; }).filter(function (f, i, a) { return a.indexOf(f) === i; });
+        return '<h3 class="games-day">' + esc(day) + ": " + esc(formats.map(function (f, i) { return i ? f.toLowerCase() : f; }).join(" and ")) + " games</h3>" +
+          (day === "Day 2" && g.duoRule ? '<p class="games-rule">' + copy(g.duoRule) + "</p>" : "") +
+          '<ul class="games-grid">' + items.map(function (x) {
+            return '<li class="game"><span class="game-num" aria-hidden="true">' + esc(x.code) + "</span>" +
+              '<h3 class="game-name">' + esc(x.name) + "</h3>" +
+              '<span class="game-format">' + esc(x.day) + " / " + esc(x.format) + " / " + esc(x.duration) + "</span>" +
+              "<p>" + copy(x.desc) + "</p></li>";
+          }).join("") + "</ul>";
+      }).join("");
   }
 
   function renderCreators(d) {
     var c = d.creators;
     $("creators-body").innerHTML =
-      sectionHead("04", "Day 2 invited creators", c.heading, "creators-title") +
+      sectionHead("4", "Heat hosts and Day 2 captains", c.heading, "creators-title") +
       '<p class="lede">' + copy(c.intro) + "</p>" +
       '<ul class="creators-grid">' + c.items.map(function (x, i) {
-        var n = String(i + 1).padStart(2, "0");
+        var n = String(i + 1);
         return '<li class="creator">' +
           '<div class="creator-slot" aria-hidden="true"><span>' + n + "</span></div>" +
           '<h3 class="creator-name">' + esc(x.name) + "</h3>" +
@@ -577,31 +583,35 @@
       '<p class="creators-more">' + copy(c.more) + "</p>";
   }
 
+  // A boat time, or a pointer to the official schedule when the time isn't published.
+  function boatTime(iso, note) {
+    return iso ? timeEl(iso, null, "boat") : '<span class="boat-note">' + copy(note || "Check the island ferry schedule") + "</span>";
+  }
+
   function renderLogistics(d) {
     var l = d.logistics;
     var routes = l.routes.map(function (r) {
       return '<article class="route" aria-labelledby="route-' + esc(r.code) + '">' +
         '<div class="route-head"><span class="route-code" aria-hidden="true">' + esc(r.code) + "</span>" +
           '<h3 class="route-from" id="route-' + esc(r.code) + '">' + esc(r.from) + "</h3></div>" +
-        '<ol class="route-steps">' +
-          '<li><span class="step-n" aria-hidden="true">1</span><div><span class="step-label">Subway</span>' + copy(r.subway) + "</div></li>" +
-          '<li><span class="step-n" aria-hidden="true">2</span><div><span class="step-label">Ferry landing</span>' + copy(r.landing) + "</div></li>" +
-          '<li><span class="step-n" aria-hidden="true">3</span><div><span class="step-label">Ferry</span>' + copy(r.ferry) + "</div></li>" +
-        "</ol>" +
+        '<ol class="route-steps">' + r.steps.map(function (st, i) {
+          return '<li><span class="step-n" aria-hidden="true">' + (i + 1) + '</span><div><span class="step-label">' + esc(st.label) + "</span>" + copy(st.text) + "</div></li>";
+        }).join("") + "</ol>" +
         '<div class="boats">' +
-          '<div><span class="step-label">First boat</span>' + timeEl(r.firstBoat, null, "boat") + "</div>" +
-          '<div><span class="step-label">Last boat back</span>' + timeEl(r.lastBoat, null, "boat") + "</div>" +
+          '<div><span class="step-label">First boat</span>' + boatTime(r.firstBoat, r.firstBoatNote) + "</div>" +
+          '<div><span class="step-label">Last boat back</span>' + boatTime(r.lastBoat, r.lastBoatNote) + "</div>" +
         "</div>" +
       "</article>";
     }).join("");
 
     $("logistics-body").innerHTML =
-      sectionHead("05", "Getting there and logistics", l.heading, "logistics-title") +
+      sectionHead("5", "Getting there and logistics", l.heading, "logistics-title") +
+      (l.leadStat ? '<p class="lead-stat"><span class="n">' + esc(l.leadStat.value) + '</span><span class="l">' + esc(l.leadStat.label) + "</span></p>" : "") +
       '<p class="lede">' + copy(l.intro) + "</p>" +
       '<div class="routes">' + routes + "</div>" +
       '<p class="last-ferry" role="note"><strong aria-hidden="true">!</strong><span>' + copy(l.lastFerryWarning) + "</span></p>" +
       '<ul class="info-cards">' + l.cards.map(function (c, i) {
-        return '<li class="info-card"><h3><span class="i" aria-hidden="true">' + String(i + 1).padStart(2, "0") + "</span>" + esc(c.title) + "</h3>" +
+        return '<li class="info-card"><h3><span class="i" aria-hidden="true">' + (i + 1) + "</span>" + esc(c.title) + "</h3>" +
           "<p>" + copy(c.body) + "</p></li>";
       }).join("") + "</ul>";
   }
@@ -609,7 +619,7 @@
   function renderWatch(d) {
     var w = d.watch;
     $("watch-body").innerHTML =
-      sectionHead("06", "Watch remotely", w.heading, "watch-title") +
+      sectionHead("6", "Watch remotely", w.heading, "watch-title") +
       '<p class="lede">' + copy(w.intro) + "</p>" +
       tzToggle(w.channels.filter(function (c) { return c.start; })[0].start) +
       '<ul class="channels">' + w.channels.map(function (c, i) {
@@ -716,7 +726,7 @@
     var heatOptions = qualifierHeats(d).map(function (h) {
       return '<label class="heat-option"><input type="radio" name="heat" value="' + esc(h.code) + '"' +
         (p.heat === h.code ? " checked" : "") + ">" +
-        '<span class="heat-body"><span class="heat-num" aria-hidden="true">' + esc(h.code.replace(/\D/g, "").padStart(2, "0")) + "</span>" +
+        '<span class="heat-body"><span class="heat-num" aria-hidden="true">' + esc(h.code.replace(/\D/g, "")) + "</span>" +
         '<span class="heat-name">' + esc(h.title) + "</span>" +
         timeEl(h.start, h.end, "block") +
         '<span class="heat-games">' + copy(h.detail) + "</span></span></label>";
@@ -728,7 +738,7 @@
     }).join("");
 
     $("register-body").innerHTML =
-      sectionHead("07", "Registration", r.heading, "register-title") +
+      sectionHead("7", "Registration", r.heading, "register-title") +
       '<p class="lede">' + copy(r.intro) + "</p>" +
       '<p class="demo-notice" role="note">' + esc(r.demoNotice) + "</p>" +
       '<div id="reg-output">' +
@@ -920,7 +930,7 @@
     var next = [
       "<strong>Confirmation email, right away.</strong> Your ticket number and the QR code you show at check-in go to " + esc(rec.email) + ".",
       "<strong>Ferry and check-in reminder, 24 hours before:</strong> " + timeEl(isoMinus(firstStart, 24 * 60), null, "inline", true) + ". " +
-        "Ferry times from Manhattan and Brooklyn, the last boat back, and where the check-in tent is."
+        "Ferry times from Manhattan, Brooklyn Bridge Park, and Red Hook, the last boats back, and where the check-in tent is."
     ];
     if (isComp) {
       next.push("<strong>Heat reminder, 2 hours before your heat:</strong> " + timeEl(isoMinus(firstStart, 120), null, "inline", true) + ". " +
@@ -941,7 +951,7 @@
     details.push(["Accessibility", rec.access ? esc(rec.access) : "None given"]);
 
     $("register-body").innerHTML =
-      sectionHead("07", "Registration", r.heading, "register-title") +
+      sectionHead("7", "Registration", r.heading, "register-title") +
       '<p class="demo-notice" role="note">' + esc(r.demoNotice) + "</p>" +
       '<div id="reg-output">' +
       '<div class="confirm' + (isComp ? "" : " is-spectator") + '" role="status" tabindex="-1" id="reg-confirm">' +
@@ -992,9 +1002,9 @@
   function renderFaq(d) {
     var f = d.faq;
     $("faq-body").innerHTML =
-      sectionHead("08", "Questions", f.heading, "faq-title") +
+      sectionHead("8", "Questions", f.heading, "faq-title") +
       '<div class="faq-list">' + f.items.map(function (x, i) {
-        return '<details class="faq-item"><summary><span class="q-n" aria-hidden="true">Q' + String(i + 1).padStart(2, "0") +
+        return '<details class="faq-item"><summary><span class="q-n" aria-hidden="true">Q' + (i + 1) +
           "</span><span>" + esc(x.q) + '</span><span class="q-icon" aria-hidden="true">+</span></summary>' +
           '<div class="a"><p>' + copy(x.a) + "</p></div></details>";
       }).join("") + "</div>";
@@ -1015,6 +1025,7 @@
 
   function showLoadError(err) {
     var n = $("placeholder-notice");
+    n.hidden = false;
     n.classList.add("is-error");
     n.textContent = "Content failed to load from data/event.json.";
     $("hero").innerHTML =

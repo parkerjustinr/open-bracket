@@ -1,14 +1,13 @@
 {
   "meta": {
     "name": "Open Bracket",
-    "edition": "Vol. 01",
+    "edition": "Vol. 1",
     "tagline": "The creator games where the crowd is in the bracket.",
-    "dates": "Sat 17 - Sun 18 Oct 2026",
-    "datesShort": "17-18.10.26",
+    "dates": "Sat, Oct 17 - Sun, Oct 18, 2026",
+    "datesShort": "Oct 17-18, 2026",
     "location": "Governors Island, New York",
     "calendarLocation": "Parade Ground, Governors Island, New York, NY",
     "locationDetail": "Parade Ground and Colonels Row, Governors Island. Car-free. Ferry only.",
-    "placeholderNotice": "Open Bracket is a fictional event concept. Ferry details follow the Governors Island fall schedule. Check govisland.com before you travel.",
     "timezone": "America/New_York"
   },
   "hero": {
@@ -17,7 +16,7 @@
       "Open",
       "Bracket"
     ],
-    "sub": "Day 1 anyone registered can compete in open qualifier heats. Day 2 the top qualifiers play the finals alongside invited creators, in front of a live crowd and on the stream.",
+    "sub": "Day 1: open qualifier heats anyone can enter. Day 2: the top 18 qualifiers join teams captained by six creators for the finals, live on the Parade Ground and on the stream.",
     "primaryCta": {
       "label": "Compete",
       "href": "#register",
@@ -29,122 +28,146 @@
     },
     "numerals": [
       {
-        "value": "02",
+        "value": "2",
         "label": "Days"
       },
       {
-        "value": "08",
+        "value": "12",
         "label": "Games"
       },
       {
-        "value": "06",
+        "value": "6",
         "label": "Heats"
       },
       {
-        "value": "01",
+        "value": "1",
         "label": "Champion team"
       }
     ]
   },
   "about": {
-    "heading": "Not a watch party. A bracket.",
+    "heading": "Don't just watch. Qualify.",
     "paragraphs": [
-      "Open Bracket is a two-day outdoor games event on Governors Island. You don't just watch creators play. You can play too, and if you do well, you play with them.",
-      "Day 1 is open qualifiers. Anyone 18 or older with a competitor ticket can enter. You get one heat of four short games, and the top three players in each heat go through. That makes 18 qualifiers.",
-      "Day 2 is the finals. The 18 qualifiers are drafted onto six teams, each captained by an invited creator. Teams play in front of a live crowd on the Parade Ground, and the whole day streams on Twitch and YouTube."
+      "Open Bracket is a two-day outdoor games event on Governors Island. On Day 1, anyone 18 or older can enter a qualifier heat and play four quick solo games. The top 3 in each heat make the finals, where they're drafted onto teams captained by the creators you watch.",
+      "Day 1 has six heats of up to 50 players, run two at a time. Every heat plays the same four games, so the cut is fair. Each creator hosts one heat, then signs at the merch tent for 30 minutes right after it.",
+      "Day 2 is the finals. Six teams of four, each with a creator captain and three qualifiers, play eight team and duo games for placement points. No one is eliminated. Every team plays every game, and the team with the most points wins. The whole day streams on Twitch and YouTube."
     ],
     "facts": [
       {
         "value": "300",
-        "label": "Competitor spots, Day 1"
+        "label": "Competitor spots"
       },
       {
         "value": "18",
-        "label": "Qualifiers advance to Day 2"
+        "label": "Qualifiers"
       },
       {
         "value": "6",
-        "label": "Invited creators"
+        "label": "Creator captains"
       },
       {
-        "value": "0",
-        "label": "Cars on the island"
+        "value": "6",
+        "label": "Teams"
       }
     ]
   },
   "schedule": {
     "heading": "Order of play",
-    "note": "Times show in your time zone, with Eastern Time (the island's zone) alongside. Use the switch to flip between them. Competitors pick their heat when they register and check in at least 30 minutes before it, or the spot goes to the standby line. There is no lunch break on Day 1. Each competitor plays one heat, and the food trucks on Colonels Row are open all day.",
+    "note": "Times show in your time zone, with Eastern Time (the island's zone) alongside. Use the switch to flip between them. Competitors pick a heat when they register and check in at least 30 minutes before it, or the spot goes to the standby line. There is no lunch break on Day 1. Each competitor plays one heat, and the food trucks on Colonels Row are open all day.",
     "days": [
       {
         "id": "day1",
-        "label": "Day 01",
-        "date": "Saturday 17 October",
+        "label": "Day 1",
+        "date": "Sat, Oct 17, 2026",
         "title": "Open Qualifiers",
-        "summary": "Six heats of 50 players. Each heat plays four games for points. Top three in each heat advance to the finals.",
+        "summary": "Six heats of up to 50 players, run in three waves of two side-by-side heats. Every heat plays the same four solo games. The host creator opens with an exhibition round of Paper Ball Shootout, then everyone plays for placement points, and the host announces the top 3. Top 3 in each heat advance: 18 qualifiers.",
         "sessions": [
-          {
-            "start": "2026-10-17T09:00:00-04:00",
-            "end": "2026-10-17T10:00:00-04:00",
-            "code": "CK",
-            "title": "Check-in opens",
-            "detail": "Pick up your wristband at the check-in tent on the Parade Ground. It is a 5 minute walk from both ferry landings. Check-in stays open until {{t:2026-10-17T14:30:00-04:00}}.",
-            "track": "Arrival"
-          },
           {
             "start": "2026-10-17T10:00:00-04:00",
             "end": "2026-10-17T10:45:00-04:00",
+            "code": "CK",
+            "title": "Check-in opens",
+            "detail": "Pick up your wristband at the check-in tent on the Parade Ground, about 5 minutes on foot from the ferry. Heats 1 and 2 check in by {{t:2026-10-17T10:45:00-04:00}}. Later heats check in at least 30 minutes before they start. Spectators can pick up wristbands any time.",
+            "track": "Arrival"
+          },
+          {
+            "start": "2026-10-17T11:15:00-04:00",
+            "end": "2026-10-17T12:30:00-04:00",
             "code": "H1",
             "title": "Heat 1",
-            "detail": "Crate Stack, Musical Chairs, Shuttle Relay, Simon Says. Coming from Brooklyn? The first Pier 6 boat lands after Heat 1 check-in closes, so take the Manhattan ferry for this heat.",
+            "detail": "Hosted by Rosa Asante. Runs side by side with Heat 2. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says. From Brooklyn or Red Hook, take the 10:15 AM boat.",
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T11:00:00-04:00",
-            "end": "2026-10-17T11:45:00-04:00",
+            "start": "2026-10-17T11:15:00-04:00",
+            "end": "2026-10-17T12:30:00-04:00",
             "code": "H2",
             "title": "Heat 2",
-            "detail": "Sack Sprint, Balloon Toss, Shuttle Relay, Lag Spike.",
+            "detail": "Hosted by Theo Lindqvist. Runs side by side with Heat 1. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says. From Brooklyn or Red Hook, take the 10:15 AM boat.",
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T12:00:00-04:00",
-            "end": "2026-10-17T12:45:00-04:00",
+            "start": "2026-10-17T12:30:00-04:00",
+            "end": "2026-10-17T13:00:00-04:00",
+            "code": "M1",
+            "title": "Meet-and-greet",
+            "detail": "Rosa Asante and Theo Lindqvist sign at the merch tent, right after hosting Heats 1 and 2.",
+            "track": "Creators"
+          },
+          {
+            "start": "2026-10-17T12:45:00-04:00",
+            "end": "2026-10-17T14:00:00-04:00",
             "code": "H3",
             "title": "Heat 3",
-            "detail": "Crate Stack, Musical Chairs, Sack Sprint, Simon Says.",
+            "detail": "Hosted by Kwame Mori. Runs side by side with Heat 4. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T13:00:00-04:00",
-            "end": "2026-10-17T13:45:00-04:00",
+            "start": "2026-10-17T12:45:00-04:00",
+            "end": "2026-10-17T14:00:00-04:00",
             "code": "H4",
             "title": "Heat 4",
-            "detail": "Balloon Toss, Shuttle Relay, Lag Spike, Simon Says.",
+            "detail": "Hosted by June Marchetti. Runs side by side with Heat 3. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers"
           },
           {
             "start": "2026-10-17T14:00:00-04:00",
-            "end": "2026-10-17T14:45:00-04:00",
+            "end": "2026-10-17T14:30:00-04:00",
+            "code": "M2",
+            "title": "Meet-and-greet",
+            "detail": "Kwame Mori and June Marchetti sign at the merch tent, right after hosting Heats 3 and 4.",
+            "track": "Creators"
+          },
+          {
+            "start": "2026-10-17T14:15:00-04:00",
+            "end": "2026-10-17T15:30:00-04:00",
             "code": "H5",
             "title": "Heat 5",
-            "detail": "Crate Stack, Sack Sprint, Musical Chairs, Lag Spike.",
+            "detail": "Hosted by Luis Park. Runs side by side with Heat 6. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers"
           },
           {
-            "start": "2026-10-17T15:00:00-04:00",
-            "end": "2026-10-17T15:45:00-04:00",
+            "start": "2026-10-17T14:15:00-04:00",
+            "end": "2026-10-17T15:30:00-04:00",
             "code": "H6",
             "title": "Heat 6",
-            "detail": "Balloon Toss, Crate Stack, Shuttle Relay, Simon Says.",
+            "detail": "Hosted by Hana Ferreira. Runs side by side with Heat 5. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers"
+          },
+          {
+            "start": "2026-10-17T15:30:00-04:00",
+            "end": "2026-10-17T16:00:00-04:00",
+            "code": "M3",
+            "title": "Meet-and-greet",
+            "detail": "Luis Park and Hana Ferreira sign at the merch tent, right after hosting Heats 5 and 6.",
+            "track": "Creators"
           },
           {
             "start": "2026-10-17T16:00:00-04:00",
             "end": "2026-10-17T16:30:00-04:00",
             "code": "BK",
             "title": "Bracket reveal",
-            "detail": "The 18 qualifiers are called up on the main stage and the Day 2 bracket goes up. Leaves time for the {{t:2026-10-17T18:00:00-04:00}} last ferry.",
+            "detail": "All six creators announce the 18 qualifiers on the main stage and reveal the Day 2 draft order. Ends an hour before the first last boat of the day, {{t:2026-10-17T17:30:00-04:00}} to Red Hook.",
             "track": "Main stage"
           }
         ],
@@ -152,82 +175,74 @@
       },
       {
         "id": "day2",
-        "label": "Day 02",
-        "date": "Sunday 18 October",
+        "label": "Day 2",
+        "date": "Sun, Oct 18, 2026",
         "title": "Finals",
-        "summary": "18 qualifiers drafted onto six teams, each captained by an invited creator. Points round, semifinals, grand final.",
+        "summary": "Six teams of four: one creator captain and three qualifiers, picked in a live draft. Eight team and duo games in three blocks, then the Chat Decides finale. No one is eliminated. Every team plays every game.",
         "sessions": [
           {
-            "start": "2026-10-18T09:30:00-04:00",
-            "end": "2026-10-18T10:15:00-04:00",
+            "start": "2026-10-18T10:00:00-04:00",
+            "end": "2026-10-18T10:45:00-04:00",
             "code": "CK",
             "title": "Gates and check-in",
-            "detail": "Qualifiers check in at the green tent by {{t:2026-10-18T10:15:00-04:00}}. Spectators go straight to the Parade Ground.",
+            "detail": "Qualifiers check in at the green tent by {{t:2026-10-18T10:45:00-04:00}}. Spectators go straight to the Parade Ground.",
             "track": "Arrival"
           },
           {
-            "start": "2026-10-18T10:30:00-04:00",
-            "end": "2026-10-18T10:45:00-04:00",
+            "start": "2026-10-18T11:00:00-04:00",
+            "end": "2026-10-18T11:30:00-04:00",
             "code": "DR",
             "title": "Team draft",
-            "detail": "Creators pick their three qualifiers live on stage. The stream starts here.",
+            "detail": "Each creator picks three qualifiers, live on the main stage. The stream starts here.",
             "track": "Main stage"
           },
           {
-            "start": "2026-10-18T11:00:00-04:00",
-            "end": "2026-10-18T12:15:00-04:00",
-            "code": "R1",
-            "title": "Finals round 1",
-            "detail": "All six teams play three games for points. Top four teams go through.",
+            "start": "2026-10-18T11:30:00-04:00",
+            "end": "2026-10-18T12:45:00-04:00",
+            "code": "A",
+            "title": "Block A",
+            "detail": "Skills Challenge (team), Balloon Toss (duo), Three-Legged Race (duo).",
             "track": "Finals"
           },
           {
-            "start": "2026-10-18T12:15:00-04:00",
-            "end": "2026-10-18T13:00:00-04:00",
+            "start": "2026-10-18T12:45:00-04:00",
+            "end": "2026-10-18T13:30:00-04:00",
             "code": "BR",
             "title": "Lunch break",
-            "detail": "Food trucks on Colonels Row.",
+            "detail": "A real 45-minute break, with no creator obligations. Food trucks on Colonels Row.",
             "track": "Break"
           },
           {
-            "start": "2026-10-18T13:00:00-04:00",
-            "end": "2026-10-18T13:45:00-04:00",
-            "code": "EX",
-            "title": "Creators exhibition match",
-            "detail": "The six creators play Musical Chairs and Simon Says against each other. No points, just bragging rights.",
-            "track": "Main stage"
-          },
-          {
-            "start": "2026-10-18T14:00:00-04:00",
-            "end": "2026-10-18T14:45:00-04:00",
-            "code": "SF",
-            "title": "Semifinals",
-            "detail": "Four teams, two games each. Top two teams go through.",
+            "start": "2026-10-18T13:30:00-04:00",
+            "end": "2026-10-18T14:30:00-04:00",
+            "code": "B",
+            "title": "Block B",
+            "detail": "Crate Stack (team), Blind Maze (duo).",
             "track": "Finals"
           },
           {
-            "start": "2026-10-18T15:00:00-04:00",
+            "start": "2026-10-18T14:40:00-04:00",
             "end": "2026-10-18T15:30:00-04:00",
-            "code": "F",
-            "title": "Grand final",
-            "detail": "Two teams play Chat Decides. The route is voted on live by the crowd and stream chat.",
+            "code": "C",
+            "title": "Block C",
+            "detail": "Shuttle Relay (team), Lag Spike (duo). Standings go up on the main stage screen after every game.",
             "track": "Finals"
           },
           {
-            "start": "2026-10-18T15:45:00-04:00",
-            "end": "2026-10-18T16:15:00-04:00",
-            "code": "END",
-            "title": "Closing ceremony",
-            "detail": "Trophy for the winning team, awards for top qualifier and best crate tower, and a thank you to everyone who played.",
-            "track": "Main stage"
+            "start": "2026-10-18T15:40:00-04:00",
+            "end": "2026-10-18T16:05:00-04:00",
+            "code": "FN",
+            "title": "Finale: Chat Decides",
+            "detail": "The last game, worth double points. Stream chat votes the obstacle route at every fork.",
+            "track": "Finals"
           },
           {
-            "start": "2026-10-18T16:15:00-04:00",
-            "end": "2026-10-18T17:00:00-04:00",
-            "code": "FY",
-            "title": "Ferry call",
-            "detail": "Head to your landing. Last ferries leave at {{t:2026-10-18T18:00:00-04:00}}, but lines get long after the ceremony.",
-            "track": "Departure"
+            "start": "2026-10-18T16:10:00-04:00",
+            "end": "2026-10-18T16:30:00-04:00",
+            "code": "AW",
+            "title": "Awards",
+            "detail": "Final standings and the trophy for the winning team on the main stage. Ends an hour before the {{t:2026-10-18T17:30:00-04:00}} last boat to Red Hook.",
+            "track": "Main stage"
           }
         ],
         "isoDate": "2026-10-18"
@@ -236,61 +251,110 @@
   },
   "games": {
     "heading": "The games",
-    "intro": "Eight games. Each one takes a few minutes, needs no practice, and is easy to follow from the crowd or the stream.",
+    "intro": "Twelve games. Every Day 1 heat plays the same four solo games. The Day 2 finals have eight team and duo games, and every team plays all of them.",
     "items": [
       {
-        "code": "01",
-        "name": "Crate Stack",
-        "format": "Solo / 90 sec",
-        "desc": "Stack plastic crates as high as you can. The tower has to stand for five seconds to count."
+        "code": "1",
+        "name": "Paper Ball Shootout",
+        "day": "Day 1",
+        "format": "Solo",
+        "duration": "60 sec",
+        "desc": "Crumple paper and shoot it into trash cans at three distances. Farther cans score more, and no athletic skill is needed."
       },
       {
-        "code": "02",
+        "code": "2",
         "name": "Musical Chairs",
-        "format": "Groups of 12 / until one is left",
-        "desc": "The classic, played at full size on the grass with a DJ who knows when to stop."
+        "day": "Day 1",
+        "format": "Solo",
+        "duration": "About 12 min",
+        "desc": "The classic, at full size on the grass. A chair comes out every round until one player is left in each group."
       },
       {
-        "code": "03",
+        "code": "3",
+        "name": "Sack Sprint",
+        "day": "Day 1",
+        "format": "Solo",
+        "duration": "Under 1 min",
+        "desc": "Step into a burlap sack and jump 30 meters to the line. Falling is allowed."
+      },
+      {
+        "code": "4",
+        "name": "Simon Says",
+        "day": "Day 1",
+        "format": "Solo",
+        "duration": "About 10 min",
+        "desc": "One host, one mic, the whole heat. Move without \"Simon says\" and you're out."
+      },
+      {
+        "code": "5",
+        "name": "Skills Challenge",
+        "day": "Day 2",
+        "format": "Team",
+        "duration": "About 3 min",
+        "desc": "A team relay based on an All-Star skills course. Dribble through cones, chest pass to a target, make a layup, then tag the next teammate."
+      },
+      {
+        "code": "6",
+        "name": "Crate Stack",
+        "day": "Day 2",
+        "format": "Team",
+        "duration": "5 min",
+        "desc": "One climber in a harness, on a staff-run belay, stands on the stack while three teammates hand up crates. Height at the buzzer counts."
+      },
+      {
+        "code": "7",
         "name": "Shuttle Relay",
-        "format": "Teams of 4 / 4 x 40 m",
+        "day": "Day 2",
+        "format": "Team",
+        "duration": "About 2 min",
         "desc": "Four legs, one baton, cones at each end. Drop the baton and you restart your leg."
       },
       {
-        "code": "04",
-        "name": "Simon Says",
-        "format": "Whole heat / last 5 standing",
-        "desc": "One host, 50 players, one mic. Move without \"Simon says\" and you are out."
-      },
-      {
-        "code": "05",
-        "name": "Sack Sprint",
-        "format": "Solo / 30 m",
-        "desc": "Step into a sack and jump to the finish line. Falling is allowed. Crawling is not."
-      },
-      {
-        "code": "06",
-        "name": "Balloon Toss",
-        "format": "Pairs / 5 rounds",
-        "desc": "Toss a water balloon to your partner and step back after every catch. You will probably get wet."
-      },
-      {
-        "code": "07",
-        "name": "Lag Spike",
-        "format": "Solo / 50 m",
-        "desc": "A race where the host can call \"lag\" at any time, and everyone must move in slow motion until it clears."
-      },
-      {
-        "code": "08",
+        "code": "8",
         "name": "Chat Decides",
-        "format": "Teams of 4 / 4 min",
-        "desc": "An obstacle course where the crowd and stream chat vote on which path you take at each fork."
+        "day": "Day 2",
+        "format": "Team",
+        "duration": "4 min",
+        "desc": "The finale and worth double points. Stream chat votes the obstacle route at every fork."
+      },
+      {
+        "code": "9",
+        "name": "Balloon Toss",
+        "day": "Day 2",
+        "format": "Duo",
+        "duration": "About 5 min",
+        "desc": "Toss a water balloon to your partner and step back after every catch. Last pair with an unbroken balloon wins."
+      },
+      {
+        "code": "10",
+        "name": "Three-Legged Race",
+        "day": "Day 2",
+        "format": "Duo",
+        "duration": "Under 1 min",
+        "desc": "Ankles tied, 40 meters, one pair per lane."
+      },
+      {
+        "code": "11",
+        "name": "Blind Maze",
+        "day": "Day 2",
+        "format": "Duo",
+        "duration": "3 min",
+        "desc": "One partner is blindfolded. The other guides them through a cone maze by voice only."
+      },
+      {
+        "code": "12",
+        "name": "Lag Spike",
+        "day": "Day 2",
+        "format": "Duo",
+        "duration": "About 2 min",
+        "desc": "Partners race side by side. When the host calls \"lag\", both have to move in slow motion until it clears."
       }
-    ]
+    ],
+    "duoRule": "Each duo game takes one pair from every team. Every player plays exactly 2 of the 4 duo games, with a different partner each time, so no team can keep sending its best player."
   },
   "creators": {
     "heading": "Creator lineup",
-    "intro": "Six invited creators play on Day 2. Each one captains a team of three qualifiers. All names below are fictional.",
+    "intro": "Six invited creators. Each one hosts a Day 1 heat, then captains a Day 2 team of three qualifiers. All names below are fictional.",
     "items": [
       {
         "name": "Rosa Asante",
@@ -335,40 +399,94 @@
         "bio": "Variety streamer known for co-op chaos and skipping every tutorial."
       }
     ],
-    "more": "Creators play Day 2 only. Meet-and-greet line opens at the merch tent during the Day 2 lunch break."
+    "more": "Meet-and-greets are on Day 1 only: each creator signs at the merch tent for 30 minutes right after the heat they host, and never more than two at a time. Day 2 has no meet-and-greet."
   },
   "logistics": {
     "heading": "Getting there",
-    "intro": "Governors Island has no cars and no bridge. The only way on or off is by ferry, from Lower Manhattan or Brooklyn. Ferries are free for everyone before {{t:2026-10-17T11:00:00-04:00}} on Saturdays and Sundays. After that, buy a round-trip ticket from the ferry operator. Fares and timetables are on govisland.com.",
+    "intro": "Governors Island has no cars and no bridge. The only way on or off is by ferry, from Lower Manhattan, Brooklyn Bridge Park, or Red Hook. The island is open 7:00 AM to 6:00 PM in the fall. Check the island ferry schedule on govisland.com before you travel.",
     "routes": [
       {
         "code": "M",
         "from": "From Manhattan",
-        "landing": "Battery Maritime Building, 10 South St. Arrives at Soissons Landing.",
-        "subway": "1 to South Ferry, R/W to Whitehall St, or 4/5 to Bowling Green. About a 5 minute walk.",
-        "ferry": "Runs daily. Every 15 minutes on weekends from {{t:2026-10-17T10:00:00-04:00}} to {{t:2026-10-17T18:00:00-04:00}}, every 30 minutes before that. About 7 minutes across.",
-        "firstBoat": "2026-10-17T07:00:00-04:00",
+        "steps": [
+          {
+            "label": "Departs from",
+            "text": "Battery Maritime Building, 10 South St, Lower Manhattan."
+          },
+          {
+            "label": "Getting there",
+            "text": "1 to South Ferry, R/W to Whitehall St, or 4/5 to Bowling Green. About a 5 minute walk."
+          },
+          {
+            "label": "Days and frequency",
+            "text": "Daily. Every 30 minutes, and every 15 minutes on weekends from {{t:2026-10-17T10:00:00-04:00}} to {{t:2026-10-17T18:00:00-04:00}}."
+          },
+          {
+            "label": "Fare",
+            "text": "$5 round trip for adults. Free for everyone before {{t:2026-10-17T11:00:00-04:00}} on Saturdays and Sundays. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
+          }
+        ],
+        "firstBoatNote": "Check the island ferry schedule",
         "lastBoat": "2026-10-17T18:00:00-04:00"
       },
       {
         "code": "B",
-        "from": "From Brooklyn",
-        "landing": "Pier 6, Brooklyn Bridge Park, at the end of Atlantic Ave. Arrives at Yankee Pier.",
-        "subway": "2/3/4/5 to Borough Hall or R to Court St, then about 15 minutes on foot.",
-        "ferry": "Weekends and holidays only, through November 1. Less frequent than Manhattan, so check the timetable. About 10 minutes across.",
+        "from": "From Brooklyn Bridge Park",
+        "steps": [
+          {
+            "label": "Departs from",
+            "text": "Pier 6, Brooklyn Bridge Park, at the end of Atlantic Ave."
+          },
+          {
+            "label": "Getting there",
+            "text": "2/3/4/5 to Borough Hall or R to Court St, then walk down Atlantic Ave to the water."
+          },
+          {
+            "label": "Days and frequency",
+            "text": "Saturdays, Sundays, and holidays through Sun, Nov 1, 2026. Hourly from {{t:2026-10-17T10:15:00-04:00}} to {{t:2026-10-17T16:15:00-04:00}}."
+          },
+          {
+            "label": "Fare",
+            "text": "$5 round trip for adults. Free for everyone before {{t:2026-10-17T11:00:00-04:00}} on Saturdays and Sundays. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
+          }
+        ],
         "firstBoat": "2026-10-17T10:15:00-04:00",
         "lastBoat": "2026-10-17T18:00:00-04:00"
+      },
+      {
+        "code": "R",
+        "from": "From Red Hook",
+        "steps": [
+          {
+            "label": "Departs from",
+            "text": "Atlantic Basin, Pioneer St and Conover St, Red Hook."
+          },
+          {
+            "label": "Getting there",
+            "text": "There is no subway nearby. Take the B61 bus to Van Brunt St and Pioneer St, then walk one block to the gate at Pioneer and Conover. NYC Ferry's South Brooklyn route also stops at Atlantic Basin."
+          },
+          {
+            "label": "Days and frequency",
+            "text": "Saturdays, Sundays, and holidays through Sun, Nov 1, 2026. Hourly from {{t:2026-10-17T10:15:00-04:00}} to {{t:2026-10-17T16:15:00-04:00}}."
+          },
+          {
+            "label": "Fare",
+            "text": "$5 round trip for adults. Free for everyone before {{t:2026-10-17T11:00:00-04:00}} on Saturdays and Sundays. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
+          }
+        ],
+        "firstBoat": "2026-10-17T10:15:00-04:00",
+        "lastBoat": "2026-10-17T17:30:00-04:00"
       }
     ],
-    "lastFerryWarning": "The island closes at {{t:2026-10-17T18:00:00-04:00}} in the fall. Last ferries back leave at {{t:2026-10-17T18:00:00-04:00}} to Manhattan and to Brooklyn. If you miss them, there is no other way off the island.",
+    "lastFerryWarning": "The island closes at {{t:2026-10-17T18:00:00-04:00}}. Last boats back: {{t:2026-10-17T17:30:00-04:00}} to Red Hook, and {{t:2026-10-17T18:00:00-04:00}} to Brooklyn Bridge Park and to Manhattan. Both days end by {{t:2026-10-17T16:30:00-04:00}}. If you miss the last boat, there is no other way off the island.",
     "cards": [
       {
         "title": "Check-in on arrival",
-        "body": "From either landing, follow the Open Bracket signs to the check-in tent on the Parade Ground, about 5 minutes on foot. Show the QR code from your confirmation email to get your wristband. Competitors need to check in at least 30 minutes before their heat, or the spot goes to the standby line. Spectators get a wristband at the same tent."
+        "body": "From any landing, follow the Open Bracket signs to the check-in tent on the Parade Ground, about 5 minutes on foot. Show the QR code from your confirmation email to get your wristband. Competitors check in at least 30 minutes before their heat (by {{t:2026-10-17T10:45:00-04:00}} for Heats 1 and 2), or the spot goes to the standby line. Spectators get a wristband at the same tent."
       },
       {
         "title": "What to bring",
-        "body": "Shoes you can run in. A change of socks and a spare shirt for Balloon Toss. Sunscreen and a hat. A warm layer, because October on the water is cold, especially on the ferry home. An empty water bottle to refill. A charged phone with your QR code."
+        "body": "Shoes you can run in. Layers and a windproof jacket, because mid-October on the water is cold, especially on the ferry home. A change of socks and a spare shirt for Balloon Toss. Sunscreen. An empty water bottle to refill. A charged phone with your QR code."
       },
       {
         "title": "Water and shade",
@@ -384,9 +502,13 @@
       },
       {
         "title": "Getting around",
-        "body": "There are no cars, taxis, or rideshare on the island. The event site is a short walk from both landings. You can bring a bike on the ferry or rent one on the island."
+        "body": "There are no cars, taxis, or rideshare on the island. The event site is a short walk from the ferry landings. You can bring a bike on the ferry or rent one on the island."
       }
-    ]
+    ],
+    "leadStat": {
+      "value": "0",
+      "label": "Cars on the island"
+    }
   },
   "watch": {
     "heading": "Watch from anywhere",
@@ -396,15 +518,15 @@
         "code": "D1",
         "name": "Qualifier stream",
         "detail": "Commentary on every heat, plus the bracket reveal at {{t:2026-10-17T16:00:00-04:00}}.",
-        "start": "2026-10-17T10:00:00-04:00",
+        "start": "2026-10-17T11:00:00-04:00",
         "end": "2026-10-17T16:30:00-04:00"
       },
       {
         "code": "D2",
         "name": "Finals stream",
-        "detail": "Team draft, all finals rounds, the creators exhibition match, and the closing ceremony.",
-        "start": "2026-10-18T10:30:00-04:00",
-        "end": "2026-10-18T16:15:00-04:00"
+        "detail": "The team draft, all three blocks, the Chat Decides finale, and awards.",
+        "start": "2026-10-18T11:00:00-04:00",
+        "end": "2026-10-18T16:30:00-04:00"
       },
       {
         "code": "VOD",
@@ -412,7 +534,7 @@
         "detail": "Full replays and clips of each game go up on YouTube within 24 hours of each day."
       }
     ],
-    "vote": "Stream chat votes on the Chat Decides route during the grand final, alongside the crowd on the island."
+    "vote": "Stream chat votes the Chat Decides route in the finale, which is worth double points."
   },
   "registration": {
     "heading": "Register",
@@ -423,7 +545,7 @@
         "id": "competitor",
         "label": "Compete",
         "price": "$30",
-        "desc": "Play one qualifier heat of four games on Day 1. Top three in each heat play the finals on Day 2. Includes Day 2 entry. Ages 18 and up."
+        "desc": "Play one Day 1 qualifier heat of four solo games. Top 3 in each heat play the Day 2 finals. Includes Day 2 entry. Ages 18 and up."
       },
       {
         "id": "spectator",
@@ -456,44 +578,84 @@
       },
       {
         "q": "How do I get to Day 2?",
-        "a": "Finish in the top three of your heat. That gives 18 qualifiers in total. They are announced at the Day 1 bracket reveal, {{t:2026-10-17T16:00:00-04:00}}. On Day 2 you need to be back at check-in by {{t:2026-10-18T10:15:00-04:00}}."
+        "a": "Finish in the top 3 of your heat. That makes 18 qualifiers in total. They're announced at the Day 1 bracket reveal, {{t:2026-10-17T16:00:00-04:00}}. On Day 2, check in at the green tent by {{t:2026-10-18T10:45:00-04:00}}."
       },
       {
         "q": "Can I choose my heat time?",
-        "a": "Yes. You pick one of the six heats when you register, and each heat has 50 spots. You can switch to another heat later with the change my registration link, as long as that heat still has room."
+        "a": "Yes. You pick one of the six heats when you register. Heats run two at a time in three waves, starting at {{t:2026-10-17T11:15:00-04:00}}, {{t:2026-10-17T12:45:00-04:00}}, and {{t:2026-10-17T14:15:00-04:00}}. You can switch heats later with the change my registration link while the new heat has room."
       },
       {
-        "q": "What if I'm late, or my heat is full?",
-        "a": "Check in at least 30 minutes before your heat. After that, your spot goes to the standby line at the check-in tent, first come, first served. Anyone with a spectator ticket can join standby. If a spot opens, you play at no extra cost."
+        "q": "I'm coming from Brooklyn. Can I make the first heat?",
+        "a": "Yes, if you take the first boat. Boats from Brooklyn Bridge Park Pier 6 and from Red Hook leave at {{t:2026-10-17T10:15:00-04:00}}, and check-in for Heats 1 and 2 stays open until {{t:2026-10-17T10:45:00-04:00}}. That's enough time, but with little slack. If you'd rather not cut it close, pick a later heat or take the Manhattan ferry, which runs every 30 minutes in the morning."
+      },
+      {
+        "q": "What if my heat is full?",
+        "a": "Each heat closes at 50 competitors. Pick another heat, or buy a spectator ticket and join the standby line at the check-in tent on the day. Spots from competitors who don't check in go to standby first come, first served, at no extra cost."
+      },
+      {
+        "q": "What happens if I miss check-in for my heat?",
+        "a": "Check in at least 30 minutes before your heat, which is {{t:2026-10-17T10:45:00-04:00}} for Heats 1 and 2. After that, your spot goes to the standby line and your ticket isn't refunded. You can still watch, and you can join standby for a later heat."
+      },
+      {
+        "q": "Can I compete with friends?",
+        "a": "On Day 1, everyone plays solo, but you and your friends can register for the same heat and play side by side. Day 2 teams are drafted live by the creators, so you can't pick your teammates."
+      },
+      {
+        "q": "How are points scored?",
+        "a": "Every game awards placement points. On Day 1, each game ranks everyone in your heat and your points add up across the four games. The top 3 totals in each heat advance, and a tie for a qualifying spot is settled with one extra round of Paper Ball Shootout. On Day 2, each game pays 10, 8, 6, 4, 2, and 1 points by team placement. Chat Decides is the last game and pays double. The highest total wins."
+      },
+      {
+        "q": "Do creators play on Day 1?",
+        "a": "Each creator hosts one heat. They open it, play an exhibition round of Paper Ball Shootout that doesn't count, and announce the heat's top 3. They compete on Day 2 as team captains."
+      },
+      {
+        "q": "When and where is the meet-and-greet?",
+        "a": "Day 1 only, at the merch tent, for 30 minutes right after each creator's heat: Rosa Asante and Theo Lindqvist at {{t:2026-10-17T12:30:00-04:00}}, Kwame Mori and June Marchetti at {{t:2026-10-17T14:00:00-04:00}}, and Luis Park and Hana Ferreira at {{t:2026-10-17T15:30:00-04:00}}. There is no meet-and-greet on Day 2."
+      },
+      {
+        "q": "Is Crate Stack safe?",
+        "a": "Yes. The climber wears a harness clipped to a belay rope run by trained staff, so if the stack falls, the climber doesn't. Climbers must weigh under 250 lb, and staff check every harness before each climb. Anyone who'd rather not climb can pass crates instead."
+      },
+      {
+        "q": "Will I be on the stream?",
+        "a": "If you compete, yes. Every heat and every finals game is filmed and streamed. Spectators may also appear in crowd shots. Registering as a competitor means you agree to be filmed."
+      },
+      {
+        "q": "Can I watch the stream while I'm on the island?",
+        "a": "Yes. The stream plays on the screen at the main stage all day, and you can open it on your phone. Mobile data can be slow when the crowd is big, so the main stage screen is the reliable option."
+      },
+      {
+        "q": "Is there food, and can I bring my own?",
+        "a": "Yes to both. Food trucks on Colonels Row are open all day on both days, and spectator tickets include a $5 voucher. You can bring your own food in your clear bag. Coolers and glass aren't allowed. Refill your water bottle at any refill station."
       },
       {
         "q": "What happens if it rains?",
         "a": "Light rain, we keep playing. Lightning or strong wind, we pause and post updates on this page and by text. If a day is cancelled, every ticket for that day is refunded in full."
       },
       {
+        "q": "What if it's cold or windy?",
+        "a": "Mid-October on the water is often cool and windy, and the ferry is colder than the island. Bring layers and a windproof jacket. Strong wind can pause Crate Stack and Balloon Toss, and we'll run them later in the block. Lightning or dangerous wind pauses everything, with updates on this page and by text."
+      },
+      {
         "q": "Can I get a refund if I can't make it?",
-        "a": "Yes, a full refund until Friday 2 October. From Saturday 3 October, two weeks before the event, tickets are non-refundable. You can still switch to a different heat with the change my registration link while that heat has room."
+        "a": "Yes, a full refund until Fri, Oct 2, 2026. From Sat, Oct 3, 2026, two weeks before the event, tickets are non-refundable. You can still switch to a different heat with the change my registration link while that heat has room."
       },
       {
         "q": "Is the ferry included in my ticket?",
-        "a": "No. Ferries are free before {{t:2026-10-17T11:00:00-04:00}} on Saturdays and Sundays. After that you buy a round-trip ticket from the ferry operator. Current fares are on govisland.com."
+        "a": "No. Ferries are free for everyone before {{t:2026-10-17T11:00:00-04:00}} on Saturdays and Sundays. After that, it's $5 round trip for adults, and always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members. Check the island ferry schedule on govisland.com for current fares."
       },
       {
         "q": "What if I miss the last ferry?",
-        "a": "There is no other way off the island. Last ferries leave at {{t:2026-10-17T18:00:00-04:00}}, and both days end well before then, so plan to head to your landing by {{t:2026-10-17T17:30:00-04:00}} at the latest."
+        "a": "There is no other way off the island. The earliest last boat is {{t:2026-10-17T17:30:00-04:00}} to Red Hook, and the last boats to Brooklyn Bridge Park and Manhattan leave at {{t:2026-10-17T18:00:00-04:00}}. Both days end by {{t:2026-10-17T16:30:00-04:00}}, so you have at least an hour."
       },
       {
         "q": "Can I bring friends who aren't competing?",
         "a": "Yes. Spectator tickets are $5, open to all ages, and come with a $5 food truck voucher. Competitors have to be 18 or older."
-      },
-      {
-        "q": "Will I be on the stream?",
-        "a": "If you compete, yes. Every heat and every finals round is filmed and streamed. Spectators may also appear in crowd shots. Registering as a competitor means you agree to be filmed."
       }
     ]
   },
   "footer": {
-    "line": "Open Bracket is a fictional event, designed for the Happily Design Jam, September 2026.",
+    "line": "Open Bracket is a fictional event made for the Happily Design Jam.",
     "builtOn": "Event site concept built on Arrived.",
     "links": [
       {
