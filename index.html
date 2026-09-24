@@ -15,7 +15,7 @@
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <div class="notice" role="note" id="placeholder-notice">Placeholder content. Loading...</div>
+  <div class="notice" role="note" id="placeholder-notice">Loading the event page...</div>
 
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Open Bracket, back to top">
@@ -81,5 +81,14 @@
   <footer class="site-footer" id="footer"></footer>
 
   <script src="app.js" defer></script>
+  <script>
+    // If app.js never runs (missing file, or the page was opened straight from disk), say so instead of loading forever.
+    setTimeout(function () {
+      var n = document.getElementById("placeholder-notice");
+      if (window.__OB_DATA__ || !n || n.classList.contains("is-error")) return;
+      n.classList.add("is-error");
+      n.textContent = "The page did not load. Open it through a web server or the live site, not straight from your computer, and keep app.js, styles.css and the data folder next to index.html.";
+    }, 5000);
+  </script>
 </body>
 </html>

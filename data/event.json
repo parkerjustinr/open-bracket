@@ -301,43 +301,43 @@
     "intro": "Six invited creators play on Day 2. Each one captains a team of three qualifiers. All names below are fictional.",
     "items": [
       {
-        "name": "Rosa Lindqvist",
+        "name": "Rosa Asante",
         "handle": "@rosaspeeds",
         "platform": "Twitch",
         "specialty": "Speedruns",
         "bio": "Holds records in three retro platformers and streams practice runs at 6 AM."
       },
       {
-        "name": "Theo Marchetti",
+        "name": "Theo Lindqvist",
         "handle": "@theo_falls_over",
         "platform": "YouTube",
         "specialty": "Challenge videos",
         "bio": "Tries a new sport every week and posts every failed attempt."
       },
       {
-        "name": "Kwame Asante",
+        "name": "Kwame Mori",
         "handle": "@lobbykwame",
         "platform": "Twitch",
         "specialty": "Party games",
         "bio": "Hosts a nightly party game stream where chat sets the house rules."
       },
       {
-        "name": "June Park",
+        "name": "June Marchetti",
         "handle": "@junebugjumps",
         "platform": "TikTok",
         "specialty": "Trick shots",
         "bio": "Posts one trick shot a day and shows all the misses before it."
       },
       {
-        "name": "Luis Ferreira",
+        "name": "Luis Park",
         "handle": "@luisplaysoutside",
         "platform": "YouTube",
         "specialty": "Outdoor games",
         "bio": "Turns playground games into full tournaments with brackets and commentary."
       },
       {
-        "name": "Hana Mori",
-        "handle": "@hanamori.exe",
+        "name": "Hana Ferreira",
+        "handle": "@hana.exe",
         "platform": "Twitch",
         "specialty": "Variety",
         "bio": "Variety streamer known for co-op chaos and skipping every tutorial."
@@ -364,7 +364,7 @@
         "landing": "Pier 6, Brooklyn Bridge Park, at the end of Atlantic Ave. Arrives at Yankee Pier.",
         "subway": "2/3/4/5 to Borough Hall or R to Court St, then about 15 minutes on foot.",
         "ferry": "Weekends and holidays only, through November 1. Less frequent than Manhattan, so check the timetable. About 10 minutes across.",
-        "firstBoat": "2026-10-17T10:00:00-04:00",
+        "firstBoat": "2026-10-17T10:15:00-04:00",
         "lastBoat": "2026-10-17T18:00:00-04:00"
       }
     ],
@@ -376,7 +376,7 @@
       },
       {
         "title": "What to bring",
-        "body": "Shoes you can run in. A change of socks and a spare shirt for Balloon Toss. Sunscreen and a hat. A warm layer, because October on the water is cold, especially on the ferry home. A charged phone with your QR code."
+        "body": "Shoes you can run in. A change of socks and a spare shirt for Balloon Toss. Sunscreen and a hat. A warm layer, because October on the water is cold, especially on the ferry home. An empty water bottle to refill. A charged phone with your QR code."
       },
       {
         "title": "Water and shade",
@@ -384,7 +384,7 @@
       },
       {
         "title": "Bag policy",
-        "body": "One bag per person, up to 16 x 12 x 8 in. Bags are checked at the check-in tent. No glass, coolers, alcohol, or drones. There is no bag storage on site, so pack light."
+        "body": "Clear bags only, up to 12 x 6 x 12 in, or a one-gallon clear plastic bag. You can also bring one small clutch or fanny pack up to 4.5 x 6.5 in. Empty clear or reusable water bottles are welcome, and you can fill them at any refill station. Every bag is searched and everyone goes through a metal detector at the check-in tent. No glass, coolers, alcohol, or drones, and no bag storage on site."
       },
       {
         "title": "Accessibility",
@@ -430,7 +430,7 @@
       {
         "id": "competitor",
         "label": "Compete",
-        "price": "$25",
+        "price": "$30",
         "desc": "Play one qualifier heat of four games on Day 1. Top three in each heat play the finals on Day 2. Includes Day 2 entry. Ages 18 and up."
       },
       {
@@ -472,7 +472,11 @@
       },
       {
         "q": "What happens if it rains?",
-        "a": "Light rain, we keep playing. Lightning or strong wind, we pause and post updates on this page and by text. If a day is cancelled, competitor tickets are refunded."
+        "a": "Light rain, we keep playing. Lightning or strong wind, we pause and post updates on this page and by text. If a day is cancelled, every ticket for that day is refunded in full."
+      },
+      {
+        "q": "Can I get a refund if I can't make it?",
+        "a": "Yes, a full refund until Friday 2 October. From Saturday 3 October, two weeks before the event, tickets are non-refundable. You can still switch to a different heat with the change my registration link while that heat has room."
       },
       {
         "q": "Is the ferry included in my ticket?",

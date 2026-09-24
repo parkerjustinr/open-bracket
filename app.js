@@ -237,23 +237,30 @@
     };
   }
 
+  // A whole day as one calendar event. The description lists every session in Eastern Time.
+  function dayEvent(d, day) {
+    var span = dayBounds(day);
+    var lines = day.sessions.map(function (x) {
+      return plain(rangeText(new Date(x.start), new Date(x.end), HOME_TZ)) + "  " + x.title;
+    });
+    return {
+      uid: day.id + "-" + span.start.slice(0, 10),
+      start: span.start,
+      end: span.end,
+      summary: "Open Bracket " + day.label + ": " + day.title,
+      description: plain(day.summary) + "\n\nSchedule (Eastern Time):\n" + lines.join("\n") + "\n\n" + plain(d.logistics.lastFerryWarning),
+      location: d.meta.calendarLocation
+    };
+  }
+
   function icsFor(kind, a, b) {
     var d = window.__OB_DATA__;
     if (kind === "event") {
-      return {
-        name: "open-bracket.ics",
-        events: d.schedule.days.map(function (day) {
-          var span = dayBounds(day);
-          return {
-            uid: day.id + "-" + span.start.slice(0, 10),
-            start: span.start,
-            end: span.end,
-            summary: "Open Bracket " + day.label + ": " + day.title,
-            description: plain(day.summary) + "\n\n" + plain(d.logistics.lastFerryWarning),
-            location: d.meta.calendarLocation
-          };
-        })
-      };
+      return { name: "open-bracket.ics", events: d.schedule.days.map(function (day) { return dayEvent(d, day); }) };
+    }
+    if (kind === "day") {
+      var one = d.schedule.days[a];
+      return { name: "open-bracket-" + one.id + ".ics", events: [dayEvent(d, one)] };
     }
     if (kind === "session") {
       var day = d.schedule.days[a], x = day.sessions[b];
@@ -410,6 +417,7 @@
   // ---------- renderers ----------
   function renderNotice(meta) {
     var n = $("placeholder-notice");
+    n.classList.remove("is-error");
     n.textContent = meta.placeholderNotice;
   }
 
@@ -481,7 +489,9 @@
     var panels = s.days.map(function (day, i) {
       return '<div class="day-panel" role="tabpanel" id="panel-' + day.id + '" aria-labelledby="tab-' + day.id + '"' +
         (i === 0 ? "" : " hidden") + ' tabindex="0">' +
-        '<span class="day-date">' + esc(day.date) + "</span>" +
+        '<div class="day-head"><span class="day-date">' + esc(day.date) + "</span>" +
+          icsButton("day", i, null, "Add " + day.label + " to calendar", "Add " + day.label + ", " + day.title + ", to your calendar as one event with every session listed (.ics file)") +
+        "</div>" +
         '<p class="day-summary">' + copy(day.summary) + "</p>" +
         '<ol class="sessions">' + day.sessions.map(function (x, j) {
           return '<li class="session' + sessionClass(x.track) + '">' +
@@ -501,6 +511,12 @@
       sectionHead("02", "Schedule", s.heading, "schedule-title") +
       '<p class="schedule-note">' + copy(s.note) + "</p>" +
       tzToggle(s.days[0].sessions[0].start) +
+      '<div class="cal-bar"><span class="cal-bar-label">Add to your calendar</span>' +
+        icsButton("event", null, null, "Both days", "Add both days of Open Bracket to your calendar (.ics file)") +
+        s.days.map(function (day, i) {
+          return icsButton("day", i, null, day.label + " only", "Add " + day.label + ", " + day.title + ", to your calendar as one event (.ics file)");
+        }).join("") +
+      "</div>" +
       '<div class="day-tabs" role="tablist" aria-label="Event days">' + tabs + "</div>" +
       panels;
 
@@ -800,6 +816,11 @@
     if (!form) return;
     form.addEventListener("change", function (e) {
       if (e.target.name === "type") syncType(form);
+      if (e.target.name === "heat" || e.target.name === "days") {
+        var group = e.target.closest(".heat-options, .checks");
+        if (group) group.classList.remove("is-invalid");
+        $(e.target.name === "heat" ? "e-heat" : "e-days").textContent = "";
+      }
     });
     syncType(form);
 
@@ -842,6 +863,7 @@
           /^@?[A-Za-z0-9._-]{2,30}$/.test(handle) ? "" : "Use 2 to 30 letters, numbers, dots, dashes, or underscores.");
         var heat = checked("heat");
         check(heat ? null : form.querySelector('input[name="heat"]'), $("e-heat"), heat ? "" : "Pick a qualifier heat.");
+        form.querySelector(".heat-options").classList.toggle("is-invalid", !heat);
         var emName = el.emergencyName.value.trim();
         check(el.emergencyName, $("e-em-name"), emName ? "" : "Enter an emergency contact name.");
         var emPhone = el.emergencyPhone.value.trim();
@@ -854,6 +876,7 @@
       } else {
         var days = checked("days");
         check(days ? null : form.querySelector('input[name="days"]'), $("e-days"), days ? "" : "Pick a day, or both.");
+        form.querySelector('[data-for="spectator"] .checks').classList.toggle("is-invalid", !days);
         rec.days = days;
       }
 
