@@ -578,7 +578,7 @@ legend, .field-label {
 .type-option input:focus-visible + label { outline: 3px solid var(--focus); outline-offset: 4px; }
 @media (min-width: 640px) { .type-options { grid-template-columns: 1fr 1fr; } }
 
-.field { display: grid; gap: 6px; }
+.field { display: grid; gap: 6px; align-content: start; }
 .field input[type="text"],
 .field input[type="email"],
 .field select,
@@ -711,3 +711,67 @@ section[id] { scroll-margin-top: 104px; }
 }
 .ics-btn:hover { box-shadow: 3px 3px 0 currentColor; transform: translate(-1px, -1px); }
 .countdown .ics-btn { margin-top: 0; }
+
+/* ---------- Registration: heats, confirmation ---------- */
+/* The time zone switch on light backgrounds: pressed state inverts to ink. */
+.reg-form .tz-toggle button[aria-pressed="true"],
+.confirm .tz-toggle button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.reg-group { display: grid; gap: 24px; }
+.reg-group[hidden] { display: none; }
+.reg-form .tz-bar { margin-bottom: 12px; }
+.heat-options { display: grid; gap: 10px; margin-top: 4px; }
+.heat-option { position: relative; display: block; cursor: pointer; }
+.heat-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.heat-body { display: grid; gap: 2px; border: 3px solid var(--ink); padding: 10px 12px; background: #fbf8f2; height: 100%; }
+.heat-name { font-family: var(--display); text-transform: uppercase; font-size: 1.4rem; line-height: 1; }
+.heat-body .tz-time { font-family: var(--cond); font-weight: 700; letter-spacing: 0.04em; }
+.heat-games { font-size: 0.92rem; opacity: 0.85; }
+.heat-option input:checked + .heat-body { background: var(--red); color: var(--paper); box-shadow: 4px 4px 0 var(--ink); }
+.heat-option input:checked + .heat-body .heat-games { opacity: 1; }
+.heat-option input:focus-visible + .heat-body { outline: 3px solid var(--focus); outline-offset: 3px; }
+.field input[type="tel"] {
+  font: inherit;
+  font-size: 1.05rem;
+  color: var(--ink);
+  background: #fbf8f2;
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  padding: 12px;
+  min-height: 52px;
+  width: 100%;
+}
+@media (min-width: 640px) { .heat-options { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 960px) { .heat-options { grid-template-columns: repeat(3, 1fr); } }
+
+.edit-banner { border: 3px solid var(--ink); background: var(--paper-2); padding: 12px 14px; }
+.edit-banner p { margin: 0 0 6px; }
+.link-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  min-height: 44px;
+}
+.link-btn:hover { color: var(--red); }
+
+.confirm-sub { font-family: var(--cond); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 1.1rem; margin: 24px 0 10px; border-top: 3px solid var(--ink); padding-top: 12px; }
+.confirm-body > .confirm-sub:first-child { margin-top: 0; border-top: 0; padding-top: 0; }
+.confirm-times { display: grid; gap: 0; border-top: 2px solid var(--ink); }
+.confirm-times li { display: grid; gap: 2px 16px; padding: 10px 0; border-bottom: 2px solid var(--ink); }
+.ct-label { font-family: var(--display); text-transform: uppercase; font-size: 1.3rem; line-height: 1; }
+.ct-note { font-size: 0.95rem; }
+.ct-time { font-family: var(--cond); font-weight: 700; font-size: 1.15rem; letter-spacing: 0.04em; }
+@media (min-width: 640px) {
+  .confirm-times li { grid-template-columns: 1fr auto; align-items: baseline; }
+  .ct-note { grid-column: 1; grid-row: 2; }
+  .ct-time { grid-column: 2; grid-row: 1 / span 2; text-align: right; }
+}
+.confirm-next { list-style: decimal; padding-left: 1.4em; display: grid; gap: 10px; margin-bottom: 8px; }
+.confirm-next li { padding-left: 4px; }
+.confirm-actions { display: flex; flex-wrap: wrap; gap: 4px 24px; border-top: 3px solid var(--ink); padding-top: 8px; }
+.confirm .ics-btn { margin-top: 14px; }
