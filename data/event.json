@@ -27,16 +27,19 @@
     },
     "numerals": [
       {
-        "value": "2",
-        "label": "Days"
+        "value": "300",
+        "label": "Competitor spots",
+        "tone": "red"
       },
       {
-        "value": "12",
-        "label": "Games"
+        "value": "18",
+        "label": "Qualifiers",
+        "tone": "red"
       },
       {
         "value": "6",
-        "label": "Heats"
+        "label": "Creator captains",
+        "tone": "blue"
       },
       {
         "value": "1",
@@ -46,33 +49,44 @@
     ]
   },
   "about": {
-    "heading": "Don't just watch. Qualify.",
+    "heading": "Don't just watch. [[red:Qualify.]]",
     "paragraphs": [
       "Open Bracket is a **two-day** outdoor games event on Governors Island. On Day 1, anyone **18 or older** can enter a qualifier heat and play **four** quick solo games. The **top 3** in each heat make the finals, where they're drafted onto teams captained by the creators you watch.",
       "Day 1 has six heats of up to 50 players, run one at a time so the crowd and the stream can follow every heat. Every heat plays the same four games, so the cut is fair. Each creator hosts one heat, and the day ends with the bracket reveal and the team draft.",
       "Day 2 is the finals. Six teams of four, each with a creator captain and three qualifiers, play eight team and duo games for placement points. No one is eliminated. Every team plays every game, and the top 3 teams take the podium. After that, all six creators meet fans for 90 minutes. The whole competition streams on Twitch and YouTube."
     ],
-    "facts": [
+    "stepsHeading": "How the bracket works",
+    "steps": [
       {
-        "value": "300",
-        "label": "Competitor spots"
+        "label": "Pick a heat",
+        "detail": "Six heats on Day 1, up to 50 players each.",
+        "tone": "red"
       },
       {
-        "value": "18",
-        "label": "Qualifiers"
+        "label": "Play 4 solo games",
+        "detail": "Placement points on every game.",
+        "tone": "red"
       },
       {
-        "value": "6",
-        "label": "Creator captains"
+        "label": "Top 3 per heat qualify",
+        "detail": "18 qualifiers make the finals.",
+        "tone": "red"
       },
       {
-        "value": "1",
-        "label": "Champion team"
+        "label": "Creators draft you onto a team",
+        "detail": "Live on the main stage at the end of Day 1.",
+        "tone": "blue"
+      },
+      {
+        "label": "Every team plays every game. Most points wins.",
+        "detail": "No one is eliminated on Day 2.",
+        "tone": "yellow",
+        "crown": true
       }
     ]
   },
   "schedule": {
-    "heading": "Order of play",
+    "heading": "Order of [[yellow:play]]",
     "note": "Times show in your time zone, with New York time (ET), the island's zone, alongside. Use the switch to flip between them. Competitors pick a heat when they register and check in at least 30 minutes before it, or the spot goes to the standby line. Heats run one at a time. There is no lunch break on Day 1: each competitor plays one heat, and the food trucks on Colonels Row are open all day.",
     "days": [
       {
@@ -202,7 +216,8 @@
             "code": "C",
             "title": "Block C: the finale",
             "detail": "Chat Decides, the last game, worth double points. Stream chat votes the obstacle route at every fork.",
-            "track": "Finals"
+            "track": "Finals",
+            "highlight": true
           },
           {
             "start": "2026-10-18T15:05:00-04:00",
@@ -210,7 +225,8 @@
             "code": "P",
             "title": "Podium",
             "detail": "The top 3 teams are revealed on the main stage and get their prizes. The first-place team is the Open Bracket champion.",
-            "track": "Main stage"
+            "track": "Main stage",
+            "highlight": true
           },
           {
             "start": "2026-10-18T15:30:00-04:00",
@@ -226,7 +242,7 @@
     ]
   },
   "games": {
-    "heading": "The games",
+    "heading": "The [[red:games]]",
     "intro": "Twelve games. Every Day 1 heat plays the same four solo games. The Day 2 finals have eight team and duo games, and every team plays all of them.",
     "items": [
       {
@@ -329,7 +345,7 @@
     "duoRule": "Each duo game takes one pair from every team. Every player plays exactly 2 of the 4 duo games, with a different partner each time, so no team can keep sending its best player."
   },
   "creators": {
-    "heading": "Creator lineup",
+    "heading": "Creator [[yellow:lineup]]",
     "intro": "Six invited creators. Each one hosts a Day 1 heat, then captains a Day 2 team of three qualifiers. All names below are fictional.",
     "items": [
       {
@@ -384,7 +400,7 @@
     "more": "The meet-and-greet is on Day 2, right after the podium, so it never competes with a heat or a game. All six creators sign at the merch tent for 90 minutes, each with their own line."
   },
   "logistics": {
-    "heading": "Getting there",
+    "heading": "Getting [[yellow:there]]",
     "intro": "Governors Island has no cars and no bridge. The only way on or off is by ferry, from Lower Manhattan, Brooklyn Bridge Park, or Red Hook. The island is open 7:00 AM to 6:00 PM in the fall. NYC Ferry also stops at the island from Manhattan and the Brooklyn waterfront, but it's run separately, so buy those tickets and check those times at ferry.nyc.",
     "routes": [
       {
@@ -493,7 +509,7 @@
     }
   },
   "watch": {
-    "heading": "Watch from anywhere",
+    "heading": "Watch from [[yellow:anywhere]]",
     "intro": "Both days stream live on Twitch and YouTube. Stream times below are in your time zone, with New York time (ET) alongside. Add a stream to your calendar so you don't miss the start.",
     "channels": [
       {
@@ -519,7 +535,7 @@
     "vote": "Stream chat votes the Chat Decides route in the finale, which is worth double points."
   },
   "registration": {
-    "heading": "Register",
+    "heading": "[[red:Register]]",
     "intro": "Two ways in. Compete to play a Day 1 qualifier heat, with Day 2 entry included. Spectate to watch either day or both.",
     "demoNotice": "Demo form. Nothing is sent anywhere and no emails go out. Your registration is saved only in this browser (localStorage).",
     "types": [
@@ -552,87 +568,124 @@
     ]
   },
   "faq": {
-    "heading": "FAQ",
+    "heading": "[[blue:FAQ]]",
     "items": [
       {
         "q": "Do I need to be good at games to compete?",
-        "a": "No. The games are simple and short, and most people have never played them in a competition before. Nobody gets to practice ahead of time."
+        "a": "No. The games are simple and short, and most people have never played them in a competition before. Nobody gets to practice ahead of time.",
+        "group": "competing"
       },
       {
         "q": "How do I get to Day 2?",
-        "a": "Finish in the top 3 of your heat. Your host announces the top 3 at the end of the heat, which makes 18 qualifiers in total. Come to the main stage for the team draft at {{t:2026-10-17T15:45:00-04:00}}, then stay for the bracket reveal. On Day 2, check in at the green tent by {{t:2026-10-18T10:45:00-04:00}}."
+        "a": "Finish in the top 3 of your heat. Your host announces the top 3 at the end of the heat, which makes 18 qualifiers in total. Come to the main stage for the team draft at {{t:2026-10-17T15:45:00-04:00}}, then stay for the bracket reveal. On Day 2, check in at the green tent by {{t:2026-10-18T10:45:00-04:00}}.",
+        "group": "competing"
       },
       {
         "q": "Can I choose my heat time?",
-        "a": "Yes. You pick one of the six heats when you register. Heats run one at a time, every 45 minutes from {{t:2026-10-17T11:15:00-04:00}} to {{t:2026-10-17T15:45:00-04:00}}. You can switch heats later with the change my registration link while the new heat has room."
+        "a": "Yes. You pick one of the six heats when you register. Heats run one at a time, every 45 minutes from {{t:2026-10-17T11:15:00-04:00}} to {{t:2026-10-17T15:45:00-04:00}}. You can switch heats later with the change my registration link while the new heat has room.",
+        "group": "competing"
       },
       {
         "q": "I'm coming from Brooklyn. Can I make the first heat?",
-        "a": "Yes, and the ride is free. The first boat from Red Hook leaves at {{t:2026-10-17T09:45:00-04:00}}, and the first boat from Brooklyn Bridge Park Pier 6 leaves at {{t:2026-10-17T10:15:00-04:00}}. Check-in for Heat 1 stays open until {{t:2026-10-17T10:45:00-04:00}}, which leaves time for the crossing and the 5 minute walk to the check-in tent. The Pier 6 boat has less slack, so if you'd rather not cut it close, take the Red Hook or Manhattan ferry, or pick a later heat."
+        "a": "Yes, and the ride is free. The first boat from Red Hook leaves at {{t:2026-10-17T09:45:00-04:00}}, and the first boat from Brooklyn Bridge Park Pier 6 leaves at {{t:2026-10-17T10:15:00-04:00}}. Check-in for Heat 1 stays open until {{t:2026-10-17T10:45:00-04:00}}, which leaves time for the crossing and the 5 minute walk to the check-in tent. The Pier 6 boat has less slack, so if you'd rather not cut it close, take the Red Hook or Manhattan ferry, or pick a later heat.",
+        "group": "getting-there"
       },
       {
         "q": "What if my heat is full?",
-        "a": "Each heat closes at 50 competitors. Pick another heat, or buy a spectator ticket and join the standby line at the check-in tent on the day. Spots from competitors who don't check in go to standby first come, first served, at no extra cost."
+        "a": "Each heat closes at 50 competitors. Pick another heat, or buy a spectator ticket and join the standby line at the check-in tent on the day. Spots from competitors who don't check in go to standby first come, first served, at no extra cost.",
+        "group": "competing"
       },
       {
         "q": "What happens if I miss check-in for my heat?",
-        "a": "Check in at least 30 minutes before your heat, which is {{t:2026-10-17T10:45:00-04:00}} for Heat 1. After that, your spot goes to the standby line and your ticket isn't refunded. You can still watch, and you can join standby for a later heat."
+        "a": "Check in at least 30 minutes before your heat, which is {{t:2026-10-17T10:45:00-04:00}} for Heat 1. After that, your spot goes to the standby line and your ticket isn't refunded. You can still watch, and you can join standby for a later heat.",
+        "group": "competing"
       },
       {
         "q": "Can I compete with friends?",
-        "a": "On Day 1, everyone plays solo, but you and your friends can register for the same heat and play side by side. Day 2 teams are drafted live by the creators at the end of Day 1, so you can't pick your teammates."
+        "a": "On Day 1, everyone plays solo, but you and your friends can register for the same heat and play side by side. Day 2 teams are drafted live by the creators at the end of Day 1, so you can't pick your teammates.",
+        "group": "competing"
       },
       {
         "q": "How are points scored?",
-        "a": "Every game awards placement points. On Day 1, each game ranks everyone in your heat and your points add up across the four games. The top 3 totals in each heat advance. If players are tied for a qualifying spot, they settle it head to head on the main stage: 30 seconds of Paper Ball Shootout, most makes wins, and if it's still tied they go again. On Day 2, each game pays 10, 8, 6, 4, 2, and 1 points by team placement. Chat Decides is the last game and pays double. The highest total wins."
+        "a": "Every game awards placement points. On Day 1, each game ranks everyone in your heat and your points add up across the four games. The top 3 totals in each heat advance. If players are tied for a qualifying spot, they settle it head to head on the main stage: 30 seconds of Paper Ball Shootout, most makes wins, and if it's still tied they go again. On Day 2, each game pays 10, 8, 6, 4, 2, and 1 points by team placement. Chat Decides is the last game and pays double. The highest total wins.",
+        "group": "competing"
       },
       {
         "q": "Do creators play on Day 1?",
-        "a": "Each creator hosts one heat. They open it, play an exhibition round of Paper Ball Shootout that doesn't count, and announce the heat's top 3. At the end of the day, they draft their teams. They compete on Day 2 as team captains."
+        "a": "Each creator hosts one heat. They open it, play an exhibition round of Paper Ball Shootout that doesn't count, and announce the heat's top 3. At the end of the day, they draft their teams. They compete on Day 2 as team captains.",
+        "group": "watching"
       },
       {
         "q": "When and where is the meet-and-greet?",
-        "a": "Day 2, at the merch tent, from {{t:2026-10-18T15:30:00-04:00}} to {{t:2026-10-18T17:00:00-04:00}}, right after the podium. All six creators sign at once, each with their own line, so there's time to meet two or more. It's after the competition so it never pulls anyone away from a heat or a game."
+        "a": "Day 2, at the merch tent, from {{t:2026-10-18T15:30:00-04:00}} to {{t:2026-10-18T17:00:00-04:00}}, right after the podium. All six creators sign at once, each with their own line, so there's time to meet two or more. It's after the competition so it never pulls anyone away from a heat or a game.",
+        "group": "watching"
       },
       {
         "q": "Is Crate Stack safe?",
-        "a": "Yes. The climber wears a harness clipped to a belay rope run by trained staff, so if the stack falls, the climber doesn't. Climbers must weigh under 250 lb, well inside what standard climbing belay gear is rated for, and staff check every harness before each climb. Anyone who'd rather not climb can pass crates instead."
+        "a": "Yes. The climber wears a harness clipped to a belay rope run by trained staff, so if the stack falls, the climber doesn't. Climbers must weigh under 250 lb, well inside what standard climbing belay gear is rated for, and staff check every harness before each climb. Anyone who'd rather not climb can pass crates instead.",
+        "group": "competing"
       },
       {
         "q": "Will I be on the stream?",
-        "a": "If you compete, yes. Every heat and every finals game is filmed and streamed. Spectators may also appear in crowd shots. Registering as a competitor means you agree to be filmed."
+        "a": "If you compete, yes. Every heat and every finals game is filmed and streamed. Spectators may also appear in crowd shots. Registering as a competitor means you agree to be filmed.",
+        "group": "competing"
       },
       {
         "q": "Can I watch the stream while I'm on the island?",
-        "a": "Yes. The stream plays on the screen at the main stage all day, and you can open it on your phone. Mobile data can be slow when the crowd is big, so the main stage screen is the reliable option."
+        "a": "Yes. The stream plays on the screen at the main stage all day, and you can open it on your phone. Mobile data can be slow when the crowd is big, so the main stage screen is the reliable option.",
+        "group": "watching"
       },
       {
         "q": "Is there food, and can I bring my own?",
-        "a": "Yes to both. Food trucks on Colonels Row are open all day on both days, and spectator tickets include a $5 voucher. You can bring your own food in your clear bag. Coolers and glass aren't allowed. Refill your water bottle at any refill station."
+        "a": "Yes to both. Food trucks on Colonels Row are open all day on both days, and spectator tickets include a $5 voucher. You can bring your own food in your clear bag. Coolers and glass aren't allowed. Refill your water bottle at any refill station.",
+        "group": "getting-there"
       },
       {
         "q": "What happens if it rains?",
-        "a": "Light rain, we keep playing. Lightning or strong wind, we pause and post updates on this page and by text. If a day is cancelled, every ticket for that day is refunded in full."
+        "a": "Light rain, we keep playing. Lightning or strong wind, we pause and post updates on this page and by text. If a day is cancelled, every ticket for that day is refunded in full.",
+        "group": "getting-there"
       },
       {
         "q": "What if it's cold or windy?",
-        "a": "Mid-October on the water is often cool and windy, and the ferry is colder than the island. Bring layers and a windproof jacket. Strong wind can pause Crate Stack and Balloon Toss, and we'll run them later in the block. Lightning or dangerous wind pauses everything, with updates on this page and by text."
+        "a": "Mid-October on the water is often cool and windy, and the ferry is colder than the island. Bring layers and a windproof jacket. Strong wind can pause Crate Stack and Balloon Toss, and we'll run them later in the block. Lightning or dangerous wind pauses everything, with updates on this page and by text.",
+        "group": "getting-there"
       },
       {
         "q": "Can I get a refund if I can't make it?",
-        "a": "Yes, a full refund until Fri, Oct 2, 2026. From Sat, Oct 3, 2026, two weeks before the event, tickets are non-refundable. You can still switch to a different heat with the change my registration link while that heat has room."
+        "a": "Yes, a full refund until Fri, Oct 2, 2026. From Sat, Oct 3, 2026, two weeks before the event, tickets are non-refundable. You can still switch to a different heat with the change my registration link while that heat has room.",
+        "group": "competing"
       },
       {
         "q": "Is the ferry included in my ticket?",
-        "a": "No, but on weekends every boat before {{t:2026-10-17T11:00:00-04:00}} is free, from any stop: Manhattan through the {{t:2026-10-17T10:45:00-04:00}} boat, Red Hook at {{t:2026-10-17T09:45:00-04:00}} and {{t:2026-10-17T10:45:00-04:00}}, and Brooklyn Bridge Park at {{t:2026-10-17T10:15:00-04:00}}. After that, it's $5 round trip for adults. Kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members always ride free. Check the island ferry schedule on govisland.com for current fares."
+        "a": "No, but on weekends every boat before {{t:2026-10-17T11:00:00-04:00}} is free, from any stop: Manhattan through the {{t:2026-10-17T10:45:00-04:00}} boat, Red Hook at {{t:2026-10-17T09:45:00-04:00}} and {{t:2026-10-17T10:45:00-04:00}}, and Brooklyn Bridge Park at {{t:2026-10-17T10:15:00-04:00}}. After that, it's $5 round trip for adults. Kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members always ride free. Check the island ferry schedule on govisland.com for current fares.",
+        "group": "getting-there"
       },
       {
         "q": "What if I miss the last ferry?",
-        "a": "There is no other way off the island. The earliest last boat is {{t:2026-10-17T17:30:00-04:00}} to Red Hook, and the last boats to Brooklyn Bridge Park and Manhattan leave at {{t:2026-10-17T18:00:00-04:00}}. Day 1 ends at {{t:2026-10-17T16:30:00-04:00}}. On Day 2 the meet-and-greet runs until {{t:2026-10-18T17:00:00-04:00}}, so if you're heading to Red Hook, leave it by about {{t:2026-10-18T17:10:00-04:00}} or take a Manhattan or Pier 6 boat instead."
+        "a": "There is no other way off the island. The earliest last boat is {{t:2026-10-17T17:30:00-04:00}} to Red Hook, and the last boats to Brooklyn Bridge Park and Manhattan leave at {{t:2026-10-17T18:00:00-04:00}}. Day 1 ends at {{t:2026-10-17T16:30:00-04:00}}. On Day 2 the meet-and-greet runs until {{t:2026-10-18T17:00:00-04:00}}, so if you're heading to Red Hook, leave it by about {{t:2026-10-18T17:10:00-04:00}} or take a Manhattan or Pier 6 boat instead.",
+        "group": "getting-there"
       },
       {
         "q": "Can I bring friends who aren't competing?",
-        "a": "Yes. Spectator tickets are $5, open to all ages, and come with a $5 food truck voucher. Competitors have to be 18 or older."
+        "a": "Yes. Spectator tickets are $5, open to all ages, and come with a $5 food truck voucher. Competitors have to be 18 or older.",
+        "group": "watching"
+      }
+    ],
+    "groups": [
+      {
+        "id": "competing",
+        "label": "Competing",
+        "tone": "red"
+      },
+      {
+        "id": "watching",
+        "label": "Watching and Day 2",
+        "tone": "blue"
+      },
+      {
+        "id": "getting-there",
+        "label": "Getting there",
+        "tone": "yellow"
       }
     ]
   },

@@ -1,7 +1,9 @@
 /* Open Bracket - retro-futurist print
-   Paper and ink for everything neutral. Color means something:
-   red = Day 1 / solo, blue = Day 2 / duo and team.
-   Exceptions: the Compete button and the last-ferry warning stay red.
+   Ink and paper as the base. Color means something:
+   red = Day 1 / solo / competing, blue = Day 2 / duo and team / watching,
+   sun yellow = champion, crown, the Day 2 finale, highlight marks
+   (yellow is only ever a background, with ink on it).
+   Every section has at least one large field of color.
    Flat blocks, hard edges, halftone texture. No shadows, no gradients, no rounded corners.
    Type: Big Shoulders Display (display), Barlow Condensed (labels and UI), Barlow (body). */
 
@@ -13,6 +15,7 @@
   --red: #c0341b;
   --blue: #1d3ea6;
   --blue-deep: #152e7e;
+  --yellow: #f4c430;
   --focus: #1d3ea6;
 
   --display: "Big Shoulders Display", "Impact", "Arial Narrow Bold", sans-serif;
@@ -226,19 +229,28 @@ main:focus { outline: none; }
   background: var(--paper);
   color: var(--ink);
   cursor: pointer;
-  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+  transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease, color 120ms ease;
 }
 .btn:hover,
-.btn:focus-visible { background: var(--ink); color: var(--paper); }
+.btn:focus-visible { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--red); }
 .btn-red { background: var(--red); border-color: var(--red); color: var(--paper); }
 .btn-red:hover,
-.btn-red:focus-visible { background: var(--paper); color: var(--red); }
+.btn-red:focus-visible { box-shadow: 6px 6px 0 var(--blue); }
 .btn-ink { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-.btn-ink:hover,
-.btn-ink:focus-visible { background: var(--paper); color: var(--ink); }
 .btn-blue { background: var(--blue); border-color: var(--blue); color: var(--paper); }
 .btn-blue:hover,
-.btn-blue:focus-visible { background: var(--paper); color: var(--blue); }
+.btn-blue:focus-visible { box-shadow: 6px 6px 0 var(--red); }
+/* Press: drops back flat */
+.btn:active,
+.btn-red:active,
+.btn-blue:active { transform: none; box-shadow: none; }
+/* Reduced motion: no lift, no block. The colors invert instead. */
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover, .btn:focus-visible, .btn:active { transform: none; box-shadow: none; background: var(--ink); color: var(--paper); }
+  .btn-red:hover, .btn-red:focus-visible { background: var(--paper); color: var(--red); }
+  .btn-ink:hover, .btn-ink:focus-visible { background: var(--paper); color: var(--ink); }
+  .btn-blue:hover, .btn-blue:focus-visible { background: var(--paper); color: var(--blue); }
+}
 .btn-small { min-height: 42px; padding: 6px 14px; font-size: 1rem; }
 .btn .arrow { font-family: var(--body); font-weight: 600; transition: transform 120ms ease; }
 .btn:hover .arrow,
@@ -280,7 +292,7 @@ main:focus { outline: none; }
 .section-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 .section p { max-width: var(--measure); }
 
-.section-ink { background: var(--ink); color: var(--paper); --ht-color: var(--paper); --ht-alpha: 0.1; }
+.section-ink { background: var(--ink); color: var(--paper); --ht-color: var(--red); --ht-alpha: 0.5; }
 .section-blue { background: var(--blue); color: var(--paper); --ht-color: var(--paper); --ht-alpha: 0.2; }
 
 .section-head {
@@ -361,6 +373,8 @@ main:focus { outline: none; }
   margin-bottom: 28px;
 }
 .hero h1 span { display: block; transform-origin: 20% 60%; }
+.hero h1 span:nth-child(1) { color: var(--blue); }
+.hero h1 span:nth-child(2) { color: var(--red); }
 .hero-facts {
   position: relative;
   display: grid;
@@ -873,10 +887,6 @@ legend, .field-label {
   color: var(--ink);
   transition: transform 160ms ease, background-color 120ms ease, color 120ms ease;
 }
-.faq-item summary:hover .q-icon,
-.faq-item summary:focus-visible .q-icon,
-.faq-item[open] .q-icon { background: var(--ink); color: var(--paper); }
-.faq-item[open] .q-icon { transform: rotate(45deg); }
 .faq-item .a { padding: 0 0 22px 0; }
 
 /* ---------- Footer ---------- */
@@ -959,3 +969,88 @@ section[id] { scroll-margin-top: 104px; }
 .ics-btn.is-day1:hover, .ics-btn.is-day1:focus-visible { background: var(--paper); border-color: var(--paper); color: var(--red); }
 .ics-btn.is-day2:hover, .ics-btn.is-day2:focus-visible { background: var(--paper); border-color: var(--paper); color: var(--blue); }
 .countdown .ics-btn { margin-top: 0; }
+
+/* ---------- Color restoration ---------- */
+/* Hero text always sits above the bracket motif */
+.hero h1, .hero-facts, .countdown, .hero-sub, .hero-ctas, .hero-numerals { z-index: 1; }
+.hero-sun { display: none; }
+.hero-bracket {
+  position: absolute;
+  z-index: 0;
+  display: none;
+  right: calc(var(--gutter) * -1 - 90px);
+  width: min(52vw, 640px);
+  height: auto;
+  pointer-events: none;
+}
+.hb-lines { stroke: var(--blue); opacity: 0.3; }
+.hb-final { fill: var(--yellow); }
+@media (min-width: 1000px) { .hero-bracket { display: block; } }
+
+/* Hero stats: 300 and 18 red, 6 blue, champion on yellow with an ink 1 and crown */
+.hero-numerals .tone-red .n { color: var(--red); }
+.hero-numerals .tone-blue .n { color: var(--blue); }
+.hero-numerals .is-feature { background: var(--yellow); color: var(--ink); }
+.hero-numerals .is-feature .crown { color: var(--ink); }
+
+/* Headings: one colored phrase */
+.hl-red { color: var(--red); }
+.hl-blue { color: var(--blue); }
+.hl-yellow { background: var(--yellow); color: var(--ink); padding: 0 0.1em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* Countdown: paper split-flap tiles with red numerals on the blue block */
+.flap { background: var(--paper); color: var(--red); text-align: center; }
+.flap::after { background: var(--blue); }
+.countdown-units .l { color: var(--paper); }
+
+/* About: How the bracket works, five blocks joined like a bracket */
+.steps-title { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: var(--fs-h3); line-height: 0.95; margin: clamp(40px, 5vw, 64px) 0 20px; }
+.steps { display: grid; gap: 24px; }
+.step { position: relative; display: grid; align-content: start; gap: 6px; padding: 16px 16px 20px; color: var(--paper); min-width: 0; }
+.step.tone-red { background: var(--red); }
+.step.tone-blue { background: var(--blue); }
+.step.tone-yellow { background: var(--yellow); color: var(--ink); }
+.step-num { position: relative; display: inline-block; justify-self: start; font-family: var(--display); font-weight: 900; font-size: clamp(3.5rem, 2.5rem + 3vw, 5rem); line-height: 0.85; }
+.step.tone-yellow .step-num { margin-top: 0.3em; }
+.step .crown { color: var(--ink); }
+.step-name { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 1.5rem; line-height: 1; }
+.step-detail { font-size: 0.98rem; line-height: 1.4; }
+/* Connectors: thick ink lines between blocks, vertical when stacked */
+.step:not(:last-child)::after { content: ""; position: absolute; background: var(--ink); left: 28px; bottom: -24px; width: 8px; height: 24px; }
+@media (min-width: 900px) {
+  .steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .step:not(:last-child)::after { left: auto; bottom: auto; right: -24px; top: 36px; width: 24px; height: 8px; }
+}
+
+/* Schedule: the Day 2 finale and podium carry the yellow mark */
+.session.is-gold .session-code { background: var(--yellow); color: var(--ink); }
+
+/* Games: each day group opens with a full-width color bar */
+.games-day { padding: 10px 14px 8px; color: var(--paper) !important; }
+.games-group.is-day1 .games-day { background: var(--red); }
+.games-group.is-day2 .games-day { background: var(--blue); }
+
+/* Watch is a blue section: the Day 2 code flips to paper so it stays visible */
+.section-blue .channel.is-day2 .channel-code { background: var(--paper); color: var(--blue); }
+
+/* Getting there: the last-ferry warning is a full-width red field */
+.last-ferry { max-width: none !important; font-size: 1.1rem; padding: 22px 20px; }
+
+/* FAQ: three groups, each with a full-width color bar and a toggle square in its color */
+.faq-group + .faq-group { margin-top: clamp(40px, 5vw, 64px); }
+.faq-group-label { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: var(--fs-h4); line-height: 1; padding: 12px 16px 10px; color: var(--paper); }
+.faq-group.tone-red .faq-group-label { background: var(--red); }
+.faq-group.tone-blue .faq-group-label { background: var(--blue); }
+.faq-group.tone-yellow .faq-group-label { background: var(--yellow); color: var(--ink); }
+.faq-group .faq-list { border-top: 0; max-width: none; }
+.faq-item .q-icon { width: 30px; height: 30px; border: 0; color: var(--paper); background: var(--ink); font-size: 1.3rem; }
+.faq-item .q-icon::before { content: "+"; }
+.faq-item[open] .q-icon::before { content: "\2212"; }
+.faq-item[open] .q-icon { transform: none; }
+.faq-group.tone-red .q-icon, .faq-group.tone-red .faq-item[open] .q-icon { background: var(--red); color: var(--paper); }
+.faq-group.tone-blue .q-icon, .faq-group.tone-blue .faq-item[open] .q-icon { background: var(--blue); color: var(--paper); }
+.faq-group.tone-yellow .q-icon, .faq-group.tone-yellow .faq-item[open] .q-icon { background: var(--yellow); color: var(--ink); }
+.faq-item summary:hover .q-icon, .faq-item summary:focus-visible .q-icon { outline: 3px solid var(--ink); outline-offset: 2px; }
+.faq-group.tone-red .faq-item[open] .q-text { color: var(--red); }
+.faq-group.tone-blue .faq-item[open] .q-text { color: var(--blue); }
+.faq-group.tone-yellow .faq-item[open] .q-text { background: var(--yellow); color: var(--ink); padding: 0 0.1em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
