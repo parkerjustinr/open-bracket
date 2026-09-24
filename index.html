@@ -15,7 +15,7 @@
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <div class="notice" role="note" id="placeholder-notice">Loading the event page...</div>
+  <div class="notice" role="note" id="placeholder-notice" hidden>Loading the event page...</div>
 
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Open Bracket, back to top">
@@ -86,6 +86,7 @@
     setTimeout(function () {
       var n = document.getElementById("placeholder-notice");
       if (window.__OB_DATA__ || !n || n.classList.contains("is-error")) return;
+      n.hidden = false;
       n.classList.add("is-error");
       n.textContent = "The page did not load. Open it through a web server or the live site, not straight from your computer, and keep app.js, styles.css and the data folder next to index.html.";
     }, 5000);
