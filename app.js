@@ -1025,6 +1025,13 @@
       "</div>";
   }
 
+  function showPartialNotice() {
+    var n = $("placeholder-notice");
+    n.hidden = false;
+    n.classList.add("is-error");
+    n.textContent = "Part of this page didn't load. Refresh the page to get the latest version.";
+  }
+
   function showLoadError(err) {
     var n = $("placeholder-notice");
     n.hidden = false;
@@ -1046,17 +1053,13 @@
       window.__OB_DATA__ = data;
       if (data.meta.timezone) HOME_TZ = data.meta.timezone;
       renderNotice(data.meta);
-      renderHero(data);
-      renderAbout(data);
-      renderSchedule(data);
-      renderGames(data);
-      renderCreators(data);
-      renderLogistics(data);
-      renderWatch(data);
-      showRegistration(data);
-      renderFaq(data);
-      renderFooter(data);
-      renderCountdown(data);
+      // Render each section on its own, so one failure (for example a cached app.js
+      // meeting newer data) can't blank the whole page.
+      var failed = [renderHero, renderAbout, renderSchedule, renderGames, renderCreators, renderLogistics,
+        renderWatch, showRegistration, renderFaq, renderFooter, renderCountdown].filter(function (fn) {
+        try { fn(data); return false; } catch (err) { if (window.console) console.error(err); return true; }
+      });
+      if (failed.length) showPartialNotice();
       wirePreselect();
       wireGlobalControls();
       // If the page was opened with a hash, jump there now that content exists.
