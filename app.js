@@ -75,8 +75,9 @@
   }
 
   // "9:00-10:00 AM EDT". A weekday is added when the zone puts the time on a different
-  // calendar day from the event day on the island (for example Sun 1:00 AM in Tokyo).
-  function rangeText(start, end, zone) {
+  // calendar day from the event day on the island (for example Sun 1:00 AM in Tokyo),
+  // or always when withDay is set (reminders that fall before the event).
+  function rangeText(start, end, zone, withDay) {
     var eventDay = dayKey(start, HOME_TZ);
     var startDay = dayKey(start, zone);
     var a, b = "";
@@ -90,17 +91,17 @@
     } else {
       a = clock(start, zone, false);
     }
-    if (startDay !== eventDay) a = fmt(zone, "weekday").format(start) + " " + a;
+    if (withDay || startDay !== eventDay) a = fmt(zone, "weekday").format(start) + " " + a;
     return a + (b ? "-" + b : "") + " " + zoneName(end || start, zone);
   }
 
   // Styles: "block" (primary over secondary), "inline" (secondary in brackets), "boat" (large primary).
-  function timeInner(startIso, endIso, style) {
+  function timeInner(startIso, endIso, style, withDay) {
     var start = new Date(startIso), end = endIso ? new Date(endIso) : null;
     var primaryZone = tzMode === "home" ? HOME_TZ : LOCAL_TZ;
     var otherZone = tzMode === "home" ? LOCAL_TZ : HOME_TZ;
-    var primary = rangeText(start, end, primaryZone);
-    var other = rangeText(start, end, otherZone);
+    var primary = rangeText(start, end, primaryZone, withDay);
+    var other = rangeText(start, end, otherZone, withDay);
     var same = primary === other;
     if (style === "inline") {
       return esc(primary) + (same ? "" : ' <span class="tz-secondary">(' + esc(other) + ")</span>");
@@ -109,15 +110,15 @@
       (same ? "" : '<span class="tz-secondary">' + esc(other) + "</span>");
   }
 
-  function timeEl(startIso, endIso, style) {
+  function timeEl(startIso, endIso, style, withDay) {
     return '<time class="tz-time tz-' + style + '" datetime="' + esc(startIso) + '" data-start="' + esc(startIso) + '"' +
-      (endIso ? ' data-end="' + esc(endIso) + '"' : "") + ' data-style="' + style + '">' +
-      timeInner(startIso, endIso, style) + "</time>";
+      (endIso ? ' data-end="' + esc(endIso) + '"' : "") + ' data-style="' + style + '"' + (withDay ? ' data-day="1"' : "") + ">" +
+      timeInner(startIso, endIso, style, withDay) + "</time>";
   }
 
   function refreshTimes() {
     Array.prototype.forEach.call(document.querySelectorAll(".tz-time"), function (el) {
-      el.innerHTML = timeInner(el.getAttribute("data-start"), el.getAttribute("data-end"), el.getAttribute("data-style"));
+      el.innerHTML = timeInner(el.getAttribute("data-start"), el.getAttribute("data-end"), el.getAttribute("data-style"), el.hasAttribute("data-day"));
     });
     Array.prototype.forEach.call(document.querySelectorAll("[data-tz]"), function (btn) {
       btn.setAttribute("aria-pressed", String(btn.getAttribute("data-tz") === tzMode));
@@ -184,7 +185,7 @@
     return /^https?:/.test(location.protocol) ? location.href.split("#")[0] : "";
   }
 
-  // events: [{ uid, start, end, summary, description, location }]
+  // events: [{ uid, start, end, summary, description, location, alarms? }] (alarms are TRIGGER values like -PT2H)
   function buildIcs(events) {
     var stamp = icsDate(new Date());
     var url = pageUrl();
@@ -200,6 +201,9 @@
         "DESCRIPTION:" + icsEscape(e.description + (url ? "\n\n" + url : "")),
         "LOCATION:" + icsEscape(e.location));
       if (url) lines.push("URL:" + url);
+      (e.alarms || []).forEach(function (trigger) {
+        lines.push("BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + icsEscape(e.summary), "TRIGGER:" + trigger, "END:VALARM");
+      });
       lines.push("END:VEVENT");
     });
     lines.push("END:VCALENDAR");
@@ -254,6 +258,46 @@
     if (kind === "session") {
       var day = d.schedule.days[a], x = day.sessions[b];
       return { name: "open-bracket-" + day.id + "-" + x.code.toLowerCase() + ".ics", events: [sessionEvent(d, day, x)] };
+    }
+    if (kind === "registration") {
+      var rec = loadCurrent(d);
+      if (!rec) return null;
+      var events;
+      if (rec.type === "competitor") {
+        var heat = findHeat(d, rec.heat), day1 = d.schedule.days[0], day2 = d.schedule.days[1];
+        var ev = sessionEvent(d, day1, heat);
+        ev.uid = "reg-" + rec.ticket.toLowerCase() + "-heat";
+        ev.summary = "Open Bracket: " + heat.title + " (you are competing)";
+        ev.description = "Check in at the tent on the Parade Ground by " + rangeText(new Date(isoMinus(heat.start, 30)), null, HOME_TZ) +
+          ". Games: " + plain(heat.detail) + "\n\nTicket " + rec.ticket + ", handle @" + rec.handle + ".\n\n" + plain(d.logistics.lastFerryWarning);
+        ev.alarms = ["-P1D", "-PT2H"];
+        var span2 = dayBounds(day2);
+        events = [ev, {
+          uid: "reg-" + rec.ticket.toLowerCase() + "-" + day2.id,
+          start: span2.start,
+          end: span2.end,
+          summary: "Open Bracket " + day2.label + ": " + day2.title,
+          description: "If you qualify, check in at the green tent by " + rangeText(new Date(day2.sessions[0].end), null, HOME_TZ) +
+            ". If not, your ticket gets you in to watch.\n\nTicket " + rec.ticket + ".",
+          location: d.meta.calendarLocation,
+          alarms: ["-P1D"]
+        }];
+      } else {
+        events = recordDays(d, rec).map(function (day) {
+          var span = dayBounds(day);
+          return {
+            uid: "reg-" + rec.ticket.toLowerCase() + "-" + day.id,
+            start: span.start,
+            end: span.end,
+            summary: "Open Bracket " + day.label + ": " + day.title,
+            description: plain(day.summary) + "\n\nTicket " + rec.ticket + ". Pick up your wristband at the check-in tent on the Parade Ground.\n\n" +
+              plain(d.logistics.lastFerryWarning),
+            location: d.meta.calendarLocation,
+            alarms: ["-P1D"]
+          };
+        });
+      }
+      return { name: "open-bracket-" + rec.ticket.toLowerCase() + ".ics", events: events };
     }
     if (kind === "stream") {
       var c = d.watch.channels[a];
@@ -564,29 +608,106 @@
   }
 
   // ---------- registration ----------
-  function renderRegistration(d) {
-    var r = d.registration;
-    var games = d.games.items;
+  // Records live in localStorage under STORAGE_KEY (a list). CURRENT_KEY holds the ticket this
+  // browser registered last, so a returning visitor sees their confirmation and can change it.
+  var CURRENT_KEY = "openBracket.currentTicket";
+  var memoryRecord = null; // used when storage is blocked
 
-    var typeOptions = r.types.map(function (t, i) {
+  function qualifierHeats(d) {
+    return d.schedule.days[0].sessions.filter(function (s) { return s.track === "Qualifiers"; });
+  }
+
+  function findHeat(d, code) {
+    return qualifierHeats(d).filter(function (s) { return s.code === code; })[0] || null;
+  }
+
+  function findSession(d, dayIndex, code) {
+    return d.schedule.days[dayIndex].sessions.filter(function (s) { return s.code === code; })[0] || null;
+  }
+
+  // Which event days a record covers: competitors play Day 1 and their ticket includes Day 2.
+  function recordDays(d, rec) {
+    var ids = rec.type === "competitor" ? ["day1", "day2"] : rec.days === "both" ? ["day1", "day2"] : [rec.days];
+    return d.schedule.days.filter(function (day) { return ids.indexOf(day.id) !== -1; });
+  }
+
+  function isValidRecord(d, rec) {
+    if (!rec || !rec.ticket || !rec.name || !rec.email) return false;
+    if (rec.type === "competitor") return !!(findHeat(d, rec.heat) && rec.handle && rec.emergencyName && rec.emergencyPhone);
+    if (rec.type === "spectator") return ["day1", "day2", "both"].indexOf(rec.days) !== -1;
+    return false;
+  }
+
+  function loadRecords() {
+    try {
+      var list = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      return Array.isArray(list) ? list : [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function loadCurrent(d) {
+    var rec = memoryRecord;
+    try {
+      var ticket = localStorage.getItem(CURRENT_KEY);
+      if (ticket) rec = loadRecords().filter(function (x) { return x.ticket === ticket; })[0] || rec;
+    } catch (err) { /* storage blocked */ }
+    return isValidRecord(d, rec) ? rec : null;
+  }
+
+  // replaces: the old ticket when a change also switched ticket type.
+  function saveRecord(rec, replaces) {
+    memoryRecord = rec;
+    try {
+      var list = loadRecords().filter(function (x) { return x.ticket !== rec.ticket && x.ticket !== replaces; });
+      list.push(rec);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      localStorage.setItem(CURRENT_KEY, rec.ticket);
+    } catch (err) {
+      // Storage can be blocked (private mode). The confirmation still shows from memory.
+    }
+  }
+
+  function newTicket(type) {
+    return "OB-" + (type === "competitor" ? "C" : "S") + "-" + Math.floor(1000 + Math.random() * 9000);
+  }
+
+  function isoMinus(iso, minutes) {
+    return new Date(new Date(iso).getTime() - minutes * 60000).toISOString();
+  }
+
+  function showRegistration(d) {
+    var rec = loadCurrent(d);
+    if (rec) showConfirmation(rec, d, false);
+    else renderRegistration(d, null);
+  }
+
+  // prefill: an existing record when changing a registration, otherwise null.
+  function renderRegistration(d, prefill) {
+    var r = d.registration;
+    var p = prefill || {};
+    var type = p.type || "competitor";
+    function val(k) { return esc(p[k] || ""); }
+
+    var typeOptions = r.types.map(function (t) {
       return '<div class="type-option">' +
-        '<input type="radio" name="type" id="type-' + t.id + '" value="' + t.id + '"' + (i === 0 ? " checked" : "") + ">" +
+        '<input type="radio" name="type" id="type-' + t.id + '" value="' + t.id + '"' + (t.id === type ? " checked" : "") + ">" +
         '<label for="type-' + t.id + '"><span class="t-name">' + esc(t.label) + '</span><span class="t-price">' + copy(t.price) +
         '</span><span class="t-desc">' + copy(t.desc) + "</span></label></div>";
     }).join("");
 
-    var landingOptions = '<option value="">Choose one</option>' + r.landings.map(function (x) {
-      return '<option>' + esc(x) + "</option>";
+    var heatOptions = qualifierHeats(d).map(function (h) {
+      return '<label class="heat-option"><input type="radio" name="heat" value="' + esc(h.code) + '"' +
+        (p.heat === h.code ? " checked" : "") + ">" +
+        '<span class="heat-body"><span class="heat-name">' + esc(h.title) + "</span>" +
+        timeEl(h.start, h.end, "block") +
+        '<span class="heat-games">' + copy(h.detail) + "</span></span></label>";
     }).join("");
 
-    var gameChecks = games.map(function (g) {
-      return '<label class="check"><input type="checkbox" name="games" value="' + esc(g.name) + '"><span>' +
-        esc(g.code) + " " + esc(g.name) + "</span></label>";
-    }).join("");
-
-    var dayChecks = r.spectatorDays.map(function (x, i) {
-      return '<label class="check"><input type="checkbox" name="days" value="' + esc(x) + '"' + (i === 1 ? " checked" : "") +
-        "><span>" + esc(x) + "</span></label>";
+    var dayOptions = r.spectatorDays.map(function (x) {
+      return '<label class="check"><input type="radio" name="days" value="' + esc(x.id) + '"' +
+        (p.days === x.id ? " checked" : "") + "><span>" + esc(x.label) + "</span></label>";
     }).join("");
 
     $("register-body").innerHTML =
@@ -594,38 +715,61 @@
       '<p class="lede">' + copy(r.intro) + "</p>" +
       '<p class="demo-notice" role="note">' + esc(r.demoNotice) + "</p>" +
       '<div id="reg-output">' +
-      '<form class="reg-form" id="reg-form" novalidate>' +
-        '<fieldset><legend>Ticket type</legend><div class="type-options">' + typeOptions + "</div></fieldset>" +
+      '<form class="reg-form" id="reg-form" novalidate' + (prefill ? ' data-ticket="' + esc(p.ticket) + '"' : "") + ">" +
+        (prefill
+          ? '<div class="edit-banner" role="note"><p>Changing registration <strong>' + esc(p.ticket) + "</strong>. " +
+            "Your ticket number stays the same.</p>" +
+            '<button type="button" class="link-btn" id="reg-cancel-edit">Cancel and keep my registration</button></div>'
+          : "") +
+        '<fieldset><legend>How do you want to take part?</legend><div class="type-options">' + typeOptions + "</div></fieldset>" +
         '<div class="two-col">' +
           '<div class="field"><label class="field-label" for="f-name">Full name</label>' +
-            '<input type="text" id="f-name" name="name" autocomplete="name" required aria-describedby="e-name">' +
+            '<input type="text" id="f-name" name="name" autocomplete="name" required maxlength="80" value="' + val("name") + '" aria-describedby="e-name">' +
             '<span class="error" id="e-name"></span></div>' +
           '<div class="field"><label class="field-label" for="f-email">Email</label>' +
-            '<input type="email" id="f-email" name="email" autocomplete="email" required aria-describedby="h-email e-email">' +
-            '<span class="hint" id="h-email">Your QR code and heat assignment go here.</span>' +
+            '<input type="email" id="f-email" name="email" autocomplete="email" required maxlength="120" value="' + val("email") + '" aria-describedby="h-email e-email">' +
+            '<span class="hint" id="h-email">Your ticket, QR code, and reminders go here.</span>' +
             '<span class="error" id="e-email"></span></div>' +
         "</div>" +
-        '<div class="field"><label class="field-label" for="f-landing">Which ferry will you take?</label>' +
-          '<select id="f-landing" name="landing" aria-describedby="h-landing">' + landingOptions + "</select>" +
-          '<span class="hint" id="h-landing">Helps us staff the right check-in lane. You can change your mind.</span></div>' +
-        '<fieldset class="type-fields" data-for="competitor" aria-describedby="h-games e-games">' +
-          "<legend>Games you want to play</legend>" +
-          '<p class="hint" id="h-games">Pick at least three. We try to match you, but heat assignments are final.</p>' +
-          '<div class="checks two-col">' + gameChecks + "</div>" +
-          '<span class="error" id="e-games"></span>' +
-        "</fieldset>" +
+
+        '<div class="type-fields reg-group" data-for="competitor">' +
+          '<div class="field"><label class="field-label" for="f-handle">Handle</label>' +
+            '<input type="text" id="f-handle" name="handle" autocomplete="nickname" maxlength="30" value="' + val("handle") + '" aria-describedby="h-handle e-handle">' +
+            '<span class="hint" id="h-handle">The name we show on the heat board and the stream. Letters, numbers, dots, dashes, and underscores.</span>' +
+            '<span class="error" id="e-handle"></span></div>' +
+          '<fieldset aria-describedby="h-heat e-heat"><legend>Qualifier heat</legend>' +
+            '<p class="hint" id="h-heat">All heats are on ' + esc(d.schedule.days[0].date) + ". Each heat has 50 spots. " +
+              "Times show in your zone with Eastern alongside.</p>" +
+            tzToggle(qualifierHeats(d)[0].start) +
+            '<div class="heat-options">' + heatOptions + "</div>" +
+            '<span class="error" id="e-heat"></span>' +
+          "</fieldset>" +
+          '<fieldset><legend>Emergency contact</legend>' +
+            '<p class="hint" id="h-emergency">Someone we can call if you get hurt on the day. They don\'t need to be on the island.</p>' +
+            '<div class="two-col">' +
+              '<div class="field"><label class="field-label" for="f-em-name">Contact name</label>' +
+                '<input type="text" id="f-em-name" name="emergencyName" autocomplete="off" maxlength="80" value="' + val("emergencyName") + '" aria-describedby="h-emergency e-em-name">' +
+                '<span class="error" id="e-em-name"></span></div>' +
+              '<div class="field"><label class="field-label" for="f-em-phone">Contact phone</label>' +
+                '<input type="tel" id="f-em-phone" name="emergencyPhone" autocomplete="off" maxlength="30" value="' + val("emergencyPhone") + '" aria-describedby="h-emergency e-em-phone">' +
+                '<span class="error" id="e-em-phone"></span></div>' +
+            "</div>" +
+          "</fieldset>" +
+        "</div>" +
+
         '<fieldset class="type-fields" data-for="spectator" hidden aria-describedby="e-days">' +
-          "<legend>Which days are you coming?</legend>" +
-          '<div class="checks">' + dayChecks + "</div>" +
+          "<legend>Which day are you coming?</legend>" +
+          '<div class="checks">' + dayOptions + "</div>" +
           '<span class="error" id="e-days"></span>' +
         "</fieldset>" +
-        '<div class="field"><label class="field-label" for="f-access">Access needs (optional)</label>' +
-          '<textarea id="f-access" name="access" aria-describedby="h-access"></textarea>' +
-          '<span class="hint" id="h-access">Mobility, sensory, dietary, anything. We read every one.</span></div>' +
-        '<div><button type="submit" class="btn btn-red" id="reg-submit">Register as competitor <span class="arrow" aria-hidden="true">&rarr;</span></button></div>' +
+
+        '<div class="field"><label class="field-label" for="f-access">Accessibility needs (optional)</label>' +
+          '<textarea id="f-access" name="access" maxlength="500" aria-describedby="h-access">' + val("access") + "</textarea>" +
+          '<span class="hint" id="h-access">Mobility, sensory, dietary, anything that helps us plan for you. We read every one.</span></div>' +
+        '<div><button type="submit" class="btn btn-red" id="reg-submit"></button></div>' +
       "</form></div>";
 
-    wireForm(r);
+    wireForm(d, prefill);
   }
 
   function currentType(form) {
@@ -634,13 +778,15 @@
   }
 
   function syncType(form) {
+    if (!form) return;
     var type = currentType(form);
     Array.prototype.forEach.call(form.querySelectorAll(".type-fields"), function (fs) {
       fs.hidden = fs.getAttribute("data-for") !== type;
     });
     var btn = form.querySelector("#reg-submit");
     btn.className = "btn " + (type === "competitor" ? "btn-red" : "btn-blue");
-    btn.innerHTML = "Register as " + type + ' <span class="arrow" aria-hidden="true">&rarr;</span>';
+    btn.innerHTML = (form.getAttribute("data-ticket") ? "Save changes" : type === "competitor" ? "Register to compete" : "Register to spectate") +
+      ' <span class="arrow" aria-hidden="true">&rarr;</span>';
   }
 
   function setError(field, msgEl, msg) {
@@ -648,7 +794,7 @@
     msgEl.textContent = msg || "";
   }
 
-  function wireForm(r) {
+  function wireForm(d, prefill) {
     var form = $("reg-form");
     if (!form) return;
     form.addEventListener("change", function (e) {
@@ -656,94 +802,153 @@
     });
     syncType(form);
 
+    var cancel = $("reg-cancel-edit");
+    if (cancel) cancel.addEventListener("click", function () { showConfirmation(prefill, d, true); });
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var type = currentType(form);
-      var name = form.elements.name;
-      var email = form.elements.email;
+      var el = form.elements;
       var firstInvalid = null;
+      function check(field, msgEl, msg) {
+        setError(field, msgEl, msg);
+        if (msg && !firstInvalid) firstInvalid = field;
+      }
+      function checked(name) {
+        var c = form.querySelector('input[name="' + name + '"]:checked');
+        return c ? c.value : "";
+      }
 
-      var nameMsg = name.value.trim() ? "" : "Enter your name.";
-      setError(name, $("e-name"), nameMsg);
-      if (nameMsg && !firstInvalid) firstInvalid = name;
+      var name = el.name.value.trim();
+      check(el.name, $("e-name"), name ? "" : "Enter your name.");
+      var email = el.email.value.trim();
+      check(el.email, $("e-email"), !email ? "Enter your email." :
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "" : "Check the email format, for example name@example.com.");
 
-      var emailVal = email.value.trim();
-      var emailMsg = !emailVal ? "Enter your email." : (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal) ? "" : "Check the email format, for example name@example.com.");
-      setError(email, $("e-email"), emailMsg);
-      if (emailMsg && !firstInvalid) firstInvalid = email;
+      var rec = {
+        ticket: prefill && prefill.type === type ? prefill.ticket : newTicket(type),
+        type: type,
+        name: name,
+        email: email,
+        access: el.access.value.trim(),
+        createdAt: prefill ? prefill.createdAt : new Date().toISOString()
+      };
+      if (prefill) rec.updatedAt = new Date().toISOString();
 
-      var picks = [];
       if (type === "competitor") {
-        picks = Array.prototype.filter.call(form.querySelectorAll('input[name="games"]'), function (c) { return c.checked; })
-          .map(function (c) { return c.value; });
-        var gMsg = picks.length >= 3 ? "" : "Pick at least three games (" + picks.length + " selected).";
-        setError(null, $("e-games"), gMsg);
-        if (gMsg && !firstInvalid) firstInvalid = form.querySelector('input[name="games"]');
+        var handle = el.handle.value.trim();
+        check(el.handle, $("e-handle"), !handle ? "Enter the handle you want on the heat board." :
+          /^@?[A-Za-z0-9._-]{2,30}$/.test(handle) ? "" : "Use 2 to 30 letters, numbers, dots, dashes, or underscores.");
+        var heat = checked("heat");
+        check(heat ? null : form.querySelector('input[name="heat"]'), $("e-heat"), heat ? "" : "Pick a qualifier heat.");
+        var emName = el.emergencyName.value.trim();
+        check(el.emergencyName, $("e-em-name"), emName ? "" : "Enter an emergency contact name.");
+        var emPhone = el.emergencyPhone.value.trim();
+        check(el.emergencyPhone, $("e-em-phone"), !emPhone ? "Enter an emergency contact phone number." :
+          /^\+?[0-9 ().-]{7,30}$/.test(emPhone) && emPhone.replace(/\D/g, "").length >= 7 ? "" : "Check the phone number. Include the area code.");
+        rec.handle = handle.replace(/^@/, "");
+        rec.heat = heat;
+        rec.emergencyName = emName;
+        rec.emergencyPhone = emPhone;
       } else {
-        picks = Array.prototype.filter.call(form.querySelectorAll('input[name="days"]'), function (c) { return c.checked; })
-          .map(function (c) { return c.value; });
-        var dMsg = picks.length ? "" : "Pick at least one day.";
-        setError(null, $("e-days"), dMsg);
-        if (dMsg && !firstInvalid) firstInvalid = form.querySelector('input[name="days"]');
+        var days = checked("days");
+        check(days ? null : form.querySelector('input[name="days"]'), $("e-days"), days ? "" : "Pick a day, or both.");
+        rec.days = days;
       }
 
       if (firstInvalid) { firstInvalid.focus(); return; }
-
-      var record = {
-        ticket: "OB-" + (type === "competitor" ? "C" : "S") + "-" + Math.floor(1000 + Math.random() * 9000),
-        type: type,
-        name: name.value.trim(),
-        email: emailVal,
-        landing: form.elements.landing.value || "Not sure yet",
-        picks: picks,
-        access: form.elements.access.value.trim(),
-        createdAt: new Date().toISOString()
-      };
-      saveRecord(record);
-      showConfirmation(record, r);
+      saveRecord(rec, prefill && prefill.ticket);
+      showConfirmation(rec, d, true);
     });
   }
 
-  function saveRecord(record) {
-    try {
-      var list = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      list.push(record);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-    } catch (err) {
-      // Storage can be blocked (private mode). The confirmation still shows.
-    }
+  function dayLabel(d, id) {
+    return d.registration.spectatorDays.filter(function (x) { return x.id === id; })[0].label;
   }
 
-  function showConfirmation(rec, r) {
+  function showConfirmation(rec, d, focus) {
+    var r = d.registration;
     var isComp = rec.type === "competitor";
-    var out = $("reg-output");
-    out.innerHTML =
-      '<div class="confirm' + (isComp ? "" : " is-spectator") + '" role="status" tabindex="-1" id="reg-confirm">' +
-        '<div class="confirm-head"><p class="section-kicker">Demo confirmation</p>' +
-          "<h3>" + (isComp ? "You are in the bracket." : "See you on the island.") + "</h3></div>" +
-        '<div class="confirm-body">' +
-          '<p class="ticket-no">' + esc(rec.ticket) + "</p>" +
-          "<dl>" +
-            "<dt>Name</dt><dd>" + esc(rec.name) + "</dd>" +
-            "<dt>Email</dt><dd>" + esc(rec.email) + "</dd>" +
-            "<dt>Ticket</dt><dd>" + (isComp ? "Competitor" : "Spectator") + "</dd>" +
-            "<dt>Ferry</dt><dd>" + esc(rec.landing) + "</dd>" +
-            "<dt>" + (isComp ? "Games" : "Days") + "</dt><dd>" + esc(rec.picks.join(", ")) + "</dd>" +
-          "</dl>" +
-          "<p>" + (isComp
-            ? "Your heat time arrives by email 48 hours before Day 1. Check in at the tent on the Parade Ground at least 30 minutes before your heat."
-            : "Pick up your wristband at the check-in tent on the Parade Ground when you arrive. It is a 5 minute walk from both ferry landings.") + "</p>" +
-          '<p class="hint">' + esc(r.demoNotice) + "</p>" +
-          '<button type="button" class="btn btn-small" id="reg-again">Register someone else</button>' +
-        "</div>" +
-      "</div>";
-    var box = $("reg-confirm");
-    box.focus();
-    $("reg-again").addEventListener("click", function () {
-      renderRegistration(window.__OB_DATA__);
-      var f = $("f-name");
-      if (f) f.focus();
+    var days = recordDays(d, rec);
+    var first = days[0];
+    var firstStart = isComp ? findHeat(d, rec.heat).start : dayBounds(first).start;
+    var rows = [];
+
+    if (isComp) {
+      var heat = findHeat(d, rec.heat);
+      var reveal = findSession(d, 0, "BK");
+      rows.push(["Your heat", esc(heat.title) + ", " + esc(d.schedule.days[0].date), timeEl(heat.start, heat.end, "block")]);
+      rows.push(["Check in by", "Check-in tent, Parade Ground", timeEl(isoMinus(heat.start, 30), null, "block")]);
+      if (reveal) rows.push(["Bracket reveal", "Find out if you made the finals", timeEl(reveal.start, reveal.end, "block")]);
+      var d2 = dayBounds(d.schedule.days[1]);
+      rows.push(["Finals", esc(d.schedule.days[1].date) + ". Qualifiers play. Your ticket also gets you in to watch.", timeEl(d2.start, d2.end, "block")]);
+    } else {
+      days.forEach(function (day) {
+        var span = dayBounds(day);
+        rows.push([day.label + " - " + day.title, esc(day.date), timeEl(span.start, span.end, "block")]);
+      });
+    }
+
+    var streams = d.watch.channels.filter(function (c, i) {
+      return c.start && days.some(function (day) { return c.start.slice(0, 10) === day.isoDate; });
     });
+
+    var next = [
+      "<strong>Confirmation email, right away.</strong> Your ticket number and the QR code you show at check-in go to " + esc(rec.email) + ".",
+      "<strong>Ferry and check-in reminder, 24 hours before:</strong> " + timeEl(isoMinus(firstStart, 24 * 60), null, "inline", true) + ". " +
+        "Ferry times from Manhattan and Brooklyn, the last boat back, and where the check-in tent is."
+    ];
+    if (isComp) {
+      next.push("<strong>Heat reminder, 2 hours before your heat:</strong> " + timeEl(isoMinus(firstStart, 120), null, "inline", true) + ". " +
+        "Your heat number and the time to be at check-in.");
+    }
+    next.push("<strong>Watching from home instead?</strong> The stream link is emailed the morning of " +
+      (streams.length > 1 ? "each day" : "your day") + " and posted in the <a href=\"#watch\">Watch</a> section. " +
+      streams.map(function (c) { return esc(c.name) + ": " + timeEl(c.start, c.end, "inline"); }).join(". ") + ".");
+
+    var details = [["Name", esc(rec.name)], ["Email", esc(rec.email)]];
+    if (isComp) {
+      details.push(["Handle", "@" + esc(rec.handle)]);
+      details.push(["Emergency contact", esc(rec.emergencyName) + ", " + esc(rec.emergencyPhone)]);
+    } else {
+      details.push(["Coming", esc(dayLabel(d, rec.days))]);
+    }
+    details.push(["Accessibility", rec.access ? esc(rec.access) : "None given"]);
+
+    $("register-body").innerHTML =
+      sectionHead("07", "Registration", r.heading, "register-title") +
+      '<p class="demo-notice" role="note">' + esc(r.demoNotice) + "</p>" +
+      '<div id="reg-output">' +
+      '<div class="confirm' + (isComp ? "" : " is-spectator") + '" role="status" tabindex="-1" id="reg-confirm">' +
+        '<div class="confirm-head"><p class="section-kicker">' + (isComp ? "Competitor" : "Spectator") + " ticket " + esc(rec.ticket) + "</p>" +
+          "<h3>" + (isComp ? "You're in the bracket." : "See you on the island.") + "</h3></div>" +
+        '<div class="confirm-body">' +
+          '<h4 class="confirm-sub">Your dates and times</h4>' +
+          tzToggle(firstStart) +
+          '<ul class="confirm-times">' + rows.map(function (x) {
+            return '<li><span class="ct-label">' + esc(x[0]) + '</span><span class="ct-note">' + x[1] + '</span><span class="ct-time">' + x[2] + "</span></li>";
+          }).join("") + "</ul>" +
+          icsButton("registration", null, null, "Add my schedule to calendar", "Add your Open Bracket schedule to your calendar (.ics file)") +
+          '<h4 class="confirm-sub">What happens next</h4>' +
+          '<ol class="confirm-next">' + next.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ol>" +
+          '<h4 class="confirm-sub">Your details</h4>' +
+          "<dl>" + details.map(function (x) { return "<dt>" + esc(x[0]) + "</dt><dd>" + x[1] + "</dd>"; }).join("") + "</dl>" +
+          '<div class="confirm-actions">' +
+            '<button type="button" class="link-btn" id="reg-change">Change my registration</button>' +
+            '<button type="button" class="link-btn" id="reg-again">Register someone else</button>' +
+          "</div>" +
+        "</div>" +
+      "</div></div>";
+
+    $("reg-change").addEventListener("click", function () {
+      renderRegistration(d, rec);
+      $("f-name").focus();
+    });
+    $("reg-again").addEventListener("click", function () {
+      renderRegistration(d, null);
+      $("f-name").focus();
+    });
+    if (focus) $("reg-confirm").focus();
   }
 
   // Compete button in the hero preselects the competitor ticket.
@@ -810,7 +1015,7 @@
       renderCreators(data);
       renderLogistics(data);
       renderWatch(data);
-      renderRegistration(data);
+      showRegistration(data);
       renderFaq(data);
       renderFooter(data);
       renderCountdown(data);

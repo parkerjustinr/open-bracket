@@ -74,7 +74,7 @@
   },
   "schedule": {
     "heading": "Order of play",
-    "note": "Times show in your time zone, with Eastern Time (the island's zone) alongside. Use the switch to flip between them. Your heat time is emailed 48 hours before Day 1. Check in at least 30 minutes before your heat.",
+    "note": "Times show in your time zone, with Eastern Time (the island's zone) alongside. Use the switch to flip between them. Competitors pick their heat when they register. Check in at least 30 minutes before your heat.",
     "days": [
       {
         "id": "day1",
@@ -424,30 +424,35 @@
   },
   "registration": {
     "heading": "Register",
-    "intro": "Pick your ticket. Competitors play one Day 1 heat and can come back to watch Day 2. Spectators can come to either day or both.",
-    "demoNotice": "Demo form. Nothing is sent anywhere. Your registration is saved only in this browser (localStorage).",
+    "intro": "Two ways in. Compete to play a Day 1 qualifier heat, with Day 2 entry included. Spectate to watch either day or both.",
+    "demoNotice": "Demo form. Nothing is sent anywhere and no emails go out. Your registration is saved only in this browser (localStorage).",
     "types": [
       {
         "id": "competitor",
-        "label": "Competitor",
+        "label": "Compete",
         "price": "$25",
         "desc": "Play one qualifier heat of four games on Day 1. Top three in each heat play the finals on Day 2. Includes Day 2 entry. Ages 18 and up."
       },
       {
         "id": "spectator",
-        "label": "Spectator",
+        "label": "Spectate",
         "price": "Free",
         "desc": "Watch the heats, the finals, or both from the Parade Ground. All ages."
       }
     ],
-    "landings": [
-      "Manhattan (Battery Maritime Building)",
-      "Brooklyn (Pier 6)",
-      "Not sure yet"
-    ],
     "spectatorDays": [
-      "Day 1 - Qualifiers",
-      "Day 2 - Finals"
+      {
+        "id": "day1",
+        "label": "Day 1 - Qualifiers"
+      },
+      {
+        "id": "day2",
+        "label": "Day 2 - Finals"
+      },
+      {
+        "id": "both",
+        "label": "Both days"
+      }
     ]
   },
   "faq": {
@@ -463,7 +468,7 @@
       },
       {
         "q": "Can I choose my heat time?",
-        "a": "Not directly. We use the games you pick on the registration form to place you. Your heat time is emailed 48 hours before Day 1 and can't be changed."
+        "a": "Yes. You pick one of the six heats when you register, and each heat has 50 spots. You can switch to another heat later with the change my registration link, as long as that heat still has room."
       },
       {
         "q": "What happens if it rains?",
