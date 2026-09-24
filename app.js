@@ -18,6 +18,7 @@
   function copy(value) {
     return esc(value)
       .replace(/\[PLACEHOLDER\]/g, '<span class="placeholder-tag">Placeholder</span>')
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
       .replace(TOKEN, function (_, iso) { return timeEl(iso, null, "inline"); });
   }
 
@@ -25,7 +26,7 @@
 
   // ---------- time zones ----------
   // Times in event.json are ISO 8601 with an offset. HOME_TZ is the event's zone (meta.timezone).
-  // Every time on the page renders in the visitor's zone or Eastern, with the other alongside.
+  // Every time on the page renders in the visitor's zone or New York time (ET), with the other alongside.
   var HOME_TZ = "America/New_York";
   var LOCAL_TZ = (function () {
     try { return Intl.DateTimeFormat().resolvedOptions().timeZone || HOME_TZ; } catch (err) { return HOME_TZ; }
@@ -48,7 +49,9 @@
     return fmtCache[key];
   }
 
-  function zoneName(date, zone) {
+  // The island's zone reads "ET" on the page. raw returns Intl's own name (EDT), for comparisons.
+  function zoneName(date, zone, raw) {
+    if (!raw && zone === HOME_TZ && HOME_TZ === "America/New_York") return "ET";
     var part = fmt(zone, "zone").formatToParts(date).filter(function (p) { return p.type === "timeZoneName"; })[0];
     return part ? part.value : zone;
   }
@@ -77,7 +80,7 @@
   // "9:00-10:00 AM EDT". A weekday is added when the zone puts the time on a different
   // calendar day from the event day on the island (for example Sun 1:00 AM in Tokyo),
   // or always when withDay is set (reminders that fall before the event).
-  function rangeText(start, end, zone, withDay) {
+  function rangeText(start, end, zone, withDay, raw) {
     var eventDay = dayKey(start, HOME_TZ);
     var startDay = dayKey(start, zone);
     var a, b = "";
@@ -92,7 +95,7 @@
       a = clock(start, zone, false);
     }
     if (withDay || startDay !== eventDay) a = fmt(zone, "weekday").format(start) + " " + a;
-    return a + (b ? "-" + b : "") + " " + zoneName(end || start, zone);
+    return a + (b ? "-" + b : "") + " " + zoneName(end || start, zone, raw);
   }
 
   // Styles: "block" (primary over secondary), "inline" (secondary in brackets), "boat" (large primary).
@@ -102,7 +105,7 @@
     var otherZone = tzMode === "home" ? LOCAL_TZ : HOME_TZ;
     var primary = rangeText(start, end, primaryZone, withDay);
     var other = rangeText(start, end, otherZone, withDay);
-    var same = primary === other;
+    var same = rangeText(start, end, LOCAL_TZ, withDay, true) === rangeText(start, end, HOME_TZ, withDay, true);
     if (style === "inline") {
       return esc(primary) + (same ? "" : ' <span class="tz-secondary">(' + esc(other) + ")</span>");
     }
@@ -131,31 +134,31 @@
     refreshTimes();
   }
 
-  // Toggle between the visitor's zone and Eastern. refDate picks the abbreviation (EDT vs EST).
+  // Toggle between the visitor's zone and New York time (ET).
   function tzToggle(refIso) {
     var ref = new Date(refIso);
-    var localAbbr = zoneName(ref, LOCAL_TZ), homeAbbr = zoneName(ref, HOME_TZ);
-    var matches = clock(ref, LOCAL_TZ) === clock(ref, HOME_TZ) && localAbbr === homeAbbr;
+    var localAbbr = zoneName(ref, LOCAL_TZ, true);
+    var matches = clock(ref, LOCAL_TZ) === clock(ref, HOME_TZ) && localAbbr === zoneName(ref, HOME_TZ, true);
     return '<div class="tz-bar">' +
       '<div class="tz-toggle" role="group" aria-label="Show times in">' +
         '<button type="button" data-tz="local" aria-pressed="' + (tzMode === "local") + '">Your time (' + esc(localAbbr) + ")</button>" +
-        '<button type="button" data-tz="home" aria-pressed="' + (tzMode === "home") + '">Eastern (' + esc(homeAbbr) + ")</button>" +
+        '<button type="button" data-tz="home" aria-pressed="' + (tzMode === "home") + '">New York time (ET)</button>' +
       "</div>" +
       '<p class="tz-zone">' + (matches
-        ? "Your device is on Eastern Time, the same as the island."
-        : "Your device zone: " + esc(LOCAL_TZ.replace(/_/g, " ")) + ". The island is on Eastern Time.") + "</p>" +
+        ? "Your device is on New York time (ET), the same as the island."
+        : "Your device zone: " + esc(LOCAL_TZ.replace(/_/g, " ")) + ". The island is on New York time (ET).") + "</p>" +
     "</div>";
   }
 
   // Prose can carry times as {{t:ISO}} tokens. copy() renders them as live <time> elements,
-  // plain() renders them as fixed Eastern text for calendar files.
+  // plain() renders them as fixed New York time (ET) text for calendar files.
   var TOKEN = /\{\{t:([0-9T:+\-]+)\}\}/g;
 
   // ---------- calendar (.ics) ----------
   function plain(value) {
     return String(value == null ? "" : value)
       .replace(TOKEN, function (_, iso) { return rangeText(new Date(iso), null, HOME_TZ); })
-      .replace(/\s*\[PLACEHOLDER\]/g, "")
+      .replace(/\s*\[PLACEHOLDER\]/g, "").replace(/\*\*(.+?)\*\*/g, "$1")
       .replace(/[\u00a0\u202f]/g, " ");
   }
 
@@ -237,7 +240,7 @@
     };
   }
 
-  // A whole day as one calendar event. The description lists every session in Eastern Time.
+  // A whole day as one calendar event. The description lists every session in New York time (ET).
   function dayEvent(d, day) {
     var span = dayBounds(day);
     var lines = day.sessions.map(function (x) {
@@ -248,7 +251,7 @@
       start: span.start,
       end: span.end,
       summary: "Open Bracket " + day.label + ": " + day.title,
-      description: plain(day.summary) + "\n\nSchedule (Eastern Time):\n" + lines.join("\n") + "\n\n" + plain(d.logistics.lastFerryWarning),
+      description: plain(day.summary) + "\n\nSchedule (New York time, ET):\n" + lines.join("\n") + "\n\n" + plain(d.logistics.lastFerryWarning),
       location: d.meta.calendarLocation
     };
   }
@@ -323,8 +326,8 @@
     return null;
   }
 
-  function icsButton(kind, a, b, label, ariaLabel) {
-    return '<button type="button" class="ics-btn" data-ics="' + kind + '"' +
+  function icsButton(kind, a, b, label, ariaLabel, extraClass) {
+    return '<button type="button" class="ics-btn' + (extraClass ? " " + extraClass : "") + '" data-ics="' + kind + '"' +
       (a != null ? ' data-a="' + a + '"' : "") + (b != null ? ' data-b="' + b + '"' : "") +
       ' aria-label="' + esc(ariaLabel) + '"><span aria-hidden="true">+</span> ' + esc(label) + "</button>";
   }
@@ -348,12 +351,30 @@
   function renderCountdown(d) {
     var box = $("countdown");
     if (!box) return;
+    // Count down to the first heat or game of each day, not to check-in.
     var days = d.schedule.days.map(function (day) {
       var span = dayBounds(day);
-      return { day: day, start: new Date(span.start), end: new Date(span.end) };
+      var first = day.sessions.filter(function (x) { return x.track === "Qualifiers" || x.track === "Finals"; })[0] || day.sessions[0];
+      return { day: day, first: first, start: new Date(first.start), end: new Date(span.end) };
     });
 
-    function pad(n) { return String(n); }
+    // Split-flap digits: one tile per digit, flipped only when that digit changes.
+    function setFlaps(el, value) {
+      var str = String(value);
+      el.setAttribute("aria-label", str);
+      var tiles = el.querySelectorAll(".flap");
+      if (tiles.length !== str.length) {
+        el.innerHTML = str.split("").map(function (c) { return '<span class="flap" aria-hidden="true">' + c + "</span>"; }).join("");
+        return;
+      }
+      Array.prototype.forEach.call(tiles, function (t, i) {
+        if (t.textContent === str[i]) return;
+        t.textContent = str[i];
+        t.classList.remove("is-flipping");
+        void t.offsetWidth;
+        t.classList.add("is-flipping");
+      });
+    }
 
     function tick() {
       var now = Date.now();
@@ -370,13 +391,16 @@
         var s = Math.max(0, Math.floor((next.start - now) / 1000));
         label.textContent = next.day.label + " - " + next.day.title + " starts in";
         units.hidden = false;
-        units.querySelector('[data-u="d"]').textContent = pad(Math.floor(s / 86400));
-        units.querySelector('[data-u="h"]').textContent = pad(Math.floor(s % 86400 / 3600));
-        units.querySelector('[data-u="m"]').textContent = pad(Math.floor(s % 3600 / 60));
-        units.querySelector('[data-u="s"]').textContent = pad(s % 60);
+        setFlaps(units.querySelector('[data-u="d"]'), Math.floor(s / 86400));
+        setFlaps(units.querySelector('[data-u="h"]'), Math.floor(s % 86400 / 3600));
+        setFlaps(units.querySelector('[data-u="m"]'), Math.floor(s % 3600 / 60));
+        setFlaps(units.querySelector('[data-u="s"]'), s % 60);
         if (when.getAttribute("data-for") !== next.day.id) {
           when.setAttribute("data-for", next.day.id);
-          when.innerHTML = "Starts " + esc(next.day.date) + ", " + timeEl(next.day.sessions[0].start, null, "inline");
+          var home = clock(next.start, HOME_TZ), local = rangeText(next.start, null, LOCAL_TZ, true, true);
+          var differs = local !== rangeText(next.start, null, HOME_TZ, true, true);
+          when.innerHTML = "Starts " + esc(next.day.date) + " at " + esc(home) + " New York time" +
+            (differs ? '<span class="countdown-local">That\'s ' + esc(local) + " where you are.</span>" : "");
         }
       } else {
         units.hidden = true;
@@ -402,16 +426,9 @@
     countdownTimer = setInterval(tick, 1000);
   }
 
+  // Section heading. The number and kicker arguments are kept for call sites but no longer rendered.
   function sectionHead(num, kicker, title, id) {
-    return (
-      '<div class="section-head">' +
-        '<span class="section-num" aria-hidden="true">' + esc(num) + "</span>" +
-        "<div>" +
-          '<p class="section-kicker">' + esc(kicker) + "</p>" +
-          '<h2 class="section-title" id="' + id + '">' + esc(title) + "</h2>" +
-        "</div>" +
-      "</div>"
-    );
+    return '<div class="section-head"><h2 class="section-title" id="' + id + '">' + esc(title) + "</h2></div>";
   }
 
   // ---------- renderers ----------
@@ -421,13 +438,18 @@
     n.hidden = true;
   }
 
+  // A small crown, drawn with a deliberately uneven stroke, that sits on the champion "1".
+  var CROWN = '<svg class="crown" viewBox="0 0 48 34" aria-hidden="true" focusable="false">' +
+    '<path d="M5.5 29.2 L3.8 9.6 L15.1 19.8 L23.6 3.4 L31.2 19.1 L43.9 8.2 L41.7 29.6 Z" fill="none" stroke="currentColor" ' +
+    'stroke-width="3.1" stroke-linejoin="round" stroke-linecap="round"/>' +
+    '<path d="M6.2 29.4 C 17 28.1, 30 30.6, 41.4 29.3" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/>' +
+    '<circle cx="3.9" cy="8.4" r="2.2" fill="currentColor"/><circle cx="23.8" cy="2.6" r="2.4" fill="currentColor"/>' +
+    '<circle cx="44.2" cy="7.1" r="2" fill="currentColor"/></svg>';
+
   function renderHero(d) {
     var h = d.hero, m = d.meta;
     $("hero").innerHTML =
       '<div class="hero-sun" aria-hidden="true"></div>' +
-      '<div class="hero-meta"><span class="edition">' + esc(m.edition) + "</span>" +
-        "<span>Creator Games</span><span>New York</span><span>" + esc(m.datesShort) + "</span></div>" +
-      '<p class="hero-kicker">' + esc(h.kicker) + "</p>" +
       '<h1 id="hero-title">' + h.lines.map(function (l) { return "<span>" + esc(l) + "</span>"; }).join("") + "</h1>" +
       '<dl class="hero-facts">' +
         "<dt>Dates</dt><dd>" + esc(m.dates) + "</dd>" +
@@ -436,10 +458,10 @@
       '<div class="countdown" id="countdown" role="timer" aria-atomic="true">' +
         '<p class="countdown-label"></p>' +
         '<ol class="countdown-units">' +
-          '<li><span class="n" data-u="d">00</span><span class="l">Days</span></li>' +
-          '<li><span class="n" data-u="h">00</span><span class="l">Hours</span></li>' +
-          '<li><span class="n" data-u="m">00</span><span class="l">Min</span></li>' +
-          '<li><span class="n" data-u="s">00</span><span class="l">Sec</span></li>' +
+          '<li><span class="n" data-u="d"></span><span class="l">Days</span></li>' +
+          '<li><span class="n" data-u="h"></span><span class="l">Hours</span></li>' +
+          '<li><span class="n" data-u="m"></span><span class="l">Min</span></li>' +
+          '<li><span class="n" data-u="s"></span><span class="l">Sec</span></li>' +
         "</ol>" +
         '<p class="countdown-when"></p>' +
         icsButton("event", null, null, "Add both days to calendar", "Add both days of Open Bracket to your calendar (.ics file)") +
@@ -453,7 +475,8 @@
       "</div>" +
       (h.numerals && h.numerals.length
         ? '<ul class="hero-numerals" aria-label="Event at a glance">' + h.numerals.map(function (n) {
-            return '<li><span class="n">' + esc(n.value) + '</span><span class="l">' + esc(n.label) + "</span></li>";
+            return '<li' + (n.feature ? ' class="is-feature"' : "") + '><span class="n">' + esc(n.value) +
+              (n.feature ? CROWN : "") + '</span><span class="l">' + esc(n.label) + "</span></li>";
           }).join("") + "</ul>"
         : "");
   }
@@ -490,7 +513,7 @@
       return '<div class="day-panel" role="tabpanel" id="panel-' + day.id + '" aria-labelledby="tab-' + day.id + '"' +
         (i === 0 ? "" : " hidden") + ' tabindex="0">' +
         '<div class="day-head"><span class="day-date">' + esc(day.date) + "</span>" +
-          icsButton("day", i, null, "Add " + day.label + " to calendar", "Add " + day.label + ", " + day.title + ", to your calendar as one event with every session listed (.ics file)") +
+          icsButton("day", i, null, "Add " + day.label + " to calendar", "Add " + day.label + ", " + day.title + ", to your calendar as one event with every session listed (.ics file)", i === 0 ? "is-day1" : "is-day2") +
         "</div>" +
         '<p class="day-summary">' + copy(day.summary) + "</p>" +
         '<ol class="sessions">' + day.sessions.map(function (x, j) {
@@ -514,7 +537,7 @@
       '<div class="cal-bar"><span class="cal-bar-label">Add to your calendar</span>' +
         icsButton("event", null, null, "Both days", "Add both days of Open Bracket to your calendar (.ics file)") +
         s.days.map(function (day, i) {
-          return icsButton("day", i, null, day.label + " only", "Add " + day.label + ", " + day.title + ", to your calendar as one event (.ics file)");
+          return icsButton("day", i, null, day.label + " only", "Add " + day.label + ", " + day.title + ", to your calendar as one event (.ics file)", i === 0 ? "is-day1" : "is-day2");
         }).join("") +
       "</div>" +
       '<div class="day-tabs" role="tablist" aria-label="Event days">' + tabs + "</div>" +
@@ -555,14 +578,14 @@
       ["Day 1", "Day 2"].map(function (day) {
         var items = g.items.filter(function (x) { return x.day === day; });
         var formats = items.map(function (x) { return x.format; }).filter(function (f, i, a) { return a.indexOf(f) === i; });
-        return '<h3 class="games-day">' + esc(day) + ": " + esc(formats.map(function (f, i) { return i ? f.toLowerCase() : f; }).join(" and ")) + " games</h3>" +
+        return '<section class="games-group ' + (day === "Day 1" ? "is-day1" : "is-day2") + '"><h3 class="games-day">' + esc(day) + ": " + esc(formats.map(function (f, i) { return i ? f.toLowerCase() : f; }).join(" and ")) + " games</h3>" +
           (day === "Day 2" && g.duoRule ? '<p class="games-rule">' + copy(g.duoRule) + "</p>" : "") +
           '<ul class="games-grid">' + items.map(function (x) {
-            return '<li class="game"><span class="game-num" aria-hidden="true">' + esc(x.code) + "</span>" +
+            return '<li class="game ' + (x.day === "Day 1" ? "is-day1" : "is-day2") + '"><span class="game-num" aria-hidden="true">' + esc(x.code) + "</span>" +
               '<h3 class="game-name">' + esc(x.name) + "</h3>" +
               '<span class="game-format">' + esc(x.day) + " / " + esc(x.format) + " / " + esc(x.duration) + "</span>" +
               "<p>" + copy(x.desc) + "</p></li>";
-          }).join("") + "</ul>";
+          }).join("") + "</ul></section>";
       }).join("");
   }
 
@@ -574,13 +597,22 @@
       '<ul class="creators-grid">' + c.items.map(function (x, i) {
         var n = String(i + 1);
         return '<li class="creator">' +
-          '<div class="creator-slot" aria-hidden="true"><span>' + n + "</span></div>" +
+          '<div class="creator-slot"><span class="creator-num" aria-hidden="true">' + n + "</span>" +
+            '<img src="img/creators/' + (i + 1 < 10 ? "0" : "") + (i + 1) + '.jpg" alt="' + esc(x.photoAlt || x.name) + '" loading="lazy" decoding="async"></div>' +
           '<h3 class="creator-name">' + esc(x.name) + "</h3>" +
           '<span class="creator-meta">' + esc(x.handle) + "</span>" +
           '<span class="creator-meta">' + esc(x.platform) + " / " + esc(x.specialty) + "</span>" +
           (x.bio ? '<p class="creator-bio">' + copy(x.bio) + "</p>" : "") + "</li>";
       }).join("") + "</ul>" +
       '<p class="creators-more">' + copy(c.more) + "</p>";
+    // Use a photo only if it exists; otherwise keep the numeral tile.
+    Array.prototype.forEach.call(document.querySelectorAll(".creator-slot img"), function (img) {
+      function ok() { img.parentNode.classList.add("has-photo"); }
+      function missing() { img.remove(); }
+      if (img.complete) { if (img.naturalWidth) ok(); else missing(); return; }
+      img.addEventListener("load", ok);
+      img.addEventListener("error", missing);
+    });
   }
 
   // A boat time, or a pointer to the official schedule when the time isn't published.
@@ -595,7 +627,7 @@
         '<div class="route-head"><span class="route-code" aria-hidden="true">' + esc(r.code) + "</span>" +
           '<h3 class="route-from" id="route-' + esc(r.code) + '">' + esc(r.from) + "</h3></div>" +
         '<ol class="route-steps">' + r.steps.map(function (st, i) {
-          return '<li><span class="step-n" aria-hidden="true">' + (i + 1) + '</span><div><span class="step-label">' + esc(st.label) + "</span>" + copy(st.text) + "</div></li>";
+          return '<li><span class="step-label">' + esc(st.label) + "</span>" + copy(st.text) + "</li>";
         }).join("") + "</ol>" +
         '<div class="boats">' +
           '<div><span class="step-label">First boat</span>' + boatTime(r.firstBoat, r.firstBoatNote) + "</div>" +
@@ -611,7 +643,7 @@
       '<div class="routes">' + routes + "</div>" +
       '<p class="last-ferry" role="note"><strong aria-hidden="true">!</strong><span>' + copy(l.lastFerryWarning) + "</span></p>" +
       '<ul class="info-cards">' + l.cards.map(function (c, i) {
-        return '<li class="info-card"><h3><span class="i" aria-hidden="true">' + (i + 1) + "</span>" + esc(c.title) + "</h3>" +
+        return '<li class="info-card"><h3>' + esc(c.title) + "</h3>" +
           "<p>" + copy(c.body) + "</p></li>";
       }).join("") + "</ul>";
   }
@@ -623,12 +655,14 @@
       '<p class="lede">' + copy(w.intro) + "</p>" +
       tzToggle(w.channels.filter(function (c) { return c.start; })[0].start) +
       '<ul class="channels">' + w.channels.map(function (c, i) {
-        return '<li class="channel"><span class="channel-code">' + esc(c.code) + "</span>" +
-          "<h3>" + esc(c.name) + "</h3>" +
-          (c.start ? '<p class="channel-time">' + timeEl(c.start, c.end, "block") + "</p>" : "") +
-          "<p>" + copy(c.detail) + "</p>" +
-          (c.start ? icsButton("stream", i, null, "Add stream to calendar", "Add the " + c.name + " to your calendar (.ics file)") : "") +
-        "</li>";
+        var dayClass = c.code === "D1" ? " is-day1" : c.code === "D2" ? " is-day2" : "";
+        return '<li class="channel' + dayClass + '"><div class="channel-head"><span class="channel-code">' + esc(c.code) + "</span>" +
+          "<h3>" + esc(c.name) + "</h3></div>" +
+          '<div class="channel-body">' +
+            (c.start ? '<p class="channel-time">' + timeEl(c.start, c.end, "block") + "</p>" : "") +
+            "<p>" + copy(c.detail) + "</p>" +
+            (c.start ? icsButton("stream", i, null, "Add stream to calendar", "Add the " + c.name + " to your calendar (.ics file)") : "") +
+          "</div></li>";
       }).join("") + "</ul>" +
       '<p class="watch-vote">' + copy(w.vote) + "</p>";
   }
@@ -766,7 +800,7 @@
             '<span class="error" id="e-handle"></span></div>' +
           '<fieldset aria-describedby="h-heat e-heat"><legend>Qualifier heat</legend>' +
             '<p class="hint" id="h-heat">All heats are on ' + esc(d.schedule.days[0].date) + ". Each heat has 50 spots. Check in at least 30 minutes before your heat or the spot goes to standby. " +
-              "Times show in your zone with Eastern alongside.</p>" +
+              "Times show in your zone with New York time (ET) alongside.</p>" +
             tzToggle(qualifierHeats(d)[0].start) +
             '<div class="heat-options">' + heatOptions + "</div>" +
             '<span class="error" id="e-heat"></span>' +
@@ -811,7 +845,7 @@
       fs.hidden = fs.getAttribute("data-for") !== type;
     });
     var btn = form.querySelector("#reg-submit");
-    btn.className = "btn " + (type === "competitor" ? "btn-red" : "btn-blue");
+    btn.className = "btn " + (type === "competitor" ? "btn-red" : "btn-ink");
     btn.innerHTML = (form.getAttribute("data-ticket") ? "Save changes" : type === "competitor" ? "Register to compete" : "Register to spectate") +
       ' <span class="arrow" aria-hidden="true">&rarr;</span>';
   }
@@ -957,7 +991,7 @@
       '<p class="demo-notice" role="note">' + esc(r.demoNotice) + "</p>" +
       '<div id="reg-output">' +
       '<div class="confirm' + (isComp ? "" : " is-spectator") + '" role="status" tabindex="-1" id="reg-confirm">' +
-        '<div class="confirm-head"><p class="section-kicker">' + (isComp ? "Competitor" : "Spectator") + " ticket " + esc(rec.ticket) + "</p>" +
+        '<div class="confirm-head"><p class="confirm-ticket">' + (isComp ? "Competitor" : "Spectator") + " ticket " + esc(rec.ticket) + "</p>" +
           "<h3>" + (isComp ? "You're in the bracket." : "See you on the island.") + "</h3></div>" +
         '<div class="confirm-body">' +
           '<h4 class="confirm-sub">Your dates and times</h4>' +
@@ -1006,8 +1040,7 @@
     $("faq-body").innerHTML =
       sectionHead("8", "Questions", f.heading, "faq-title") +
       '<div class="faq-list">' + f.items.map(function (x, i) {
-        return '<details class="faq-item"><summary><span class="q-n" aria-hidden="true">Q' + (i + 1) +
-          "</span><span>" + esc(x.q) + '</span><span class="q-icon" aria-hidden="true">+</span></summary>' +
+        return '<details class="faq-item"><summary><span>' + esc(x.q) + '</span><span class="q-icon" aria-hidden="true">+</span></summary>' +
           '<div class="a"><p>' + copy(x.a) + "</p></div></details>";
       }).join("") + "</div>";
   }
@@ -1023,6 +1056,13 @@
         '<p class="footer-small">' + esc(m.dates) + " / " + esc(m.locationDetail) + "</p>" +
         '<p class="footer-small">' + esc(f.line) + " " + esc(f.builtOn) + "</p>" +
       "</div>";
+  }
+
+  function showPartialNotice() {
+    var n = $("placeholder-notice");
+    n.hidden = false;
+    n.classList.add("is-error");
+    n.textContent = "Part of this page didn't load. Refresh the page to get the latest version.";
   }
 
   function showLoadError(err) {
@@ -1046,17 +1086,13 @@
       window.__OB_DATA__ = data;
       if (data.meta.timezone) HOME_TZ = data.meta.timezone;
       renderNotice(data.meta);
-      renderHero(data);
-      renderAbout(data);
-      renderSchedule(data);
-      renderGames(data);
-      renderCreators(data);
-      renderLogistics(data);
-      renderWatch(data);
-      showRegistration(data);
-      renderFaq(data);
-      renderFooter(data);
-      renderCountdown(data);
+      // Render each section on its own, so one failure (for example a cached app.js
+      // meeting newer data) can't blank the whole page.
+      var failed = [renderHero, renderAbout, renderSchedule, renderGames, renderCreators, renderLogistics,
+        renderWatch, showRegistration, renderFaq, renderFooter, renderCountdown].filter(function (fn) {
+        try { fn(data); return false; } catch (err) { if (window.console) console.error(err); return true; }
+      });
+      if (failed.length) showPartialNotice();
       wirePreselect();
       wireGlobalControls();
       // If the page was opened with a hash, jump there now that content exists.

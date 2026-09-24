@@ -11,7 +11,6 @@
     "timezone": "America/New_York"
   },
   "hero": {
-    "kicker": "Two days. One island. Open field.",
     "lines": [
       "Open",
       "Bracket"
@@ -25,12 +24,31 @@
     "secondaryCta": {
       "label": "Watch",
       "href": "#watch"
-    }
+    },
+    "numerals": [
+      {
+        "value": "2",
+        "label": "Days"
+      },
+      {
+        "value": "12",
+        "label": "Games"
+      },
+      {
+        "value": "6",
+        "label": "Heats"
+      },
+      {
+        "value": "1",
+        "label": "Champion team",
+        "feature": true
+      }
+    ]
   },
   "about": {
     "heading": "Don't just watch. Qualify.",
     "paragraphs": [
-      "Open Bracket is a two-day outdoor games event on Governors Island. On Day 1, anyone 18 or older can enter a qualifier heat and play four quick solo games. The top 3 in each heat make the finals, where they're drafted onto teams captained by the creators you watch.",
+      "Open Bracket is a **two-day** outdoor games event on Governors Island. On Day 1, anyone **18 or older** can enter a qualifier heat and play **four** quick solo games. The **top 3** in each heat make the finals, where they're drafted onto teams captained by the creators you watch.",
       "Day 1 has six heats of up to 50 players, run one at a time so the crowd and the stream can follow every heat. Every heat plays the same four games, so the cut is fair. Each creator hosts one heat, and the day ends with the bracket reveal and the team draft.",
       "Day 2 is the finals. Six teams of four, each with a creator captain and three qualifiers, play eight team and duo games for placement points. No one is eliminated. Every team plays every game, and the top 3 teams take the podium. After that, all six creators meet fans for 90 minutes. The whole competition streams on Twitch and YouTube."
     ],
@@ -55,7 +73,7 @@
   },
   "schedule": {
     "heading": "Order of play",
-    "note": "Times show in your time zone, with Eastern Time (the island's zone) alongside. Use the switch to flip between them. Competitors pick a heat when they register and check in at least 30 minutes before it, or the spot goes to the standby line. Heats run one at a time. There is no lunch break on Day 1: each competitor plays one heat, and the food trucks on Colonels Row are open all day.",
+    "note": "Times show in your time zone, with New York time (ET), the island's zone, alongside. Use the switch to flip between them. Competitors pick a heat when they register and check in at least 30 minutes before it, or the spot goes to the standby line. Heats run one at a time. There is no lunch break on Day 1: each competitor plays one heat, and the food trucks on Colonels Row are open all day.",
     "days": [
       {
         "id": "day1",
@@ -319,42 +337,48 @@
         "handle": "@rosaspeeds",
         "platform": "Twitch",
         "specialty": "Speedruns",
-        "bio": "Holds records in three retro platformers and streams practice runs at 6 AM."
+        "bio": "Holds records in three retro platformers and streams practice runs at 6 AM.",
+        "photoAlt": "Rosa Asante, Twitch speedrunner, hosting Heat 1"
       },
       {
         "name": "Theo Lindqvist",
         "handle": "@theo_falls_over",
         "platform": "YouTube",
         "specialty": "Challenge videos",
-        "bio": "Tries a new sport every week and posts every failed attempt."
+        "bio": "Tries a new sport every week and posts every failed attempt.",
+        "photoAlt": "Theo Lindqvist, YouTube challenge creator, hosting Heat 2"
       },
       {
         "name": "Kwame Mori",
         "handle": "@lobbykwame",
         "platform": "Twitch",
         "specialty": "Party games",
-        "bio": "Hosts a nightly party game stream where chat sets the house rules."
+        "bio": "Hosts a nightly party game stream where chat sets the house rules.",
+        "photoAlt": "Kwame Mori, Twitch party game streamer, hosting Heat 3"
       },
       {
         "name": "June Marchetti",
         "handle": "@junebugjumps",
         "platform": "TikTok",
         "specialty": "Trick shots",
-        "bio": "Posts one trick shot a day and shows all the misses before it."
+        "bio": "Posts one trick shot a day and shows all the misses before it.",
+        "photoAlt": "June Marchetti, TikTok trick shot creator, hosting Heat 4"
       },
       {
         "name": "Luis Park",
         "handle": "@luisplaysoutside",
         "platform": "YouTube",
         "specialty": "Outdoor games",
-        "bio": "Turns playground games into full tournaments with brackets and commentary."
+        "bio": "Turns playground games into full tournaments with brackets and commentary.",
+        "photoAlt": "Luis Park, YouTube outdoor games creator, hosting Heat 5"
       },
       {
         "name": "Hana Ferreira",
         "handle": "@hana.exe",
         "platform": "Twitch",
         "specialty": "Variety",
-        "bio": "Variety streamer known for co-op chaos and skipping every tutorial."
+        "bio": "Variety streamer known for co-op chaos and skipping every tutorial.",
+        "photoAlt": "Hana Ferreira, Twitch variety streamer, hosting Heat 6"
       }
     ],
     "more": "The meet-and-greet is on Day 2, right after the podium, so it never competes with a heat or a game. All six creators sign at the merch tent for 90 minutes, each with their own line."
@@ -470,7 +494,7 @@
   },
   "watch": {
     "heading": "Watch from anywhere",
-    "intro": "Both days stream live on Twitch and YouTube. Stream times below are in your time zone, with Eastern Time alongside. Add a stream to your calendar so you don't miss the start.",
+    "intro": "Both days stream live on Twitch and YouTube. Stream times below are in your time zone, with New York time (ET) alongside. Add a stream to your calendar so you don't miss the start.",
     "channels": [
       {
         "code": "D1",
