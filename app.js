@@ -182,7 +182,8 @@
           '<div class="creator-slot" aria-hidden="true"><span>' + n + "</span></div>" +
           '<h3 class="creator-name">' + esc(x.name) + "</h3>" +
           '<span class="creator-meta">' + esc(x.handle) + "</span>" +
-          '<span class="creator-meta">' + esc(x.platform) + " / " + esc(x.specialty) + "</span></li>";
+          '<span class="creator-meta">' + esc(x.platform) + " / " + esc(x.specialty) + "</span>" +
+          (x.bio ? '<p class="creator-bio">' + copy(x.bio) + "</p>" : "") + "</li>";
       }).join("") + "</ul>" +
       '<p class="creators-more">' + copy(c.more) + "</p>";
   }
