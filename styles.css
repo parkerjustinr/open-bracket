@@ -1097,3 +1097,7 @@ section[id] { scroll-margin-top: 104px; }
   .notes-list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 24px; }
   .notes-list h4 { margin: 0; }
 }
+
+/* Notes: keep the halftone in the top-right corner and lighter, so it never sits behind the body text */
+#notes { --ht-at: 100% 0%; --ht-alpha: 0.35; }
+@media (max-width: 759px) { #notes { --ht-alpha: 0.2; } }
