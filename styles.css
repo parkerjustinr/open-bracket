@@ -1086,3 +1086,14 @@ section[id] { scroll-margin-top: 104px; }
 .brand:focus-visible .brand-mark { background: var(--paper); color: var(--red); }
 .nav-list a:hover,
 .nav-list a:focus-visible { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
+
+/* ---------- Notes from the ops side: ruled list on ink ---------- */
+.notes-subhead { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: var(--fs-h4); line-height: 1; margin: 8px 0 12px; }
+.notes-list { display: grid; margin-bottom: 32px; }
+.notes-list li { border-top: 3px solid var(--paper); padding: 16px 0 20px; }
+.notes-list h4 { font-family: var(--cond); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--fs-ui); margin: 0 0 6px; }
+.notes-list p { margin: 0; }
+@media (min-width: 760px) {
+  .notes-list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 24px; }
+  .notes-list h4 { margin: 0; }
+}

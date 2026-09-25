@@ -1074,6 +1074,19 @@
       }).join("");
   }
 
+  function renderNotes(d) {
+    var n = d.notes;
+    if (!n) return;
+    $("notes-body").innerHTML =
+      sectionHead("9", "Notes", n.heading, "notes-title") +
+      '<p class="lede">' + copy(n.intro) + "</p>" +
+      '<h3 class="notes-subhead">' + esc(n.itemsHeading) + "</h3>" +
+      '<ul class="notes-list">' + n.items.map(function (x) {
+        return '<li><h4>' + esc(x.title) + "</h4><p>" + copy(x.body) + "</p></li>";
+      }).join("") + "</ul>" +
+      n.paragraphs.map(function (p) { return "<p>" + copy(p) + "</p>"; }).join("");
+  }
+
   function renderFooter(d) {
     var f = d.footer, m = d.meta;
     $("footer").innerHTML =
@@ -1118,7 +1131,7 @@
       // Render each section on its own, so one failure (for example a cached app.js
       // meeting newer data) can't blank the whole page.
       var failed = [renderHero, renderAbout, renderSchedule, renderGames, renderCreators, renderLogistics,
-        renderWatch, showRegistration, renderFaq, renderFooter, renderCountdown].filter(function (fn) {
+        renderWatch, showRegistration, renderFaq, renderNotes, renderFooter, renderCountdown].filter(function (fn) {
         try { fn(data); return false; } catch (err) { if (window.console) console.error(err); return true; }
       });
       if (failed.length) showPartialNotice();
