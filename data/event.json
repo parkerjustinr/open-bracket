@@ -689,9 +689,39 @@
       }
     ]
   },
+  "notes": {
+    "heading": "Notes from the [[yellow:ops side]]",
+    "intro": "I built this page for a two-day games event on an island you can only reach by ferry. The open qualifier is the point: anyone 18 or older can enter a Day 1 heat, and the top 3 in each heat end up on a creator's team on Day 2. That only works if the logistics stay out of the way, so most of this page answers the questions that usually land on the check-in desk.",
+    "itemsHeading": "Five things that go wrong, and what here catches them",
+    "items": [
+      {
+        "title": "Stream times in the wrong time zone",
+        "body": "Remote viewers read times in their own zone. Every time on the page converts to the visitor's zone with New York time (ET) next to it, and the calendar files store UTC, so any calendar app gets it right."
+      },
+      {
+        "title": "Nobody can drive to check-in",
+        "body": "The island is ferry only. Getting there lists all three routes with first and last boats and the free boats before 11 AM, and Heat 1 check-in closes after the first Brooklyn and Red Hook boats land."
+      },
+      {
+        "title": "Competitors and spectators get mixed up",
+        "body": "Registration splits into Compete and Spectate with different fields for each. The confirmation spells out your heat or your days and when to check in, and the FAQ is grouped the same way."
+      },
+      {
+        "title": "People pack for a city day",
+        "body": "It's mid-October on the water. The packing list, the bag policy, the water stations and the cold and windy answer all say it before anyone gets on a boat."
+      },
+      {
+        "title": "The last ferry",
+        "body": "Missing it strands people. Every route card shows the last boat back in red, the warning block repeats all three, and both days finish competing at least an hour before the earliest one."
+      }
+    ],
+    "paragraphs": [
+      "Registration is faked. Submissions are saved only in your browser with localStorage, and no emails go out. That lets the whole flow, including changing a registration, run on a static site with no server or database.",
+      "In a real build, the registration form would post to Arrived's forms, and heat capacity and the standby list would come from there. The ticket number and QR code would be the ones Arrived's check-in scans at the tent, and check-in would print the badge: name, handle and heat for competitors, day for spectators. Reminders would be sent from the same records instead of from this page."
+    ]
+  },
   "footer": {
     "line": "Open Bracket is a fictional event made for the Happily Design Jam.",
-    "builtOn": "Event site concept built on Arrived.",
     "links": [
       {
         "label": "Schedule",
