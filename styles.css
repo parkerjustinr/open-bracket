@@ -1054,3 +1054,35 @@ section[id] { scroll-margin-top: 104px; }
 .faq-group.tone-red .faq-item[open] .q-text { color: var(--red); }
 .faq-group.tone-blue .faq-item[open] .q-text { color: var(--blue); }
 .faq-group.tone-yellow .faq-item[open] .q-text { background: var(--yellow); color: var(--ink); padding: 0 0.1em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* ---------- Route cards: one color per route ---------- */
+.route { --route: var(--red); --route-text: var(--paper); --route-label: var(--red); transition: transform 120ms ease, box-shadow 120ms ease; }
+.route-b { --route: var(--blue); --route-label: var(--blue); }
+.route-r { --route: var(--yellow); --route-text: var(--ink); --route-label: var(--ink); }
+/* Same header height on every card, even when a title wraps */
+.route-head { background: var(--route); color: var(--route-text); min-height: 5.75rem; }
+.route-code { display: inline-grid; place-items: center; flex: 0 0 auto; width: 3.25rem; height: 3.25rem; background: var(--paper); color: var(--route); font-size: 2.4rem; line-height: 1; }
+.route-r .route-code { color: var(--ink); }
+.route .route-steps .step-label { color: var(--route-label); }
+/* Last boat back is a warning, so it is red on every card */
+.route .boats div + div { background: var(--red); color: var(--paper); }
+/* Hover or keyboard focus inside a card: lift with a hard block in the route color */
+.route:hover, .route:focus-within { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--route); }
+@media (prefers-reduced-motion: reduce) {
+  .route:hover, .route:focus-within { transform: none; box-shadow: none; }
+}
+
+/* ---------- Top bar ---------- */
+.site-header { border-bottom: 0; padding-bottom: 6px; }
+@media (min-width: 960px) { .site-header { padding-bottom: 16px; } }
+/* A 6px stripe of three flat blocks replaces the bottom border */
+.header-stripe { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; display: flex; }
+.header-stripe span { flex: 1 1 0; }
+.header-stripe span:nth-child(1) { background: var(--red); }
+.header-stripe span:nth-child(2) { background: var(--blue); }
+.header-stripe span:nth-child(3) { background: var(--yellow); }
+.brand-mark { background: var(--red); border-color: var(--red); color: var(--paper); }
+.brand:hover .brand-mark,
+.brand:focus-visible .brand-mark { background: var(--paper); color: var(--red); }
+.nav-list a:hover,
+.nav-list a:focus-visible { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
