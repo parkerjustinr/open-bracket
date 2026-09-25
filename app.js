@@ -647,7 +647,7 @@
   function renderLogistics(d) {
     var l = d.logistics;
     var routes = l.routes.map(function (r) {
-      return '<article class="route" aria-labelledby="route-' + esc(r.code) + '">' +
+      return '<article class="route route-' + esc(r.code.toLowerCase()) + '" aria-labelledby="route-' + esc(r.code) + '">' +
         '<div class="route-head"><span class="route-code" aria-hidden="true">' + esc(r.code) + "</span>" +
           '<h3 class="route-from" id="route-' + esc(r.code) + '">' + esc(r.from) + "</h3></div>" +
         '<ol class="route-steps">' + r.steps.map(function (st, i) {
