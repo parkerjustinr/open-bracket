@@ -1083,7 +1083,7 @@
           return '<li><a href="' + esc(l.href) + '">' + esc(l.label) + "</a></li>";
         }).join("") + "</ul></nav>" +
         '<p class="footer-small">' + esc(m.dates) + " / " + esc(m.locationDetail) + "</p>" +
-        '<p class="footer-small">' + esc(f.line) + " " + esc(f.builtOn) + "</p>" +
+        '<p class="footer-small">' + esc(f.line) + "</p>" +
       "</div>";
   }
 
