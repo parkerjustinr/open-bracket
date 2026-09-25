@@ -110,7 +110,8 @@
             "code": "H1",
             "title": "Heat 1",
             "detail": "Hosted by Rosa Asante. Check in by {{t:2026-10-17T10:45:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says. From Red Hook, take the 9:45 AM boat. From Brooklyn Bridge Park, take the 10:15 AM boat.",
-            "track": "Qualifiers"
+            "track": "Qualifiers",
+            "host": "Rosa Asante"
           },
           {
             "start": "2026-10-17T12:00:00-04:00",
@@ -118,7 +119,8 @@
             "code": "H2",
             "title": "Heat 2",
             "detail": "Hosted by Theo Lindqvist. Check in by {{t:2026-10-17T11:30:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
-            "track": "Qualifiers"
+            "track": "Qualifiers",
+            "host": "Theo Lindqvist"
           },
           {
             "start": "2026-10-17T12:45:00-04:00",
@@ -126,7 +128,8 @@
             "code": "H3",
             "title": "Heat 3",
             "detail": "Hosted by Kwame Mori. Check in by {{t:2026-10-17T12:15:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
-            "track": "Qualifiers"
+            "track": "Qualifiers",
+            "host": "Kwame Mori"
           },
           {
             "start": "2026-10-17T13:30:00-04:00",
@@ -134,7 +137,8 @@
             "code": "H4",
             "title": "Heat 4",
             "detail": "Hosted by June Marchetti. Check in by {{t:2026-10-17T13:00:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
-            "track": "Qualifiers"
+            "track": "Qualifiers",
+            "host": "June Marchetti"
           },
           {
             "start": "2026-10-17T14:15:00-04:00",
@@ -142,7 +146,8 @@
             "code": "H5",
             "title": "Heat 5",
             "detail": "Hosted by Luis Park. Check in by {{t:2026-10-17T13:45:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
-            "track": "Qualifiers"
+            "track": "Qualifiers",
+            "host": "Luis Park"
           },
           {
             "start": "2026-10-17T15:00:00-04:00",
@@ -150,7 +155,8 @@
             "code": "H6",
             "title": "Heat 6",
             "detail": "Hosted by Hana Ferreira. Check in by {{t:2026-10-17T14:30:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
-            "track": "Qualifiers"
+            "track": "Qualifiers",
+            "host": "Hana Ferreira"
           },
           {
             "start": "2026-10-17T15:45:00-04:00",
@@ -565,7 +571,9 @@
         "id": "both",
         "label": "Both days"
       }
-    ]
+    ],
+    "heatGamesLine": "Every heat plays the same 4 games: Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
+    "heatBoatLine": "Heat 1 from Brooklyn: take the 9:45 AM Red Hook boat or the 10:15 AM Pier 6 boat."
   },
   "faq": {
     "heading": "[[blue:FAQ]]",

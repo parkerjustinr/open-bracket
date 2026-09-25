@@ -787,7 +787,8 @@
         '<span class="heat-body"><span class="heat-num" aria-hidden="true">' + esc(h.code.replace(/\D/g, "")) + "</span>" +
         '<span class="heat-name">' + esc(h.title) + "</span>" +
         timeEl(h.start, h.end, "block") +
-        '<span class="heat-games">' + copy(h.detail) + "</span></span></label>";
+        (h.host ? '<span class="heat-meta">Hosted by ' + esc(h.host) + "</span>" : "") +
+        '<span class="heat-meta">Check in by ' + timeEl(isoMinus(h.start, 30), null, "inline") + "</span></span></label>";
     }).join("");
 
     var dayOptions = r.spectatorDays.map(function (x) {
@@ -826,7 +827,9 @@
             '<p class="hint" id="h-heat">All heats are on ' + esc(d.schedule.days[0].date) + ". Each heat has 50 spots. Check in at least 30 minutes before your heat or the spot goes to standby. " +
               "Times show in your zone with New York time (ET) alongside.</p>" +
             tzToggle(qualifierHeats(d)[0].start) +
+            (r.heatGamesLine ? '<p class="heat-line">' + copy(r.heatGamesLine) + "</p>" : "") +
             '<div class="heat-options">' + heatOptions + "</div>" +
+            (r.heatBoatLine ? '<p class="heat-line">' + copy(r.heatBoatLine) + "</p>" : "") +
             '<span class="error" id="e-heat"></span>' +
           "</fieldset>" +
           '<fieldset><legend>Emergency contact</legend>' +

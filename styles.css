@@ -1101,3 +1101,10 @@ section[id] { scroll-margin-top: 104px; }
 /* Notes: keep the halftone in the top-right corner and lighter, so it never sits behind the body text */
 #notes { --ht-at: 100% 0%; --ht-alpha: 0.35; }
 @media (max-width: 759px) { #notes { --ht-alpha: 0.2; } }
+
+/* Heat cards: every card the same size; the shared games and the Heat 1 boat note sit outside the grid */
+.heat-options { grid-auto-rows: 1fr; align-items: stretch; }
+.heat-meta { font-size: 0.92rem; }
+.heat-line { margin: 12px 0; font-weight: 600; }
+.heat-body .heat-num { grid-row: 1 / span 4; }
+.heat-body > :not(.heat-num) { grid-column: 2; }
