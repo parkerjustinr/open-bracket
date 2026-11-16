@@ -10,10 +10,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23cf3a22%27/%3E%3Ctext x=%2716%27 y=%2723%27 font-family=%27Impact,sans-serif%27 font-size=%2718%27 fill=%27%23f2ede3%27 text-anchor=%27middle%27%3EOB%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=2026-09-25d">
+  <link rel="stylesheet" href="styles.css?v=2026-11-16a">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Duotone for creator portraits: shadows in blue-deep (#152e7e), highlights in paper (#f2ecdf) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="duotone" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0 0 0 1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.082 0.949"/>
+        <feFuncG type="table" tableValues="0.180 0.925"/>
+        <feFuncB type="table" tableValues="0.494 0.875"/>
+      </feComponentTransfer>
+    </filter>
+  </svg>
 
   <div class="notice" role="note" id="placeholder-notice" hidden>Loading the event page...</div>
 
@@ -85,7 +97,7 @@
 
   <footer class="site-footer" id="footer"></footer>
 
-  <script src="app.js?v=2026-09-25d" defer></script>
+  <script src="app.js?v=2026-11-16a" defer></script>
   <script>
     // If app.js never runs (missing file, or the page was opened straight from disk), say so instead of loading forever.
     setTimeout(function () {

@@ -348,6 +348,15 @@
   // ---------- countdown ----------
   var countdownTimer = null;
 
+  // Once the last day has ended, the page is in its wrap state: the html element gets
+  // .is-over, and CSS hides every register and compete control (nav button, hero Compete,
+  // footer Register link, the registration section).
+  function eventOver(d) {
+    var days = d.schedule.days;
+    return Date.now() >= new Date(dayBounds(days[days.length - 1]).end).getTime();
+  }
+  function markOver(on) { document.documentElement.classList.toggle("is-over", !!on); }
+
   function renderCountdown(d) {
     var box = $("countdown");
     if (!box) return;
@@ -413,6 +422,7 @@
             when.innerHTML = 'Not on the island? <a href="#watch">Watch the stream</a>.';
           }
         } else {
+          markOver(true);
           label.textContent = "That's a wrap. Thanks for playing.";
           if (when.getAttribute("data-for") !== "done") {
             when.setAttribute("data-for", "done");
@@ -541,6 +551,10 @@
         "</div>" +
         '<p class="day-summary">' + copy(day.summary) + "</p>" +
         '<ol class="sessions">' + day.sessions.map(function (x, j) {
+          if (x.track === "Qualifiers") {
+            var heats = day.sessions.filter(function (h) { return h.track === "Qualifiers"; });
+            return heats[0] === x ? heatTable(d, i, day, heats) : "";
+          }
           return '<li class="session' + sessionClass(x.track) + (x.highlight ? " is-gold" : "") + '">' +
             '<span class="session-code" aria-hidden="true">' + esc(x.code) + "</span>" +
             '<span class="session-time">' + timeEl(x.start, x.end, "block") + "</span>" +
@@ -568,6 +582,69 @@
       panels;
 
     wireTabs($("schedule-body"));
+  }
+
+  function creatorIndex(d, name) {
+    for (var k = 0; k < d.creators.items.length; k++) if (d.creators.items[k].name === name) return k;
+    return -1;
+  }
+
+  function creatorPhoto(k, size) {
+    var n = (k + 1 < 10 ? "0" : "") + (k + 1);
+    return "img/creators/" + n + (size === "sm" ? "-sm" : "") + ".jpg";
+  }
+
+  // All Day 1 heats in one table: the shared games are stated once above it, and only
+  // what is unique to a heat (like the Heat 1 boat note) sits on that heat's row.
+  function heatTable(d, dayIndex, day, heats) {
+    var first = heats[0], last = heats[heats.length - 1];
+    var nums = heats.map(function (h) { return h.code.replace(/\D/g, ""); });
+    var rows = heats.map(function (h) {
+      var j = day.sessions.indexOf(h), k = creatorIndex(d, h.host);
+      return '<tbody class="heat-group" id="heat-' + esc(h.code.toLowerCase()) + '" role="rowgroup">' +
+        '<tr class="heat-row" role="row">' +
+          '<th scope="row" role="rowheader" class="hc-heat"><span class="hc-num">' + esc(h.code.replace(/\D/g, "")) + '</span><span class="hc-name">' + esc(h.title) + "</span></th>" +
+          '<td role="cell" class="hc-time">' + timeEl(h.start, h.end, "block") + "</td>" +
+          '<td role="cell" class="hc-check"><span class="hc-label">Check in by</span>' + timeEl(isoMinus(h.start, 30), null, "block") + "</td>" +
+          '<td role="cell" class="hc-host">' + (h.host
+            ? '<span class="host-photo">' + (k !== -1 ? '<img src="' + creatorPhoto(k, "sm") + '" alt="" width="32" height="32" loading="lazy" decoding="async">' : "") + "</span>" +
+              '<span class="host-name">' + esc(h.host) + "</span>"
+            : "") + "</td>" +
+          '<td role="cell" class="hc-cal">' + icsButton("session", dayIndex, j, "Calendar", "Add " + h.title + ", " + day.label + ", to your calendar (.ics file)") + "</td>" +
+        "</tr>" +
+        (h.note ? '<tr class="heat-note" role="row"><td role="cell" colspan="5">' + copy(h.note) + "</td></tr>" : "") +
+      "</tbody>";
+    }).join("");
+    return '<li class="session session-heats is-play">' +
+      '<span class="session-code" aria-hidden="true">H</span>' +
+      '<span class="session-time">' + timeEl(first.start, last.end, "block") + "</span>" +
+      '<div class="session-body"><h3 class="session-title">Heats ' + esc(nums[0]) + " to " + esc(nums[nums.length - 1]) + "</h3>" +
+        (d.registration.heatGamesLine ? '<p class="session-detail">' + copy(d.registration.heatGamesLine) + "</p>" : "") +
+      "</div>" +
+      '<span class="session-track">' + esc(first.track) + "</span>" +
+      '<table class="heat-table" role="table" aria-label="' + esc(day.label) + ' qualifier heats">' +
+        '<thead role="rowgroup"><tr role="row">' +
+          '<th scope="col" role="columnheader">Heat</th><th scope="col" role="columnheader">Time</th>' +
+          '<th scope="col" role="columnheader">Check in by</th><th scope="col" role="columnheader">Host</th>' +
+          '<th scope="col" role="columnheader"><span class="visually-hidden">Calendar</span></th>' +
+        "</tr></thead>" + rows +
+      "</table></li>";
+  }
+
+  // A link to a heat row (from a creator card, or a shared URL) opens the Day 1 tab first,
+  // so the row is visible, and marks that one row as the highlighted heat.
+  function revealHash(hash) {
+    var el = hash && hash.length > 1 ? document.getElementById(hash.slice(1)) : null;
+    if (el && el.classList.contains("heat-group")) {
+      Array.prototype.forEach.call(document.querySelectorAll(".heat-group.is-target"), function (g) { g.classList.remove("is-target"); });
+      el.classList.add("is-target");
+    }
+    var panel = el && el.closest && el.closest(".day-panel");
+    if (panel && panel.hidden) {
+      var tab = document.getElementById(panel.getAttribute("aria-labelledby"));
+      if (tab) tab.click();
+    }
+    return el;
   }
 
   function wireTabs(root) {
@@ -620,13 +697,17 @@
       '<p class="lede">' + copy(c.intro) + "</p>" +
       '<ul class="creators-grid">' + c.items.map(function (x, i) {
         var n = String(i + 1);
-        return '<li class="creator">' +
+        var heat = qualifierHeats(d).filter(function (h) { return h.host === x.name; })[0];
+        return '<li class="creator' + (heat ? " has-heat" : "") + '">' +
           '<div class="creator-slot"><span class="creator-num" aria-hidden="true">' + n + "</span>" +
-            '<img src="img/creators/' + (i + 1 < 10 ? "0" : "") + (i + 1) + '.jpg" alt="' + esc(x.photoAlt || x.name) + '" loading="lazy" decoding="async"></div>' +
+            '<img src="' + creatorPhoto(i) + '" alt="' + esc(x.photoAlt || x.name) + '" loading="lazy" decoding="async"></div>' +
           '<h3 class="creator-name">' + esc(x.name) + "</h3>" +
           '<span class="creator-meta">' + esc(x.handle) + "</span>" +
           '<span class="creator-meta">' + esc(x.platform) + " / " + esc(x.specialty) + "</span>" +
-          (x.bio ? '<p class="creator-bio">' + copy(x.bio) + "</p>" : "") + "</li>";
+          (x.bio ? '<p class="creator-bio">' + copy(x.bio) + "</p>" : "") +
+          (heat ? '<a class="creator-heat" href="#heat-' + esc(heat.code.toLowerCase()) + '">' + esc(heat.title) +
+            ' <span class="arrow" aria-hidden="true">&rarr;</span><span class="visually-hidden">, hosted by ' + esc(x.name) + ", in the schedule</span></a>" : "") +
+          "</li>";
       }).join("") + "</ul>" +
       '<p class="creators-more">' + copy(c.more) + "</p>";
     // Use a photo only if it exists; otherwise keep the numeral tile.
@@ -774,11 +855,15 @@
     var type = p.type || "competitor";
     function val(k) { return esc(p[k] || ""); }
 
+    var rowsDef = r.compareRows || [];
     var typeOptions = r.types.map(function (t) {
-      return '<div class="type-option">' +
+      return '<div class="type-option" style="--rows:' + (rowsDef.length + 1) + '">' +
         '<input type="radio" name="type" id="type-' + t.id + '" value="' + t.id + '"' + (t.id === type ? " checked" : "") + ">" +
-        '<label for="type-' + t.id + '"><span class="t-name">' + esc(t.label) + '</span><span class="t-price">' + copy(t.price) +
-        '</span><span class="t-desc">' + copy(t.desc) + "</span></label></div>";
+        '<label for="type-' + t.id + '"><span class="t-name">' + esc(t.label) + "</span>" +
+        rowsDef.map(function (row) {
+          return '<span class="t-row t-' + esc(row.key) + '"><span class="t-label">' + esc(row.label) + '</span><span class="t-value">' + copy(t[row.key] || "") + "</span></span>";
+        }).join("") +
+        "</label></div>";
     }).join("");
 
     var heatOptions = qualifierHeats(d).map(function (h) {
@@ -1130,6 +1215,7 @@
     .then(function (data) {
       window.__OB_DATA__ = data;
       if (data.meta.timezone) HOME_TZ = data.meta.timezone;
+      markOver(eventOver(data));
       renderNotice(data.meta);
       // Render each section on its own, so one failure (for example a cached app.js
       // meeting newer data) can't blank the whole page.
@@ -1142,9 +1228,14 @@
       wireGlobalControls();
       // If the page was opened with a hash, jump there now that content exists.
       if (location.hash && location.hash.length > 1) {
-        var target = document.getElementById(location.hash.slice(1));
+        var target = revealHash(location.hash);
         if (target) target.scrollIntoView();
       }
+      // Runs before the browser follows the link, so the Day 1 tab is open when it scrolls.
+      document.addEventListener("click", function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="#heat-"]');
+        if (a) revealHash(a.getAttribute("href"));
+      });
     })
     .catch(showLoadError);
 })();

@@ -3,8 +3,8 @@
     "name": "Open Bracket",
     "edition": "Vol. 1",
     "tagline": "The creator games where the crowd is in the bracket.",
-    "dates": "Sat, Oct 17 - Sun, Oct 18, 2026",
-    "datesShort": "Oct 17-18, 2026",
+    "dates": "Sat, Oct 16 - Sun, Oct 17, 2027",
+    "datesShort": "Oct 16-17, 2027",
     "location": "Governors Island, New York",
     "calendarLocation": "Parade Ground, Governors Island, New York, NY",
     "locationDetail": "Parade Ground and Colonels Row, Governors Island. Car-free. Ferry only.",
@@ -92,133 +92,134 @@
       {
         "id": "day1",
         "label": "Day 1",
-        "date": "Sat, Oct 17, 2026",
+        "date": "Sat, Oct 16, 2027",
         "title": "Open Qualifiers",
         "summary": "Six heats of up to 50 players, one at a time, so every heat gets the whole crowd and the whole stream. Every heat plays the same four solo games. The host creator opens with an exhibition round of Paper Ball Shootout, then everyone plays for placement points, and the host announces the heat's top 3. The day ends with the live team draft and the bracket reveal.",
         "sessions": [
           {
-            "start": "2026-10-17T10:00:00-04:00",
-            "end": "2026-10-17T10:45:00-04:00",
+            "start": "2027-10-16T10:00:00-04:00",
+            "end": "2027-10-16T10:45:00-04:00",
             "code": "CK",
             "title": "Check-in opens",
-            "detail": "Pick up your wristband at the check-in tent on the Parade Ground, about 5 minutes on foot from the ferry. Heat 1 checks in by {{t:2026-10-17T10:45:00-04:00}}. Every other heat checks in at least 30 minutes before it starts. Spectators can pick up wristbands any time.",
+            "detail": "Pick up your wristband at the check-in tent on the Parade Ground, about 5 minutes on foot from the ferry. Heat 1 checks in by {{t:2027-10-16T10:45:00-04:00}}. Every other heat checks in at least 30 minutes before it starts. Spectators can pick up wristbands any time.",
             "track": "Arrival"
           },
           {
-            "start": "2026-10-17T11:15:00-04:00",
-            "end": "2026-10-17T12:00:00-04:00",
+            "start": "2027-10-16T11:15:00-04:00",
+            "end": "2027-10-16T12:00:00-04:00",
             "code": "H1",
             "title": "Heat 1",
-            "detail": "Hosted by Rosa Asante. Check in by {{t:2026-10-17T10:45:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says. From Red Hook, take the 9:45 AM boat. From Brooklyn Bridge Park, take the 10:15 AM boat.",
+            "detail": "Hosted by Rosa Asante. Check in by {{t:2027-10-16T10:45:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says. From Red Hook, take the 9:45 AM boat. From Brooklyn Bridge Park, take the 10:15 AM boat.",
             "track": "Qualifiers",
-            "host": "Rosa Asante"
+            "host": "Rosa Asante",
+            "note": "From Red Hook, take the {{t:2027-10-16T09:45:00-04:00}} boat. From Brooklyn Bridge Park, take the {{t:2027-10-16T10:15:00-04:00}} boat."
           },
           {
-            "start": "2026-10-17T12:00:00-04:00",
-            "end": "2026-10-17T12:45:00-04:00",
+            "start": "2027-10-16T12:00:00-04:00",
+            "end": "2027-10-16T12:45:00-04:00",
             "code": "H2",
             "title": "Heat 2",
-            "detail": "Hosted by Theo Lindqvist. Check in by {{t:2026-10-17T11:30:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
+            "detail": "Hosted by Theo Lindqvist. Check in by {{t:2027-10-16T11:30:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers",
             "host": "Theo Lindqvist"
           },
           {
-            "start": "2026-10-17T12:45:00-04:00",
-            "end": "2026-10-17T13:30:00-04:00",
+            "start": "2027-10-16T12:45:00-04:00",
+            "end": "2027-10-16T13:30:00-04:00",
             "code": "H3",
             "title": "Heat 3",
-            "detail": "Hosted by Kwame Mori. Check in by {{t:2026-10-17T12:15:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
+            "detail": "Hosted by Kwame Mori. Check in by {{t:2027-10-16T12:15:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers",
             "host": "Kwame Mori"
           },
           {
-            "start": "2026-10-17T13:30:00-04:00",
-            "end": "2026-10-17T14:15:00-04:00",
+            "start": "2027-10-16T13:30:00-04:00",
+            "end": "2027-10-16T14:15:00-04:00",
             "code": "H4",
             "title": "Heat 4",
-            "detail": "Hosted by June Marchetti. Check in by {{t:2026-10-17T13:00:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
+            "detail": "Hosted by June Marchetti. Check in by {{t:2027-10-16T13:00:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers",
             "host": "June Marchetti"
           },
           {
-            "start": "2026-10-17T14:15:00-04:00",
-            "end": "2026-10-17T15:00:00-04:00",
+            "start": "2027-10-16T14:15:00-04:00",
+            "end": "2027-10-16T15:00:00-04:00",
             "code": "H5",
             "title": "Heat 5",
-            "detail": "Hosted by Luis Park. Check in by {{t:2026-10-17T13:45:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
+            "detail": "Hosted by Luis Park. Check in by {{t:2027-10-16T13:45:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers",
             "host": "Luis Park"
           },
           {
-            "start": "2026-10-17T15:00:00-04:00",
-            "end": "2026-10-17T15:45:00-04:00",
+            "start": "2027-10-16T15:00:00-04:00",
+            "end": "2027-10-16T15:45:00-04:00",
             "code": "H6",
             "title": "Heat 6",
-            "detail": "Hosted by Hana Ferreira. Check in by {{t:2026-10-17T14:30:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
+            "detail": "Hosted by Hana Ferreira. Check in by {{t:2027-10-16T14:30:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers",
             "host": "Hana Ferreira"
           },
           {
-            "start": "2026-10-17T15:45:00-04:00",
-            "end": "2026-10-17T16:15:00-04:00",
+            "start": "2027-10-16T15:45:00-04:00",
+            "end": "2027-10-16T16:15:00-04:00",
             "code": "DR",
             "title": "Team draft",
             "detail": "The 18 qualifiers, announced at the end of each heat, come to the main stage. Each creator picks three, live.",
             "track": "Main stage"
           },
           {
-            "start": "2026-10-17T16:15:00-04:00",
-            "end": "2026-10-17T16:30:00-04:00",
+            "start": "2027-10-16T16:15:00-04:00",
+            "end": "2027-10-16T16:30:00-04:00",
             "code": "BK",
             "title": "Bracket reveal",
-            "detail": "The six finished teams and the Day 2 bracket go up on the main stage screen, the last thing on Day 1. Ends an hour before the first last boat of the day, {{t:2026-10-17T17:30:00-04:00}} to Red Hook.",
+            "detail": "The six finished teams and the Day 2 bracket go up on the main stage screen, the last thing on Day 1. Ends an hour before the first last boat of the day, {{t:2027-10-16T17:30:00-04:00}} to Red Hook.",
             "track": "Main stage"
           }
         ],
-        "isoDate": "2026-10-17"
+        "isoDate": "2027-10-16"
       },
       {
         "id": "day2",
         "label": "Day 2",
-        "date": "Sun, Oct 18, 2026",
+        "date": "Sun, Oct 17, 2027",
         "title": "Finals",
         "summary": "Six teams of four, drafted at the end of Day 1: one creator captain and three qualifiers. Seven games across Blocks A and B, a halftime show over lunch, then Block C is the Chat Decides finale. No one is eliminated. Every team plays every game. The top 3 teams take the podium, then all six creators meet fans.",
         "sessions": [
           {
-            "start": "2026-10-18T10:00:00-04:00",
-            "end": "2026-10-18T10:45:00-04:00",
+            "start": "2027-10-17T10:00:00-04:00",
+            "end": "2027-10-17T10:45:00-04:00",
             "code": "CK",
             "title": "Gates and check-in",
-            "detail": "Qualifiers check in at the green tent by {{t:2026-10-18T10:45:00-04:00}}. Spectators go straight to the Parade Ground.",
+            "detail": "Qualifiers check in at the green tent by {{t:2027-10-17T10:45:00-04:00}}. Spectators go straight to the Parade Ground.",
             "track": "Arrival"
           },
           {
-            "start": "2026-10-18T11:00:00-04:00",
-            "end": "2026-10-18T12:15:00-04:00",
+            "start": "2027-10-17T11:00:00-04:00",
+            "end": "2027-10-17T12:15:00-04:00",
             "code": "A",
             "title": "Block A",
             "detail": "Skills Challenge (team), Balloon Toss (duo), Three-Legged Race (duo), Shuttle Relay (team). The stream starts here.",
             "track": "Finals"
           },
           {
-            "start": "2026-10-18T12:15:00-04:00",
-            "end": "2026-10-18T13:00:00-04:00",
+            "start": "2027-10-17T12:15:00-04:00",
+            "end": "2027-10-17T13:00:00-04:00",
             "code": "HT",
             "title": "Lunch and halftime show",
             "detail": "The Crowd Cup: spectators picked from the crowd play Musical Chairs and Paper Ball Shootout on the main stage for merch prizes, while the commentators walk through the standings on stream. Players and creators get a real 45-minute break. Food trucks on Colonels Row.",
             "track": "Break"
           },
           {
-            "start": "2026-10-18T13:00:00-04:00",
-            "end": "2026-10-18T14:15:00-04:00",
+            "start": "2027-10-17T13:00:00-04:00",
+            "end": "2027-10-17T14:15:00-04:00",
             "code": "B",
             "title": "Block B",
             "detail": "Crate Stack (team), Blind Maze (duo), Lag Spike (duo). Standings go up on the main stage screen after every game.",
             "track": "Finals"
           },
           {
-            "start": "2026-10-18T14:30:00-04:00",
-            "end": "2026-10-18T15:00:00-04:00",
+            "start": "2027-10-17T14:30:00-04:00",
+            "end": "2027-10-17T15:00:00-04:00",
             "code": "C",
             "title": "Block C: the finale",
             "detail": "Chat Decides, the last game, worth double points. Stream chat votes the obstacle route at every fork.",
@@ -226,8 +227,8 @@
             "highlight": true
           },
           {
-            "start": "2026-10-18T15:05:00-04:00",
-            "end": "2026-10-18T15:30:00-04:00",
+            "start": "2027-10-17T15:05:00-04:00",
+            "end": "2027-10-17T15:30:00-04:00",
             "code": "P",
             "title": "Podium",
             "detail": "The top 3 teams are revealed on the main stage and get their prizes. The first-place team is the Open Bracket champion.",
@@ -235,15 +236,15 @@
             "highlight": true
           },
           {
-            "start": "2026-10-18T15:30:00-04:00",
-            "end": "2026-10-18T17:00:00-04:00",
+            "start": "2027-10-17T15:30:00-04:00",
+            "end": "2027-10-17T17:00:00-04:00",
             "code": "MG",
             "title": "Meet-and-greet",
-            "detail": "All six creators at the merch tent for 90 minutes, each with their own line, so you have time to meet two or more. Taking the {{t:2026-10-18T17:30:00-04:00}} Red Hook boat? Leave by about {{t:2026-10-18T17:10:00-04:00}}. Manhattan and Pier 6 boats run until {{t:2026-10-18T18:00:00-04:00}}.",
+            "detail": "All six creators at the merch tent for 90 minutes, each with their own line, so you have time to meet two or more. Taking the {{t:2027-10-17T17:30:00-04:00}} Red Hook boat? Leave by about {{t:2027-10-17T17:10:00-04:00}}. Manhattan and Pier 6 boats run until {{t:2027-10-17T18:00:00-04:00}}.",
             "track": "Creators"
           }
         ],
-        "isoDate": "2026-10-18"
+        "isoDate": "2027-10-17"
       }
     ]
   },
@@ -423,15 +424,15 @@
           },
           {
             "label": "Days and frequency",
-            "text": "Daily. On weekends from {{t:2026-10-17T07:00:00-04:00}}, every 30 minutes, and every 15 minutes from {{t:2026-10-17T10:00:00-04:00}} to {{t:2026-10-17T18:00:00-04:00}}."
+            "text": "Daily. On weekends from {{t:2027-10-16T07:00:00-04:00}}, every 30 minutes, and every 15 minutes from {{t:2027-10-16T10:00:00-04:00}} to {{t:2027-10-16T18:00:00-04:00}}."
           },
           {
             "label": "Fare",
-            "text": "Free on weekends for any boat before {{t:2026-10-17T11:00:00-04:00}}, through the {{t:2026-10-17T10:45:00-04:00}} boat. From {{t:2026-10-17T11:00:00-04:00}}, $5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
+            "text": "Free on weekends for any boat before {{t:2027-10-16T11:00:00-04:00}}, through the {{t:2027-10-16T10:45:00-04:00}} boat. From {{t:2027-10-16T11:00:00-04:00}}, $5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
           }
         ],
-        "firstBoat": "2026-10-17T07:00:00-04:00",
-        "lastBoat": "2026-10-17T18:00:00-04:00"
+        "firstBoat": "2027-10-16T07:00:00-04:00",
+        "lastBoat": "2027-10-16T18:00:00-04:00"
       },
       {
         "code": "B",
@@ -447,15 +448,15 @@
           },
           {
             "label": "Days and frequency",
-            "text": "Saturdays, Sundays, and holidays through Sun, Nov 1, 2026. Hourly from {{t:2026-10-17T10:15:00-04:00}}."
+            "text": "Saturdays, Sundays, and holidays through Sun, Nov 1, 2026. Hourly from {{t:2027-10-16T10:15:00-04:00}}."
           },
           {
             "label": "Fare",
-            "text": "The {{t:2026-10-17T10:15:00-04:00}} boat is free on weekends. After that, $5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
+            "text": "The {{t:2027-10-16T10:15:00-04:00}} boat is free on weekends. After that, $5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
           }
         ],
-        "firstBoat": "2026-10-17T10:15:00-04:00",
-        "lastBoat": "2026-10-17T18:00:00-04:00"
+        "firstBoat": "2027-10-16T10:15:00-04:00",
+        "lastBoat": "2027-10-16T18:00:00-04:00"
       },
       {
         "code": "R",
@@ -471,22 +472,22 @@
           },
           {
             "label": "Days and frequency",
-            "text": "Saturdays, Sundays, and holidays through Sun, Nov 1, 2026. Hourly from {{t:2026-10-17T09:45:00-04:00}}."
+            "text": "Saturdays, Sundays, and holidays through Sun, Nov 1, 2026. Hourly from {{t:2027-10-16T09:45:00-04:00}}."
           },
           {
             "label": "Fare",
-            "text": "The {{t:2026-10-17T09:45:00-04:00}} and {{t:2026-10-17T10:45:00-04:00}} boats are free on weekends. After that, $5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
+            "text": "The {{t:2027-10-16T09:45:00-04:00}} and {{t:2027-10-16T10:45:00-04:00}} boats are free on weekends. After that, $5 round trip for adults. Always free for kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members."
           }
         ],
-        "firstBoat": "2026-10-17T09:45:00-04:00",
-        "lastBoat": "2026-10-17T17:30:00-04:00"
+        "firstBoat": "2027-10-16T09:45:00-04:00",
+        "lastBoat": "2027-10-16T17:30:00-04:00"
       }
     ],
-    "lastFerryWarning": "The island closes at {{t:2026-10-17T18:00:00-04:00}}. Last boats back: {{t:2026-10-17T17:30:00-04:00}} to Red Hook, and {{t:2026-10-17T18:00:00-04:00}} to Brooklyn Bridge Park and to Manhattan. Day 1 ends at {{t:2026-10-17T16:30:00-04:00}}. On Day 2, the podium ends at {{t:2026-10-18T15:30:00-04:00}} and the meet-and-greet runs until {{t:2026-10-18T17:00:00-04:00}}. If you miss the last boat, there is no other way off the island.",
+    "lastFerryWarning": "The island closes at {{t:2027-10-16T18:00:00-04:00}}. Last boats back: {{t:2027-10-16T17:30:00-04:00}} to Red Hook, and {{t:2027-10-16T18:00:00-04:00}} to Brooklyn Bridge Park and to Manhattan. Day 1 ends at {{t:2027-10-16T16:30:00-04:00}}. On Day 2, the podium ends at {{t:2027-10-17T15:30:00-04:00}} and the meet-and-greet runs until {{t:2027-10-17T17:00:00-04:00}}. If you miss the last boat, there is no other way off the island.",
     "cards": [
       {
         "title": "Check-in on arrival",
-        "body": "From any landing, follow the Open Bracket signs to the check-in tent on the Parade Ground, about 5 minutes on foot. Show the QR code from your confirmation email to get your wristband. Competitors check in at least 30 minutes before their heat (by {{t:2026-10-17T10:45:00-04:00}} for Heat 1), or the spot goes to the standby line. Spectators get a wristband at the same tent."
+        "body": "From any landing, follow the Open Bracket signs to the check-in tent on the Parade Ground, about 5 minutes on foot. Show the QR code from your confirmation email to get your wristband. Competitors check in at least 30 minutes before their heat (by {{t:2027-10-16T10:45:00-04:00}} for Heat 1), or the spot goes to the standby line. Spectators get a wristband at the same tent."
       },
       {
         "title": "What to bring",
@@ -521,16 +522,16 @@
       {
         "code": "D1",
         "name": "Qualifier stream",
-        "detail": "Every heat, one at a time, with commentary, plus the team draft and bracket reveal from {{t:2026-10-17T15:45:00-04:00}}.",
-        "start": "2026-10-17T11:00:00-04:00",
-        "end": "2026-10-17T16:30:00-04:00"
+        "detail": "Every heat, one at a time, with commentary, plus the team draft and bracket reveal from {{t:2027-10-16T15:45:00-04:00}}.",
+        "start": "2027-10-16T11:00:00-04:00",
+        "end": "2027-10-16T16:30:00-04:00"
       },
       {
         "code": "D2",
         "name": "Finals stream",
         "detail": "Blocks A and B, the halftime show, the Chat Decides finale in Block C, and the podium.",
-        "start": "2026-10-18T11:00:00-04:00",
-        "end": "2026-10-18T15:30:00-04:00"
+        "start": "2027-10-17T11:00:00-04:00",
+        "end": "2027-10-17T15:30:00-04:00"
       },
       {
         "code": "VOD",
@@ -549,14 +550,24 @@
         "id": "competitor",
         "label": "Compete",
         "price": "$30",
-        "desc": "Play one Day 1 qualifier heat of four solo games. Top 3 in each heat play the Day 2 finals. Includes Day 2 entry. Ages 18 and up."
+        "gets": "One Day 1 qualifier heat of four solo games. The top 3 in each heat play the Day 2 finals. Day 2 entry included.",
+        "who": "Ages 18 and up.",
+        "checkin": "At the check-in tent on the Parade Ground, at least 30 minutes before your heat, or the spot goes to standby."
       },
       {
         "id": "spectator",
         "label": "Spectate",
         "price": "$5",
-        "desc": "Watch the heats, the finals, or both from the Parade Ground. All ages. Includes a $5 food truck voucher, so it pays for itself."
+        "gets": "Watch the heats, the finals, or both from the Parade Ground. A $5 food truck voucher, so it pays for itself.",
+        "who": "All ages.",
+        "checkin": "Pick up a wristband at the check-in tent on the Parade Ground any time."
       }
+    ],
+    "compareRows": [
+      { "key": "gets", "label": "What you get" },
+      { "key": "who", "label": "Who can enter" },
+      { "key": "checkin", "label": "Check-in" },
+      { "key": "price", "label": "Cost" }
     ],
     "spectatorDays": [
       {
@@ -585,17 +596,17 @@
       },
       {
         "q": "How do I get to Day 2?",
-        "a": "Finish in the top 3 of your heat. Your host announces the top 3 at the end of the heat, which makes 18 qualifiers in total. Come to the main stage for the team draft at {{t:2026-10-17T15:45:00-04:00}}, then stay for the bracket reveal. On Day 2, check in at the green tent by {{t:2026-10-18T10:45:00-04:00}}.",
+        "a": "Finish in the top 3 of your heat. Your host announces the top 3 at the end of the heat, which makes 18 qualifiers in total. Come to the main stage for the team draft at {{t:2027-10-16T15:45:00-04:00}}, then stay for the bracket reveal. On Day 2, check in at the green tent by {{t:2027-10-17T10:45:00-04:00}}.",
         "group": "competing"
       },
       {
         "q": "Can I choose my heat time?",
-        "a": "Yes. You pick one of the six heats when you register. Heats run one at a time, every 45 minutes from {{t:2026-10-17T11:15:00-04:00}} to {{t:2026-10-17T15:45:00-04:00}}. You can switch heats later with the change my registration link while the new heat has room.",
+        "a": "Yes. You pick one of the six heats when you register. Heats run one at a time, every 45 minutes from {{t:2027-10-16T11:15:00-04:00}} to {{t:2027-10-16T15:45:00-04:00}}. You can switch heats later with the change my registration link while the new heat has room.",
         "group": "competing"
       },
       {
         "q": "I'm coming from Brooklyn. Can I make the first heat?",
-        "a": "Yes, and the ride is free. The first boat from Red Hook leaves at {{t:2026-10-17T09:45:00-04:00}}, and the first boat from Brooklyn Bridge Park Pier 6 leaves at {{t:2026-10-17T10:15:00-04:00}}. Check-in for Heat 1 stays open until {{t:2026-10-17T10:45:00-04:00}}, which leaves time for the crossing and the 5 minute walk to the check-in tent. The Pier 6 boat has less slack, so if you'd rather not cut it close, take the Red Hook or Manhattan ferry, or pick a later heat.",
+        "a": "Yes, and the ride is free. The first boat from Red Hook leaves at {{t:2027-10-16T09:45:00-04:00}}, and the first boat from Brooklyn Bridge Park Pier 6 leaves at {{t:2027-10-16T10:15:00-04:00}}. Check-in for Heat 1 stays open until {{t:2027-10-16T10:45:00-04:00}}, which leaves time for the crossing and the 5 minute walk to the check-in tent. The Pier 6 boat has less slack, so if you'd rather not cut it close, take the Red Hook or Manhattan ferry, or pick a later heat.",
         "group": "getting-there"
       },
       {
@@ -605,7 +616,7 @@
       },
       {
         "q": "What happens if I miss check-in for my heat?",
-        "a": "Check in at least 30 minutes before your heat, which is {{t:2026-10-17T10:45:00-04:00}} for Heat 1. After that, your spot goes to the standby line and your ticket isn't refunded. You can still watch, and you can join standby for a later heat.",
+        "a": "Check in at least 30 minutes before your heat, which is {{t:2027-10-16T10:45:00-04:00}} for Heat 1. After that, your spot goes to the standby line and your ticket isn't refunded. You can still watch, and you can join standby for a later heat.",
         "group": "competing"
       },
       {
@@ -625,7 +636,7 @@
       },
       {
         "q": "When and where is the meet-and-greet?",
-        "a": "Day 2, at the merch tent, from {{t:2026-10-18T15:30:00-04:00}} to {{t:2026-10-18T17:00:00-04:00}}, right after the podium. All six creators sign at once, each with their own line, so there's time to meet two or more. It's after the competition so it never pulls anyone away from a heat or a game.",
+        "a": "Day 2, at the merch tent, from {{t:2027-10-17T15:30:00-04:00}} to {{t:2027-10-17T17:00:00-04:00}}, right after the podium. All six creators sign at once, each with their own line, so there's time to meet two or more. It's after the competition so it never pulls anyone away from a heat or a game.",
         "group": "watching"
       },
       {
@@ -660,17 +671,17 @@
       },
       {
         "q": "Can I get a refund if I can't make it?",
-        "a": "Yes, a full refund until Fri, Oct 2, 2026. From Sat, Oct 3, 2026, two weeks before the event, tickets are non-refundable. You can still switch to a different heat with the change my registration link while that heat has room.",
+        "a": "Yes, a full refund until Fri, Oct 1, 2027. From Sat, Oct 2, 2027, two weeks before the event, tickets are non-refundable. You can still switch to a different heat with the change my registration link while that heat has room.",
         "group": "competing"
       },
       {
         "q": "Is the ferry included in my ticket?",
-        "a": "No, but on weekends every boat before {{t:2026-10-17T11:00:00-04:00}} is free, from any stop: Manhattan through the {{t:2026-10-17T10:45:00-04:00}} boat, Red Hook at {{t:2026-10-17T09:45:00-04:00}} and {{t:2026-10-17T10:45:00-04:00}}, and Brooklyn Bridge Park at {{t:2026-10-17T10:15:00-04:00}}. After that, it's $5 round trip for adults. Kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members always ride free. Check the island ferry schedule on govisland.com for current fares.",
+        "a": "No, but on weekends every boat before {{t:2027-10-16T11:00:00-04:00}} is free, from any stop: Manhattan through the {{t:2027-10-16T10:45:00-04:00}} boat, Red Hook at {{t:2027-10-16T09:45:00-04:00}} and {{t:2027-10-16T10:45:00-04:00}}, and Brooklyn Bridge Park at {{t:2027-10-16T10:15:00-04:00}}. After that, it's $5 round trip for adults. Kids 12 and under, older adults, NYCHA residents, IDNYC holders, military service members, and Governors Island members always ride free. Check the island ferry schedule on govisland.com for current fares.",
         "group": "getting-there"
       },
       {
         "q": "What if I miss the last ferry?",
-        "a": "There is no other way off the island. The earliest last boat is {{t:2026-10-17T17:30:00-04:00}} to Red Hook, and the last boats to Brooklyn Bridge Park and Manhattan leave at {{t:2026-10-17T18:00:00-04:00}}. Day 1 ends at {{t:2026-10-17T16:30:00-04:00}}. On Day 2 the meet-and-greet runs until {{t:2026-10-18T17:00:00-04:00}}, so if you're heading to Red Hook, leave it by about {{t:2026-10-18T17:10:00-04:00}} or take a Manhattan or Pier 6 boat instead.",
+        "a": "There is no other way off the island. The earliest last boat is {{t:2027-10-16T17:30:00-04:00}} to Red Hook, and the last boats to Brooklyn Bridge Park and Manhattan leave at {{t:2027-10-16T18:00:00-04:00}}. Day 1 ends at {{t:2027-10-16T16:30:00-04:00}}. On Day 2 the meet-and-greet runs until {{t:2027-10-17T17:00:00-04:00}}, so if you're heading to Red Hook, leave it by about {{t:2027-10-17T17:10:00-04:00}} or take a Manhattan or Pier 6 boat instead.",
         "group": "getting-there"
       },
       {
