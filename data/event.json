@@ -119,9 +119,9 @@
             "end": "2027-10-16T12:45:00-04:00",
             "code": "H2",
             "title": "Heat 2",
-            "detail": "Hosted by Theo Lindqvist. Check in by {{t:2027-10-16T11:30:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
+            "detail": "Hosted by Felix Andersson. Check in by {{t:2027-10-16T11:30:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers",
-            "host": "Theo Lindqvist"
+            "host": "Felix Andersson"
           },
           {
             "start": "2027-10-16T12:45:00-04:00",
@@ -137,9 +137,9 @@
             "end": "2027-10-16T14:15:00-04:00",
             "code": "H4",
             "title": "Heat 4",
-            "detail": "Hosted by June Marchetti. Check in by {{t:2027-10-16T13:00:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
+            "detail": "Hosted by Gemma Marchetti. Check in by {{t:2027-10-16T13:00:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers",
-            "host": "June Marchetti"
+            "host": "Gemma Marchetti"
           },
           {
             "start": "2027-10-16T14:15:00-04:00",
@@ -155,9 +155,9 @@
             "end": "2027-10-16T15:45:00-04:00",
             "code": "H6",
             "title": "Heat 6",
-            "detail": "Hosted by Hana Ferreira. Check in by {{t:2027-10-16T14:30:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
+            "detail": "Hosted by Noor Castellanos. Check in by {{t:2027-10-16T14:30:00-04:00}}. Paper Ball Shootout, Musical Chairs, Sack Sprint, Simon Says.",
             "track": "Qualifiers",
-            "host": "Hana Ferreira"
+            "host": "Noor Castellanos"
           },
           {
             "start": "2027-10-16T15:45:00-04:00",
@@ -364,12 +364,12 @@
         "photoAlt": "Rosa Asante, Twitch speedrunner, hosting Heat 1"
       },
       {
-        "name": "Theo Lindqvist",
-        "handle": "@theo_falls_over",
+        "name": "Felix Andersson",
+        "handle": "@felix_falls_over",
         "platform": "YouTube",
         "specialty": "Challenge videos",
         "bio": "Tries a new sport every week and posts every failed attempt.",
-        "photoAlt": "Theo Lindqvist, YouTube challenge creator, hosting Heat 2"
+        "photoAlt": "Felix Andersson, YouTube challenge creator, hosting Heat 2"
       },
       {
         "name": "Kwame Mori",
@@ -380,12 +380,12 @@
         "photoAlt": "Kwame Mori, Twitch party game streamer, hosting Heat 3"
       },
       {
-        "name": "June Marchetti",
-        "handle": "@junebugjumps",
+        "name": "Gemma Marchetti",
+        "handle": "@gemmagoesin",
         "platform": "TikTok",
         "specialty": "Trick shots",
         "bio": "Posts one trick shot a day and shows all the misses before it.",
-        "photoAlt": "June Marchetti, TikTok trick shot creator, hosting Heat 4"
+        "photoAlt": "Gemma Marchetti, TikTok trick shot creator, hosting Heat 4"
       },
       {
         "name": "Luis Park",
@@ -396,12 +396,12 @@
         "photoAlt": "Luis Park, YouTube outdoor games creator, hosting Heat 5"
       },
       {
-        "name": "Hana Ferreira",
-        "handle": "@hana.exe",
+        "name": "Noor Castellanos",
+        "handle": "@noor.exe",
         "platform": "Twitch",
         "specialty": "Variety",
         "bio": "Variety streamer known for co-op chaos and skipping every tutorial.",
-        "photoAlt": "Hana Ferreira, Twitch variety streamer, hosting Heat 6"
+        "photoAlt": "Noor Castellanos, Twitch variety streamer, hosting Heat 6"
       }
     ],
     "more": "The meet-and-greet is on Day 2, right after the podium, so it never competes with a heat or a game. All six creators sign at the merch tent for 90 minutes, each with their own line."
