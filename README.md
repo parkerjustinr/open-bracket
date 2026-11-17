@@ -1,6 +1,6 @@
 # Open Bracket
 
-A single-page site for **Open Bracket**, a fictional two-day outdoor creator games event on Governors Island, New York, on Sat, Oct 17 and Sun, Oct 18, 2026. I made it for the Happily Design Jam.
+A single-page site for **Open Bracket**, a fictional two-day outdoor creator games event on Governors Island, New York, on Sat, Oct 16 and Sun, Oct 17, 2027. I made it for the Happily Design Jam.
 
 ## What it is
 
@@ -41,11 +41,13 @@ The site wasn't built on Arrived. In a real build, these are the pieces that wou
 
 - **No build step.** `index.html`, `styles.css`, `app.js` and `data/event.json`. There's no framework.
 - **All copy lives in `data/event.json`.** Edit that file to change the copy; you don't need to touch the markup.
-- **Times.** Stored as ISO 8601 with an offset. `meta.timezone` (America/New_York) is the home zone. Times inside sentences are written as `{{t:2026-10-17T16:30:00-04:00}}` so they convert too.
+- **Times.** Stored as ISO 8601 with an offset. `meta.timezone` (America/New_York) is the home zone. Times inside sentences are written as `{{t:2027-10-16T16:30:00-04:00}}` so they convert too.
 - **Headings.** One colored phrase per heading, written as `[[red:...]]`, `[[blue:...]]` or `[[yellow:...]]`. Bold key numbers in copy with `**...**`.
 - **Calendar files.** Built in the browser for both days, each day, each session, each stream, and each visitor's own registration (with reminder alarms).
 - **Countdown.** Counts to the first heat or game of the next day, with split-flap digits.
-- **Creator photos.** Add `img/creators/01.jpg` to `06.jpg` and they get a print treatment (grayscale, multiplied into the section blue, halftone on top). Missing files fall back to a numeral tile.
+- **Creator photos.** `img/creators/01.jpg` to `06.jpg` (800x600) on the cards and `01-sm.jpg` to `06-sm.jpg` (64x64) next to each host in the Day 1 heat table, numbered in the order of `creators.items`. Both get a duotone in blue-deep and paper from the SVG filter in `index.html`. A missing card photo falls back to a numeral tile. The portraits are Unsplash photos (Unsplash License) of models, not the fictional creators.
+- **Heats.** Day 1 heats show as one table in the schedule. Each creator card links to its host's heat row and highlights that row.
+- **After the event.** Once Day 2 ends, the page adds `.is-over` to `<html>` and hides every Register and Compete control.
 - **Color has a job.** Red means Day 1, solo or competing. Blue means Day 2, duo and team, or watching. Sun yellow is only ever a background with ink on it, for the champion, crowns, the Day 2 finale and highlight marks.
 - **Resilient rendering.** Each section renders on its own, so one failure doesn't blank the page.
 - **Accessibility.** Skip link, visible focus, keyboard-operable tabs, `prefers-reduced-motion` respected, and text contrast at WCAG AA.

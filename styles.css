@@ -1108,3 +1108,110 @@ section[id] { scroll-margin-top: 104px; }
 .heat-line { margin: 12px 0; font-weight: 600; }
 .heat-body .heat-num { grid-row: 1 / span 4; }
 .heat-body > :not(.heat-num) { grid-column: 2; }
+
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ---------- After the event: no register or compete controls anywhere ---------- */
+.is-over .header-cta,
+.is-over [data-reg-type],
+.is-over a[href="#register"],
+.is-over #register { display: none !important; }
+
+/* ---------- Creator portraits: duotone in blue-deep and paper (SVG filter in index.html) ---------- */
+.creator-slot.has-photo img { filter: url(#duotone); mix-blend-mode: normal; }
+.creator-slot.has-photo::after { opacity: 0.18; }
+/* Each card links to its host's Day 1 heat row; the link covers the whole card */
+.creator.has-heat { position: relative; }
+.creator-heat {
+  justify-self: start;
+  margin-top: 10px;
+  font-family: var(--cond);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tr-ui);
+  font-size: var(--fs-ui);
+}
+.creator-heat::after { content: ""; position: absolute; inset: 0; }
+.creator.has-heat:hover .creator-heat { text-decoration-thickness: 4px; }
+.creator-heat:focus-visible { outline: none; }
+.creator.has-heat:focus-within { outline: 3px solid var(--paper); outline-offset: 3px; }
+@media (max-width: 559px) { .creator-heat { grid-column: 2; margin-top: 4px; } }
+
+/* ---------- Day 1 heats: one compact table inside the schedule ---------- */
+.session-heats .heat-table { grid-column: 1 / -1; width: 100%; border-collapse: collapse; margin-top: 12px; }
+.heat-table thead th {
+  font-family: var(--cond);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tr-label);
+  font-size: var(--fs-label);
+  text-align: left;
+  padding: 0 12px 8px 10px;
+  border-bottom: 2px solid var(--paper);
+}
+.heat-table tbody th, .heat-table td { text-align: left; vertical-align: middle; padding: 10px 12px 10px 10px; font-weight: 400; }
+.heat-group + .heat-group .heat-row { border-top: 1px solid rgba(242, 236, 223, 0.35); }
+.hc-heat { white-space: nowrap; }
+.hc-num {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-right: 10px;
+  vertical-align: middle;
+  background: var(--red);
+  color: var(--paper);
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+.hc-name { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 1.25rem; vertical-align: middle; }
+.hc-time .tz-primary, .hc-check .tz-primary { font-family: var(--cond); font-weight: 700; font-size: 1.125rem; letter-spacing: 0.04em; }
+.hc-label { display: none; }
+.host-photo { display: inline-block; width: 32px; height: 32px; margin-right: 10px; vertical-align: middle; background: var(--blue-deep); }
+.host-photo img { display: block; width: 32px; height: 32px; object-fit: cover; filter: url(#duotone); }
+.host-name { vertical-align: middle; font-weight: 600; }
+.hc-cal { text-align: right; }
+.hc-cal .ics-btn { margin-top: 0; }
+.heat-note td { padding: 0 12px 12px 56px; font-size: 0.98rem; }
+/* A creator card's link lands here: only that heat's row is highlighted */
+.heat-group { scroll-margin-top: 96px; }
+.heat-group.is-target tr { background: var(--yellow); color: var(--ink); }
+.heat-group.is-target .ics-btn { border-color: var(--ink); }
+@media (max-width: 719px) {
+  .heat-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .heat-table, .heat-table tbody, .heat-table tr, .heat-table th, .heat-table td { display: block; }
+  .heat-row { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); column-gap: 14px; row-gap: 8px; padding: 14px 10px; }
+  .heat-table tbody th, .heat-table td { padding: 0; }
+  .hc-heat { grid-row: 1 / span 4; }
+  .hc-num { width: 2.75rem; height: 2.75rem; margin: 0; font-size: 2rem; }
+  .hc-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .hc-time, .hc-check, .hc-host, .hc-cal { grid-column: 2; text-align: left; }
+  .hc-label { display: block; font-family: var(--cond); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tr-label); font-size: var(--fs-label); opacity: 0.85; }
+  .heat-table .heat-note td { padding: 0 10px 14px calc(2.75rem + 24px); }
+}
+
+/* ---------- Compete vs Spectate: the two registration paths as a side-by-side comparison ---------- */
+.type-options { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.type-option label { grid-template-columns: minmax(0, 1fr); gap: 0; align-content: start; height: 100%; }
+@supports (grid-template-rows: subgrid) {
+  .type-option { display: grid; grid-row: span var(--rows); grid-template-rows: subgrid; }
+  .type-option label { grid-row: 1 / -1; grid-template-rows: subgrid; }
+}
+.type-option .t-name { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 3rem); padding-bottom: 10px; }
+.type-option .t-row { display: grid; gap: 2px; align-content: start; padding: 8px 0 10px; border-top: 2px solid currentColor; }
+.type-option .t-label { font-family: var(--cond); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tr-ui); font-size: var(--fs-label); }
+.type-option .t-value { font-size: 0.98rem; line-height: 1.4; }
+.type-option .t-price { align-self: stretch; font-family: var(--body); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 1rem; }
+.type-option .t-price .t-value { font-family: var(--display); font-weight: 900; font-size: 2.25rem; line-height: 1; }
+@media (max-width: 479px) {
+  .type-option label { padding: 12px; }
+  .type-option .t-value { font-size: 0.92rem; }
+}
+
+/* Countdown: a three-digit day count (a year out) still fits a 360px screen */
+@media (max-width: 399px) {
+  .countdown-units { gap: 12px 10px; }
+  .flap { font-size: 2.2rem; }
+}
